@@ -29,7 +29,7 @@ function Hero() {
             <Heartbeat weight="duotone" className="size-7" />
           </div>
         </Reveal>
-        <Reveal delay={0.08} y={32} blur>
+        <Reveal delay={0.08}>
           <h1 className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
             Tidak semua hal dalam hidup perlu segera diperbaiki.
           </h1>

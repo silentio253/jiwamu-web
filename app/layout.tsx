@@ -61,6 +61,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${serifDisplay.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface text-ink">
+        <noscript>
+          <style>{`.reveal,.reveal-item{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

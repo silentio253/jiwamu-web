@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { CTA } from "@/components/cta";
 import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
@@ -46,7 +47,7 @@ function Hero() {
                 Ekosistem Kelekatan
               </p>
             </Reveal>
-            <Reveal delay={0.08} y={32} blur>
+            <Reveal delay={0.08}>
               <h1 className="mt-6 text-[2.75rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.02] tracking-tight text-ink text-balance">
                 Ruang aman untuk{" "}
                 <span className="font-serif italic font-normal text-accent">
@@ -82,25 +83,32 @@ function Hero() {
           </div>
 
           <div className="lg:col-span-5 xl:col-span-5">
-            <Reveal delay={0.32} y={40} blur>
+            <Reveal delay={0.32}>
               <div className="relative">
                 <div
                   aria-hidden
-                  className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-fill-soft to-transparent blur-2xl opacity-60"
+                  className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-fill-soft to-transparent blur-3xl opacity-70"
                 />
-                <div className="rounded-[28px] border border-hairline bg-white/70 backdrop-blur-md p-8 sm:p-10 shadow-soft">
-                  <p className="font-serif text-2xl sm:text-3xl italic leading-snug text-ink text-pretty">
-                    &ldquo;Penderitaan hidup lebih masuk akal untuk ditanggung
-                    jika kita saling berpegang tangan.&rdquo;
-                  </p>
-                  <div className="mt-8 flex items-center gap-4">
-                    <div className="h-px w-16 bg-accent" />
-                    <div>
-                      <p className="text-sm font-medium text-ink">
+                <div className="relative rounded-[28px] border border-hairline bg-white overflow-hidden shadow-soft">
+                  <div className="relative aspect-[4/5] bg-gradient-to-br from-fill-soft via-surface to-white">
+                    <Image
+                      src="/logo-transparan.png"
+                      alt="Logo Jiwamu"
+                      fill
+                      className="object-contain p-8"
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                    />
+                  </div>
+                  <div className="border-t border-hairline p-6 sm:p-8">
+                    <p className="font-serif text-lg sm:text-xl italic leading-snug text-ink text-pretty">
+                      &ldquo;Penderitaan hidup lebih masuk akal untuk ditanggung
+                      jika kita saling berpegang tangan.&rdquo;
+                    </p>
+                    <div className="mt-4 flex items-center gap-3">
+                      <div className="h-px w-12 bg-accent" />
+                      <p className="text-xs font-medium text-muted">
                         #BertumbuhBersama
-                      </p>
-                      <p className="text-xs text-soft mt-0.5">
-                        Semangat Jiwamu
                       </p>
                     </div>
                   </div>
@@ -175,15 +183,19 @@ function WhatYouNeed() {
         </div>
 
         <RevealStagger className="mt-14 grid grid-cols-1 md:grid-cols-6 gap-5" stagger={0.1}>
-          <RevealItem className="md:col-span-4">
+          <RevealItem className="md:col-span-4" index={0}>
             <Link
               href="/kelas"
               className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-white p-8 sm:p-10 min-h-[320px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg overflow-hidden"
             >
-              <div className="flex items-center justify-center size-14 rounded-2xl bg-accent text-white shadow-accent">
+              <div
+                aria-hidden
+                className="absolute right-0 top-0 w-48 h-48 -mr-12 -mt-12 rounded-full bg-fill-soft opacity-50 blur-2xl"
+              />
+              <div className="relative flex items-center justify-center size-14 rounded-2xl bg-accent text-white shadow-accent">
                 <GraduationCap weight="duotone" className="size-7" />
               </div>
-              <div className="mt-auto">
+              <div className="relative mt-auto">
                 <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">
                   Kelas Pengembangan Diri
                 </h3>
@@ -202,7 +214,7 @@ function WhatYouNeed() {
             </Link>
           </RevealItem>
 
-          <RevealItem className="md:col-span-2">
+          <RevealItem className="md:col-span-2" index={1}>
             <Link
               href="/layanan"
               className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-white p-8 min-h-[320px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
@@ -229,7 +241,7 @@ function WhatYouNeed() {
             </Link>
           </RevealItem>
 
-          <RevealItem className="md:col-span-2">
+          <RevealItem className="md:col-span-2" index={2}>
             <Link
               href="/buku"
               className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-white p-8 min-h-[280px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
@@ -255,7 +267,7 @@ function WhatYouNeed() {
             </Link>
           </RevealItem>
 
-          <RevealItem className="md:col-span-4">
+          <RevealItem className="md:col-span-4" index={3}>
             <Link
               href="/majalah"
               className="group relative flex h-full items-center justify-between gap-6 rounded-2xl border border-hairline bg-white p-8 sm:p-10 min-h-[180px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
@@ -282,8 +294,14 @@ function WhatYouNeed() {
                   />
                 </span>
               </div>
-              <div className="hidden sm:flex shrink-0 items-center justify-center size-24 rounded-2xl bg-gradient-to-br from-fill-soft to-surface border border-hairline">
-                <span className="font-serif text-5xl italic text-accent">M</span>
+              <div className="hidden sm:flex shrink-0 items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br from-fill-soft to-surface border border-hairline overflow-hidden relative">
+                <Image
+                  src="/logo-icon.png"
+                  alt=""
+                  fill
+                  className="object-contain p-4"
+                  sizes="96px"
+                />
               </div>
             </Link>
           </RevealItem>
@@ -313,9 +331,13 @@ function ThisMonth() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.12} y={32} blur>
+        <Reveal delay={0.12}>
           <div className="mt-12 relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 lg:p-16">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div
+              aria-hidden
+              className="absolute right-0 bottom-0 w-96 h-96 -mr-20 -mb-20 rounded-full bg-fill-soft opacity-40 blur-3xl"
+            />
+            <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-7">
                 <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
                   Level 1 · CAF
@@ -411,7 +433,7 @@ function Subscribe() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <Reveal y={32} blur>
+        <Reveal>
           <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
             <div
               aria-hidden

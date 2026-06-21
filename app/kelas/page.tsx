@@ -26,7 +26,7 @@ export default function KelasPage() {
               Sertifikasi &amp; Pelatihan
             </p>
           </Reveal>
-          <Reveal delay={0.08} y={32} blur>
+          <Reveal delay={0.08}>
             <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
               Mulai dan kembangkan kariermu untuk memahami diri dan membantu
               sesama.
@@ -46,7 +46,7 @@ export default function KelasPage() {
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.1}>
             {CERTIFICATIONS.map((cert, i) => (
-              <RevealItem key={cert.href}>
+              <RevealItem key={cert.href} index={i}>
                 <Link
                   href={cert.href}
                   className="group relative flex flex-col rounded-2xl border border-hairline bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg h-full"

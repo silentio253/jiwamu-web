@@ -1,43 +1,47 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
   delay?: number;
-  y?: number;
-  blur?: boolean;
   className?: string;
 };
 
-export function Reveal({
-  children,
-  delay = 0,
-  y = 24,
-  blur = false,
-  className,
-}: RevealProps) {
-  const reduce = useReducedMotion();
+export function Reveal({ children, delay = 0, className }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y, filter: blur ? "blur(8px)" : "blur(0px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{
-        duration: 0.7,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+    <div
+      ref={ref}
+      className={`reveal ${visible ? "reveal-visible" : ""} ${className ?? ""}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -52,58 +56,56 @@ export function RevealStagger({
   className,
   stagger = 0.08,
 }: RevealStaggerProps) {
-  const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: stagger },
-        },
-      }}
+    <div
+      ref={ref}
+      className={`reveal-stagger ${visible ? "reveal-stagger-visible" : ""} ${className ?? ""}`}
+      style={{ ["--stagger" as string]: `${stagger}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
 export function RevealItem({
   children,
   className,
-  y = 24,
+  index = 0,
 }: {
   children: ReactNode;
   className?: string;
-  y?: number;
+  index?: number;
 }) {
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: { opacity: 0, y },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-        },
-      }}
+    <div
+      className={`reveal-item ${className ?? ""}`}
+      style={{ ["--item-index" as string]: index }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
