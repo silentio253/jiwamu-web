@@ -12,72 +12,97 @@ import {
 } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Jiwamu — Bertumbuh Bersama",
+  title: "Jiwamu — Bertumbuh Bersama (Opsi B)",
   description:
     "Ruang aman untuk bertumbuh bersama. Ekosistem pengembangan diri dan media digital berbasis teori kelekatan.",
 };
 
-export default function HomePage() {
+export default function OptionBPage() {
   return (
     <>
-      <HeroA />
-      <Manifesto />
-      <WhatYouNeed />
-      <ThisMonth />
-      <Connect />
-      <Subscribe />
+      <HeroB />
+      <ManifestoB />
+      <WhatYouNeedB />
+      <ThisMonthB />
+      <ConnectB />
+      <SubscribeB />
     </>
   );
 }
 
-function HeroA() {
+function HeroB() {
   return (
-    <section className="relative min-h-[100dvh] flex items-end overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-ink">
       <Image
-        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=80"
-        alt="Cahaya menerangi hutan — ruang aman untuk bertumbuh"
+        src="https://images.unsplash.com/photo-1469474968028-56623f45e6f5?auto=format&fit=crop&w=2400&q=80"
+        alt="Pemandangan kontemplatif — ruang untuk memahami diri"
         fill
         priority
-        className="object-cover"
+        className="object-cover opacity-40"
         sizes="100vw"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/50 to-ink/20"
+        className="absolute inset-0 bg-gradient-to-br from-ink via-ink/80 to-ink/60"
       />
 
-      <div className="relative mx-auto max-w-[1400px] w-full px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28 pt-32">
-        <div className="max-w-3xl">
-          <p className="text-sm font-medium text-white/70">
-            Ekosistem Kelekatan
-          </p>
-          <h1 className="mt-6 text-[2.5rem] sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold leading-[0.98] tracking-tight text-white text-balance">
-            Ruang aman untuk{" "}
-            <span className="font-serif italic font-normal text-white/90">
-              bertumbuh
-            </span>{" "}
-            bersama.
-          </h1>
-          <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-white/75 text-pretty">
-            Jiwamu adalah ekosistem pengembangan diri dan media digital
-            berbasis teori kelekatan — ruang belajar, pendampingan,
-            penerbitan, media, dan gerakan sosial.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <CTA href="/kelas" size="lg" withArrow>
-              Mulai Perjalananmu
-            </CTA>
-            <CTA
-              href={waLink(
-                "Hai Kak Nuy, saya ingin tahu lebih lanjut tentang Jiwamu!",
-              )}
-              variant="ghost"
-              size="lg"
-              external
-              className="border-white/20 bg-white/10 text-white hover:bg-white/20 hover:border-white/40"
-            >
-              Tanya Kami
-            </CTA>
+      <div className="relative mx-auto max-w-[1400px] w-full px-4 sm:px-6 lg:px-8 py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+          <div className="lg:col-span-8">
+            <p className="text-sm font-medium text-accent/90">
+              Ekosistem Kelekatan
+            </p>
+            <h1 className="mt-6 text-[2.5rem] sm:text-6xl lg:text-7xl xl:text-[5rem] font-semibold leading-[0.98] tracking-tight text-white text-balance">
+              Ruang aman untuk{" "}
+              <span className="font-serif italic font-normal text-white/80">
+                bertumbuh
+              </span>{" "}
+              bersama.
+            </h1>
+            <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-white/60 text-pretty">
+              Jiwamu adalah ekosistem pengembangan diri dan media digital
+              berbasis teori kelekatan — ruang belajar, pendampingan,
+              penerbitan, media, dan gerakan sosial.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <CTA href="/kelas" size="lg" withArrow>
+                Mulai Perjalananmu
+              </CTA>
+              <CTA
+                href={waLink(
+                  "Hai Kak Nuy, saya ingin tahu lebih lanjut tentang Jiwamu!",
+                )}
+                variant="ghost"
+                size="lg"
+                external
+                className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:border-white/40"
+              >
+                Tanya Kami
+              </CTA>
+            </div>
+          </div>
+
+          <div className="hidden lg:block lg:col-span-4">
+            <div className="grid grid-cols-2 gap-px bg-white/10 rounded-2xl overflow-hidden">
+              <div className="bg-ink/60 backdrop-blur-sm p-6">
+                <p className="text-4xl font-semibold text-white">3</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/50">
+                  Level Sertifikasi
+                </p>
+              </div>
+              <div className="bg-ink/60 backdrop-blur-sm p-6">
+                <p className="text-4xl font-semibold text-white">4</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/50">
+                  Inisiatif
+                </p>
+              </div>
+              <div className="bg-ink/60 backdrop-blur-sm p-6 col-span-2">
+                <p className="text-4xl font-semibold text-white">13+</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/50">
+                  Pendamping Profesional
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -85,7 +110,7 @@ function HeroA() {
   );
 }
 
-function Manifesto() {
+function ManifestoB() {
   const paragraphs = [
     "Sebagian besar dari kita tumbuh dengan keyakinan bahwa masalah hidup bisa diselesaikan dengan cukup usaha, cukup kesabaran, atau cukup doa. Kita diajarkan untuk kuat. Untuk tidak cengeng.",
     "Di banyak keluarga, perasaan bukan sesuatu yang dibicarakan di meja makan. Perasaan adalah sesuatu yang ditelan bersama nasi dan lauk, lalu pura-pura kalau itu sudah berlalu.",
@@ -128,7 +153,7 @@ function Manifesto() {
   );
 }
 
-function WhatYouNeed() {
+function WhatYouNeedB() {
   const items = [
     {
       icon: GraduationCap,
@@ -169,45 +194,70 @@ function WhatYouNeed() {
           </Reveal>
         </div>
 
-        <RevealStagger className="mt-16 flex flex-col gap-px bg-hairline-neutral" stagger={0.1}>
-          {items.map((item, i) => (
-            <RevealItem key={item.href} index={i} className="bg-surface-alt">
-              <Link
-                href={item.href}
-                className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center p-8 sm:p-10 transition-colors duration-500 hover:bg-white"
-              >
-                <div className="md:col-span-1">
-                  <span className="font-serif text-4xl italic text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="md:col-span-7">
-                  <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-base leading-relaxed text-muted text-pretty max-w-lg">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className="md:col-span-4 md:text-right">
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
-                    {item.cta}
-                    <ArrowRight
-                      weight="bold"
-                      className="size-4 transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
-                </div>
-              </Link>
-            </RevealItem>
-          ))}
+        <RevealStagger className="mt-16 grid grid-cols-1 md:grid-cols-6 gap-5" stagger={0.1}>
+          <RevealItem key={items[0].href} index={0} className="md:col-span-3">
+            <Link
+              href={items[0].href}
+              className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-white p-8 sm:p-10 min-h-[340px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg overflow-hidden"
+            >
+              <div
+                aria-hidden
+                className="absolute right-0 top-0 w-48 h-48 -mr-12 -mt-12 rounded-full bg-fill-soft opacity-60 blur-2xl"
+              />
+              <div className="relative flex items-center justify-center size-14 rounded-2xl bg-accent text-white shadow-accent">
+                <GraduationCap weight="duotone" className="size-7" />
+              </div>
+              <div className="relative mt-auto">
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">
+                  {items[0].title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-muted text-pretty max-w-md">
+                  {items[0].desc}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">
+                  {items[0].cta}
+                  <ArrowRight
+                    weight="bold"
+                    className="size-4 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </div>
+            </Link>
+          </RevealItem>
+
+          <div className="md:col-span-3 flex flex-col gap-5">
+            {items.slice(1).map((item, i) => (
+              <RevealItem key={item.href} index={i + 1} className="flex-1">
+                <Link
+                  href={item.href}
+                  className="group flex items-center gap-6 rounded-2xl border border-hairline bg-white p-6 sm:p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:shadow-accent-lg h-full"
+                >
+                  <div className="flex items-center justify-center size-12 rounded-xl bg-fill-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white shrink-0">
+                    <item.icon weight="duotone" className="size-6" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold tracking-tight text-ink">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted text-pretty">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <ArrowRight
+                    weight="bold"
+                    className="size-4 text-accent shrink-0 transition-transform group-hover:translate-x-1"
+                  />
+                </Link>
+              </RevealItem>
+            ))}
+          </div>
         </RevealStagger>
       </div>
     </section>
   );
 }
 
-function ThisMonth() {
+function ThisMonthB() {
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
@@ -243,41 +293,25 @@ function ThisMonth() {
               <div className="relative rounded-2xl overflow-hidden border border-hairline bg-gradient-to-br from-fill-soft to-white p-8 sm:p-10">
                 <div className="grid grid-cols-3 gap-6">
                   <div>
-                    <p className="text-5xl sm:text-6xl font-semibold tracking-tight text-ink">
-                      11
-                    </p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-soft">
-                      Juli 2026
-                    </p>
+                    <p className="text-5xl sm:text-6xl font-semibold tracking-tight text-ink">11</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-soft">Juli 2026</p>
                   </div>
                   <div>
-                    <p className="text-5xl sm:text-6xl font-semibold tracking-tight text-ink">
-                      4
-                    </p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-soft">
-                      Kota
-                    </p>
+                    <p className="text-5xl sm:text-6xl font-semibold tracking-tight text-ink">4</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-soft">Kota</p>
                   </div>
                   <div>
-                    <p className="text-5xl sm:text-6xl font-semibold tracking-tight text-ink">
-                      9
-                    </p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-soft">
-                      Jam
-                    </p>
+                    <p className="text-5xl sm:text-6xl font-semibold tracking-tight text-ink">9</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.18em] text-soft">Jam</p>
                   </div>
                 </div>
                 <div className="mt-8 pt-6 border-t border-hairline-neutral">
                   <p className="text-sm font-medium text-ink">Kota tersedia</p>
-                  <p className="mt-2 text-sm text-muted">
-                    Malang · Jakarta · Yogyakarta · Bandung
-                  </p>
+                  <p className="mt-2 text-sm text-muted">Malang · Jakarta · Yogyakarta · Bandung</p>
                 </div>
                 <div className="mt-4">
                   <p className="text-sm font-medium text-ink">Level 1 · CAF</p>
-                  <p className="mt-1 text-sm text-muted">
-                    Certification in Attachment Facilitator
-                  </p>
+                  <p className="mt-1 text-sm text-muted">Certification in Attachment Facilitator</p>
                 </div>
               </div>
             </Reveal>
@@ -288,7 +322,7 @@ function ThisMonth() {
   );
 }
 
-function Connect() {
+function ConnectB() {
   const contacts = [
     { label: "WhatsApp", value: SITE.waDisplay },
     { label: "YouTube & Facebook", value: "Jiwamu Talks" },
@@ -305,18 +339,14 @@ function Connect() {
           </h2>
         </Reveal>
         <Reveal delay={0.08}>
-          <p className="mt-5 text-lg text-muted">
-            Kami menanti di ruang-ruang yang nyaman bagimu.
-          </p>
+          <p className="mt-5 text-lg text-muted">Kami menanti di ruang-ruang yang nyaman bagimu.</p>
         </Reveal>
 
         <RevealStagger className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-px bg-hairline-neutral rounded-2xl overflow-hidden text-left" stagger={0.06}>
           {contacts.map((c, i) => (
             <RevealItem key={c.label} index={i} className="bg-white">
               <div className="p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
-                  {c.label}
-                </p>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-soft">{c.label}</p>
                 <p className="mt-2 text-base font-medium text-ink">{c.value}</p>
               </div>
             </RevealItem>
@@ -327,7 +357,7 @@ function Connect() {
   );
 }
 
-function Subscribe() {
+function SubscribeB() {
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
