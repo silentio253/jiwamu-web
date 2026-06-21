@@ -80,14 +80,15 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Link
                 href="/tes-kelekatan"
-                className="hidden sm:inline-flex group items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
+                className="inline-flex group items-center gap-1.5 rounded-lg bg-accent px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
               >
-                Tes Kelekatan
-                <span className="flex items-center justify-center size-5 rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  <ArrowUpRight weight="bold" className="size-3" />
+                <span className="hidden sm:inline">Tes Kelekatan</span>
+                <span className="sm:hidden">Tes</span>
+                <span className="flex items-center justify-center size-4 sm:size-5 rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  <ArrowUpRight weight="bold" className="size-2.5 sm:size-3" />
                 </span>
               </Link>
 
