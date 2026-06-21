@@ -29,7 +29,7 @@ export default function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-start sm:items-center overflow-hidden">
       <Image
         src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=80"
         alt="Cahaya matahari pagi menerangi lanskap terbuka"
@@ -47,12 +47,12 @@ function Hero() {
         className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/10 sm:bg-gradient-to-b sm:from-white/20 sm:via-transparent sm:to-white/30"
       />
 
-      <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-28 pb-20 sm:pt-24">
+      <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-20">
         <div className="max-w-2xl">
           <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Ekosistem Kelekatan
           </p>
-          <h1 className="mt-5 sm:mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink">
+          <h1 className="mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink">
             Ruang aman untuk{" "}
             <span className="font-serif italic font-normal text-accent">
               bertumbuh
@@ -60,12 +60,12 @@ function Hero() {
             <br />
             bersama.
           </h1>
-          <p className="mt-5 sm:mt-8 max-w-lg text-base sm:text-lg lg:text-xl leading-relaxed text-muted text-pretty">
+          <p className="mt-6 sm:mt-8 max-w-lg text-base sm:text-lg lg:text-xl leading-relaxed text-muted text-pretty">
             Jiwamu adalah ekosistem pengembangan diri dan media digital
             berbasis teori kelekatan — ruang belajar, pendampingan,
             penerbitan, media, dan gerakan sosial.
           </p>
-          <div className="mt-7 sm:mt-10 flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-2.5 sm:gap-3">
             <Link
               href="/kelas"
               className="group inline-flex items-center gap-2 sm:gap-2.5 rounded-lg bg-accent px-4 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-medium text-white shadow-accent transition-all duration-300 hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
