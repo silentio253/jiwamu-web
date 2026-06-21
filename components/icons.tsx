@@ -10,6 +10,9 @@ export {
   YoutubeLogo,
   InstagramLogo,
   TiktokLogo,
+  FacebookLogo,
+  WhatsappLogo,
+  Storefront,
   Phone,
   GraduationCap,
   Heartbeat,
@@ -24,5 +27,4 @@ export {
   CurrencyDollar,
   Sparkle,
   Envelope,
-  WhatsappLogo,
 } from "@phosphor-icons/react";
