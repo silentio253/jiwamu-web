@@ -29,7 +29,7 @@ export default function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-start sm:items-center overflow-hidden">
+    <section className="relative min-h-auto sm:min-h-[100dvh] flex items-start sm:items-center overflow-hidden">
       <Image
         src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=80"
         alt="Cahaya matahari pagi menerangi lanskap terbuka"
@@ -47,7 +47,7 @@ function Hero() {
         className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/10 sm:bg-gradient-to-b sm:from-white/20 sm:via-transparent sm:to-white/30"
       />
 
-      <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-20">
+      <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
         <div className="max-w-2xl">
           <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Ekosistem Kelekatan
