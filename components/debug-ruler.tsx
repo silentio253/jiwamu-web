@@ -12,10 +12,19 @@ type Measurement = {
   distanceFromHeader: number;
 };
 
+type SectionMeasurement = {
+  top: number;
+  bottom: number;
+  height: number;
+  contentBottom: number;
+  gapBelowContent: number;
+};
+
 export function DebugRuler() {
   const searchParams = useSearchParams();
   const enabled = searchParams.get("debug") === "1";
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
+  const [sectionMeasure, setSectionMeasure] = useState<SectionMeasurement | null>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
 
@@ -24,6 +33,7 @@ export function DebugRuler() {
 
     const measure = () => {
       const header = document.querySelector("header");
+      const heroSection = document.querySelector("section");
       const eyebrow = document.querySelector(
         'section p[class*="tracking"][class*="text-accent"]',
       );
@@ -33,9 +43,11 @@ export function DebugRuler() {
         'section div[class*="flex"][class*="flex-wrap"][class*="items-center"]',
       );
 
-      if (!header || !eyebrow || !h1 || !bodyP || !buttonsDiv) return;
+      if (!header || !heroSection || !eyebrow || !h1 || !bodyP || !buttonsDiv)
+        return;
 
       const headerRect = header.getBoundingClientRect();
+      const sectionRect = heroSection.getBoundingClientRect();
       const eyebrowRect = eyebrow.getBoundingClientRect();
       const h1Rect = h1.getBoundingClientRect();
       const bodyRect = bodyP.getBoundingClientRect();
@@ -78,6 +90,14 @@ export function DebugRuler() {
           distanceFromHeader: buttonsRect.top - headerRect.bottom,
         },
       ]);
+
+      setSectionMeasure({
+        top: sectionRect.top,
+        bottom: sectionRect.bottom,
+        height: sectionRect.height,
+        contentBottom: buttonsRect.bottom,
+        gapBelowContent: sectionRect.bottom - buttonsRect.bottom,
+      });
     };
 
     measure();
@@ -127,6 +147,41 @@ export function DebugRuler() {
         );
       })}
 
+      {sectionMeasure && (
+        <>
+          <div
+            className="absolute left-0 right-0 border-t-2 border-dashed border-blue-500"
+            style={{ top: `${sectionMeasure.top}px` }}
+          >
+            <div className="inline-flex items-center gap-2 bg-blue-500 text-white text-[10px] font-mono px-2 py-0.5 ml-4">
+              Section top: {Math.round(sectionMeasure.top)}px
+            </div>
+          </div>
+          <div
+            className="absolute left-0 right-0 border-t-2 border-dashed border-blue-500"
+            style={{ top: `${sectionMeasure.bottom}px` }}
+          >
+            <div className="inline-flex items-center gap-2 bg-blue-500 text-white text-[10px] font-mono px-2 py-0.5 ml-4">
+              Section bottom: {Math.round(sectionMeasure.bottom)}px | h:{" "}
+              {Math.round(sectionMeasure.height)}px
+            </div>
+          </div>
+          {sectionMeasure.gapBelowContent > 40 && (
+            <div
+              className="absolute left-2 border-l-2 border-dashed border-yellow-500"
+              style={{
+                top: `${sectionMeasure.contentBottom}px`,
+                height: `${sectionMeasure.gapBelowContent}px`,
+              }}
+            >
+              <div className="inline-flex items-center gap-2 bg-yellow-500 text-ink text-[10px] font-mono px-2 py-0.5 ml-2 -mt-5">
+                Empty: {Math.round(sectionMeasure.gapBelowContent)}px
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
       <div className="fixed top-20 right-4 z-[101] pointer-events-auto">
         <div className="rounded-lg bg-ink/90 text-white text-xs font-mono p-3 space-y-1 backdrop-blur-md min-w-[260px]">
           <p className="text-[10px] uppercase tracking-wider text-white/60 mb-2">
@@ -145,6 +200,31 @@ export function DebugRuler() {
               </p>
             );
           })}
+          {sectionMeasure && (
+            <>
+              <p className="text-[10px] uppercase tracking-wider text-white/60 pt-2 mt-2 border-t border-white/10">
+                Hero Section
+              </p>
+              <p>Section height: {Math.round(sectionMeasure.height)}px</p>
+              <p
+                className={
+                  sectionMeasure.gapBelowContent > 200
+                    ? "text-yellow-400"
+                    : sectionMeasure.gapBelowContent < 40
+                      ? "text-red-400"
+                      : ""
+                }
+              >
+                Gap below content: {Math.round(sectionMeasure.gapBelowContent)}px
+                {sectionMeasure.gapBelowContent > 200 && " ⚠ too much empty space"}
+                {sectionMeasure.gapBelowContent < 40 && " ⚠ too tight"}
+              </p>
+              <p className="text-white/60">
+                Viewport: {viewport.h}px | Section/Viewport:{" "}
+                {Math.round((sectionMeasure.height / viewport.h) * 100)}%
+              </p>
+            </>
+          )}
           <p className="text-[10px] text-white/50 pt-2 border-t border-white/10 mt-2">
             Viewport: {viewport.w}×{viewport.h}
           </p>
