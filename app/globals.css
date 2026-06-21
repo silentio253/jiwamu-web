@@ -15,8 +15,8 @@
   --color-accent-deep: #315cf0;
   --color-wa: #25d366;
 
-  --font-sans: var(--font-geist-sans);
-  --font-serif: var(--font-serif-display);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
 
   --radius-sm: 8px;
