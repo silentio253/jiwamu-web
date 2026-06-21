@@ -50,7 +50,7 @@ export function SiteHeader() {
             >
               <Image
                 src="/logo-icon.png"
-                alt=""
+                alt="Jiwamu"
                 width={32}
                 height={32}
                 className="rounded-lg shrink-0"

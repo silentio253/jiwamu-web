@@ -12,7 +12,7 @@ export function SiteFooter() {
             <Link href="/" className="inline-flex items-center gap-2.5">
               <Image
                 src="/logo-icon.png"
-                alt=""
+                alt="Jiwamu"
                 width={40}
                 height={40}
                 className="rounded-xl"

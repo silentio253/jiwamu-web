@@ -1,12 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CTA } from "@/components/cta";
+import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
 import { SITE, waLink } from "@/lib/site";
 import {
   GraduationCap,
   Heartbeat,
   BookOpen,
   ArrowRight,
+  Sparkle,
 } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -30,80 +32,81 @@ export default function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center pt-28 pb-16 overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center pt-32 pb-20 overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-gradient-to-b from-fill-soft via-surface to-surface"
       />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-hairline to-transparent"
-      />
 
       <div className="mx-auto max-w-[1400px] w-full px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
-            <p className="motion-safe-fade-up text-sm font-medium uppercase tracking-[0.18em] text-accent">
-              Ekosistem Kelekatan
-            </p>
-            <h1
-              className="mt-6 motion-safe-fade-up text-[2.75rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.05] tracking-tight text-ink text-balance"
-              style={{ animationDelay: "0.08s" }}
-            >
-              Ruang aman untuk{" "}
-              <span className="font-serif italic font-normal text-accent">
-                bertumbuh
-              </span>{" "}
-              bersama.
-            </h1>
-            <p
-              className="mt-6 motion-safe-fade-up max-w-xl text-lg leading-relaxed text-muted text-pretty"
-              style={{ animationDelay: "0.16s" }}
-            >
-              Jiwamu adalah ekosistem pengembangan diri dan media digital
-              berbasis teori kelekatan — ruang belajar, pendampingan,
-              penerbitan, media, dan gerakan sosial.
-            </p>
-            <div
-              className="mt-8 motion-safe-fade-up flex flex-wrap items-center gap-3"
-              style={{ animationDelay: "0.24s" }}
-            >
-              <CTA href="/kelas" size="lg" withArrow>
-                Mulai Perjalananmu
-              </CTA>
-              <CTA
-                href={waLink(
-                  "Hai Kak Nuy, saya ingin tahu lebih lanjut tentang Jiwamu!",
-                )}
-                variant="ghost"
-                size="lg"
-                external
-              >
-                Tanya Kami
-              </CTA>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+          <div className="lg:col-span-7 xl:col-span-7">
+            <Reveal>
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+                Ekosistem Kelekatan
+              </p>
+            </Reveal>
+            <Reveal delay={0.08} y={32} blur>
+              <h1 className="mt-6 text-[2.75rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.02] tracking-tight text-ink text-balance">
+                Ruang aman untuk{" "}
+                <span className="font-serif italic font-normal text-accent">
+                  bertumbuh
+                </span>{" "}
+                bersama.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-muted text-pretty">
+                Jiwamu adalah ekosistem pengembangan diri dan media digital
+                berbasis teori kelekatan — ruang belajar, pendampingan,
+                penerbitan, media, dan gerakan sosial.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <CTA href="/kelas" size="lg" withArrow>
+                  Mulai Perjalananmu
+                </CTA>
+                <CTA
+                  href={waLink(
+                    "Hai Kak Nuy, saya ingin tahu lebih lanjut tentang Jiwamu!",
+                  )}
+                  variant="ghost"
+                  size="lg"
+                  external
+                >
+                  Tanya Kami
+                </CTA>
+              </div>
+            </Reveal>
           </div>
 
-          <div
-            className="lg:col-span-5 motion-safe-fade-up"
-            style={{ animationDelay: "0.32s" }}
-          >
-            <div className="relative">
-              <div className="relative rounded-[32px] border border-hairline bg-white p-2 shadow-accent-lg">
-                <div className="rounded-[24px] bg-gradient-to-br from-fill-soft to-white p-8 sm:p-10">
+          <div className="lg:col-span-5 xl:col-span-5">
+            <Reveal delay={0.32} y={40} blur>
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-fill-soft to-transparent blur-2xl opacity-60"
+                />
+                <div className="rounded-[28px] border border-hairline bg-white/70 backdrop-blur-md p-8 sm:p-10 shadow-soft">
                   <p className="font-serif text-2xl sm:text-3xl italic leading-snug text-ink text-pretty">
                     &ldquo;Penderitaan hidup lebih masuk akal untuk ditanggung
                     jika kita saling berpegang tangan.&rdquo;
                   </p>
-                  <div className="mt-6 flex items-center gap-3">
-                    <div className="h-px w-12 bg-accent" />
-                    <p className="text-sm font-medium text-muted">
-                      #BertumbuhBersama
-                    </p>
+                  <div className="mt-8 flex items-center gap-4">
+                    <div className="h-px w-16 bg-accent" />
+                    <div>
+                      <p className="text-sm font-medium text-ink">
+                        #BertumbuhBersama
+                      </p>
+                      <p className="text-xs text-soft mt-0.5">
+                        Semangat Jiwamu
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -119,94 +122,172 @@ function Manifesto() {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-white">
+    <section className="py-24 lg:py-36 bg-white">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        {paragraphs.map((p, i) => (
-          <p
-            key={i}
-            className={`text-pretty leading-relaxed text-body ${
-              i === 0
-                ? "text-xl sm:text-2xl font-serif text-ink"
-                : "text-lg text-muted mt-6"
-            }`}
-          >
-            {p}
+        <Reveal>
+          <p className="text-xs font-medium uppercase tracking-[0.22em] text-soft">
+            Manifesto
           </p>
-        ))}
-        <div className="mt-10 pl-6 border-l-2 border-accent">
-          <p className="text-lg sm:text-xl text-ink leading-relaxed text-pretty">
-            Jiwamu adalah wadah di mana segala rasa berlabuh tanpa dihakimi dan
-            ruang di mana setiap proses bertumbuh aman melegakan.
-          </p>
+        </Reveal>
+        <div className="mt-10 space-y-6">
+          {paragraphs.map((p, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <p
+                className={`text-pretty leading-relaxed text-body ${
+                  i === 0
+                    ? "text-2xl sm:text-3xl font-serif text-ink leading-[1.4]"
+                    : "text-lg text-muted"
+                }`}
+              >
+                {p}
+              </p>
+            </Reveal>
+          ))}
         </div>
+        <Reveal delay={0.24}>
+          <div className="mt-12 pl-8 border-l-2 border-accent">
+            <p className="text-xl sm:text-2xl text-ink leading-relaxed text-pretty font-serif italic">
+              Jiwamu adalah wadah di mana segala rasa berlabuh tanpa dihakimi
+              dan ruang di mana setiap proses bertumbuh aman melegakan.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
 function WhatYouNeed() {
-  const items = [
-    {
-      icon: GraduationCap,
-      title: "Kelas Pengembangan Diri",
-      desc: "Mulai dan kembangkan kariermu untuk membantu sesama dengan para pengajar bereputasi.",
-      href: "/kelas",
-      cta: "Lihat Kelas",
-    },
-    {
-      icon: Heartbeat,
-      title: "Pendampingan Olah Jiwa",
-      desc: "Dapatkan ruang aman untuk memahami diri, relasi, dan kehidupan emosionalmu bersama pendamping profesional.",
-      href: "/layanan",
-      cta: "Mulai Konsultasi",
-    },
-    {
-      icon: BookOpen,
-      title: "Suplemen Batin",
-      desc: "Buku dan medium reflektif untuk menemani perjalanan batin dan pertumbuhanmu.",
-      href: "/buku",
-      cta: "Jelajahi Buku",
-    },
-  ];
-
   return (
     <section className="py-24 lg:py-32 bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink text-balance">
-            Apa yang kamu butuhkan?
-          </h2>
-          <p className="mt-4 text-lg text-muted text-pretty">
-            Tiga pintu masuk untuk bertumbuh bersama Jiwamu.
-          </p>
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink text-balance">
+              Apa yang kamu butuhkan?
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-5 text-lg text-muted text-pretty">
+              Tiga pintu masuk untuk bertumbuh bersama Jiwamu.
+            </p>
+          </Reveal>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {items.map((item) => (
+        <RevealStagger className="mt-14 grid grid-cols-1 md:grid-cols-6 gap-5" stagger={0.1}>
+          <RevealItem className="md:col-span-4">
             <Link
-              key={item.href}
-              href={item.href}
-              className="group relative flex flex-col rounded-2xl border border-hairline bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
+              href="/kelas"
+              className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-white p-8 sm:p-10 min-h-[320px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg overflow-hidden"
+            >
+              <div className="flex items-center justify-center size-14 rounded-2xl bg-accent text-white shadow-accent">
+                <GraduationCap weight="duotone" className="size-7" />
+              </div>
+              <div className="mt-auto">
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">
+                  Kelas Pengembangan Diri
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-muted text-pretty max-w-md">
+                  Mulai dan kembangkan kariermu untuk membantu sesama dengan
+                  para pengajar bereputasi.
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">
+                  Lihat Kelas
+                  <ArrowRight
+                    weight="bold"
+                    className="size-4 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </div>
+            </Link>
+          </RevealItem>
+
+          <RevealItem className="md:col-span-2">
+            <Link
+              href="/layanan"
+              className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-white p-8 min-h-[320px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
             >
               <div className="flex items-center justify-center size-12 rounded-xl bg-fill-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
-                <item.icon weight="duotone" className="size-6" />
+                <Heartbeat weight="duotone" className="size-6" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold tracking-tight text-ink">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted text-pretty">
-                {item.desc}
-              </p>
-              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                {item.cta}
-                <ArrowRight
-                  weight="bold"
-                  className="size-3.5 transition-transform group-hover:translate-x-1"
-                />
-              </span>
+              <div className="mt-auto">
+                <h3 className="text-xl font-semibold tracking-tight text-ink">
+                  Pendampingan Olah Jiwa
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted text-pretty">
+                  Dapatkan ruang aman untuk memahami diri, relasi, dan
+                  kehidupan emosionalmu.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                  Mulai Konsultasi
+                  <ArrowRight
+                    weight="bold"
+                    className="size-3.5 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </div>
             </Link>
-          ))}
-        </div>
+          </RevealItem>
+
+          <RevealItem className="md:col-span-2">
+            <Link
+              href="/buku"
+              className="group relative flex h-full flex-col justify-between rounded-2xl border border-hairline bg-white p-8 min-h-[280px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
+            >
+              <div className="flex items-center justify-center size-12 rounded-xl bg-fill-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+                <BookOpen weight="duotone" className="size-6" />
+              </div>
+              <div className="mt-auto">
+                <h3 className="text-xl font-semibold tracking-tight text-ink">
+                  Suplemen Batin
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted text-pretty">
+                  Buku dan medium reflektif untuk menemani perjalanan batinmu.
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                  Jelajahi Buku
+                  <ArrowRight
+                    weight="bold"
+                    className="size-3.5 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </div>
+            </Link>
+          </RevealItem>
+
+          <RevealItem className="md:col-span-4">
+            <Link
+              href="/majalah"
+              className="group relative flex h-full items-center justify-between gap-6 rounded-2xl border border-hairline bg-white p-8 sm:p-10 min-h-[180px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <Sparkle weight="duotone" className="size-5 text-accent" />
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+                    Majalah Jiwamu
+                  </p>
+                </div>
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight text-ink">
+                  Terbitan resmi PANJI
+                </h3>
+                <p className="mt-2 text-sm text-muted text-pretty max-w-md">
+                  Majalah bulanan berbasis ISSN 3063-542X. Tema berbeda setiap
+                  edisi, kini tersedia gratis via WhatsApp.
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">
+                  Baca Edisi Terbaru
+                  <ArrowRight
+                    weight="bold"
+                    className="size-4 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </div>
+              <div className="hidden sm:flex shrink-0 items-center justify-center size-24 rounded-2xl bg-gradient-to-br from-fill-soft to-surface border border-hairline">
+                <span className="font-serif text-5xl italic text-accent">M</span>
+              </div>
+            </Link>
+          </RevealItem>
+        </RevealStagger>
       </div>
     </section>
   );
@@ -216,61 +297,72 @@ function ThisMonth() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-          <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink text-balance">
-              Bulan ini di Jiwamu
-            </h2>
-            <p className="mt-4 text-lg text-muted">
-              Jadwal kelas terdekat dan rilisan terbaru.
-            </p>
+        <Reveal>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.22em] text-soft">
+                Bulan ini
+              </p>
+              <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink text-balance">
+                Fokus: kelas terdekat
+              </h2>
+            </div>
+            <CTA href="/kelas" variant="ghost" withArrow>
+              Lihat Semua Kelas
+            </CTA>
           </div>
-          <CTA href="/kelas" variant="ghost" withArrow>
-            Lihat Semua
-          </CTA>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="relative overflow-hidden rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-white p-8 sm:p-10">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
-              Kelas Terdekat
-            </p>
-            <h3 className="mt-4 text-2xl font-semibold text-ink">
-              Certification in Attachment Facilitator
-            </h3>
-            <p className="mt-3 text-sm text-muted">
-              Level 1 — Dasar membaca pola relasi dan kebutuhan emosional.
-            </p>
-            <div className="mt-6 flex items-center gap-2 text-sm text-muted">
-              <span className="font-medium text-ink">Sabtu, 11 Juli 2026</span>
-              <span>·</span>
-              <span>Malang, Jakarta, Yogyakarta, Bandung</span>
-            </div>
-            <div className="mt-6">
-              <CTA href="/kelas/attachmentfacilitator" withArrow>
-                Daftar Sekarang
-              </CTA>
-            </div>
-          </div>
+        <Reveal delay={0.12} y={32} blur>
+          <div className="mt-12 relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 lg:p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="lg:col-span-7">
+                <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+                  Level 1 · CAF
+                </p>
+                <h3 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight text-ink text-balance">
+                  Certification in Attachment Facilitator
+                </h3>
+                <p className="mt-5 text-base sm:text-lg text-muted text-pretty max-w-lg">
+                  Dasar membaca pola relasi, memahami kebutuhan emosional, dan
+                  merespons orang lain dengan lebih tepat.
+                </p>
+                <div className="mt-8">
+                  <CTA href="/kelas/attachmentfacilitator" size="lg" withArrow>
+                    Daftar Sekarang
+                  </CTA>
+                </div>
+              </div>
 
-          <div className="relative overflow-hidden rounded-2xl border border-hairline bg-white p-8 sm:p-10">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
-              Rilisan Terbaru
-            </p>
-            <h3 className="mt-4 text-2xl font-semibold text-ink">
-              Majalah Jiwamu Edisi Terbaru
-            </h3>
-            <p className="mt-3 text-sm text-muted">
-              Terbitan resmi Perkumpulan Pamong Jiwa Indonesia (PANJI). ISSN
-              3063-542X.
-            </p>
-            <div className="mt-6">
-              <CTA href="/majalah" variant="ghost" withArrow>
-                Baca Edisi Terbaru
-              </CTA>
+              <div className="lg:col-span-5">
+                <div className="grid grid-cols-2 gap-px bg-hairline-neutral rounded-2xl overflow-hidden">
+                  <div className="bg-white p-6">
+                    <p className="text-4xl font-semibold tracking-tight text-ink">
+                      11
+                    </p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-soft">
+                      Juli 2026
+                    </p>
+                  </div>
+                  <div className="bg-white p-6">
+                    <p className="text-4xl font-semibold tracking-tight text-ink">
+                      4
+                    </p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-soft">
+                      Kota
+                    </p>
+                  </div>
+                  <div className="bg-white p-6 col-span-2">
+                    <p className="text-sm font-medium text-ink">Kota tersedia</p>
+                    <p className="mt-2 text-sm text-muted">
+                      Malang · Jakarta · Yogyakarta · Bandung
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -287,23 +379,29 @@ function Connect() {
   return (
     <section className="py-24 lg:py-32 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink text-balance">
-          Mari terhubung!
-        </h2>
-        <p className="mt-4 text-lg text-muted">
-          Kami menanti di ruang-ruang yang nyaman bagimu.
-        </p>
+        <Reveal>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink text-balance">
+            Mari terhubung!
+          </h2>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <p className="mt-5 text-lg text-muted">
+            Kami menanti di ruang-ruang yang nyaman bagimu.
+          </p>
+        </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-hairline-neutral rounded-2xl overflow-hidden text-left">
+        <RevealStagger className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-px bg-hairline-neutral rounded-2xl overflow-hidden text-left" stagger={0.06}>
           {contacts.map((c) => (
-            <div key={c.label} className="bg-white p-6">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
-                {c.label}
-              </p>
-              <p className="mt-2 text-base font-medium text-ink">{c.value}</p>
-            </div>
+            <RevealItem key={c.label} className="bg-white">
+              <div className="p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+                  {c.label}
+                </p>
+                <p className="mt-2 text-base font-medium text-ink">{c.value}</p>
+              </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealStagger>
       </div>
     </section>
   );
@@ -313,37 +411,45 @@ function Subscribe() {
   return (
     <section className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
-            Berlangganan Gratis Sekarang
-          </h2>
-          <p className="mt-3 text-muted text-pretty">
-            Dapatkan edisi terbaru Majalah Jiwamu setiap bulan.
-          </p>
+        <Reveal y={32} blur>
+          <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
+            <div
+              aria-hidden
+              className="absolute -top-24 -right-24 size-64 rounded-full bg-fill-soft blur-3xl opacity-50"
+            />
+            <div className="relative">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
+                Berlangganan Gratis Sekarang
+              </h2>
+              <p className="mt-3 text-muted text-pretty">
+                Dapatkan edisi terbaru Majalah Jiwamu setiap bulan.
+              </p>
 
-          <form className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="text"
-              name="name"
-              placeholder="Nama"
-              aria-label="Nama"
-              className="flex-1 rounded-full border border-hairline bg-white px-5 py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="No. WhatsApp"
-              aria-label="No. WhatsApp"
-              className="flex-1 rounded-full border border-hairline bg-white px-5 py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white shadow-accent transition-all hover:bg-accent-deep hover:shadow-accent-lg active:scale-[0.98] whitespace-nowrap"
-            >
-              Kirim
-            </button>
-          </form>
-        </div>
+              <form className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nama"
+                  aria-label="Nama"
+                  className="flex-1 rounded-full border border-hairline bg-white px-5 py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="No. WhatsApp"
+                  aria-label="No. WhatsApp"
+                  className="flex-1 rounded-full border border-hairline bg-white px-5 py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                />
+                <button
+                  type="submit"
+                  className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white shadow-accent transition-all hover:bg-accent-deep hover:shadow-accent-lg active:scale-[0.98] whitespace-nowrap"
+                >
+                  Kirim
+                </button>
+              </form>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

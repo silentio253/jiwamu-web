@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CTA } from "@/components/cta";
+import { Reveal } from "@/components/reveal";
 import { waLink } from "@/lib/site";
 import {
   Heartbeat, CheckCircle, CaretDown, Download, Sparkle,
@@ -23,21 +24,29 @@ function Hero() {
   return (
     <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex items-center justify-center size-14 rounded-2xl bg-fill-soft text-accent mx-auto">
-          <Heartbeat weight="duotone" className="size-7" />
-        </div>
-        <h1 className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
-          Tidak semua hal dalam hidup perlu segera diperbaiki.
-        </h1>
-        <p className="mt-6 text-lg sm:text-xl font-serif italic text-muted text-pretty">
-          Sebagian perlu untuk dipahami bersama.
-        </p>
-        <p className="mt-6 text-lg text-muted text-pretty">
-          Jiwamu menyediakan ruang pendampingan untuk kamu yang ingin memahami
-          diri, pola hubungan, pengalaman emosional, dan kehidupan batin secara
-          lebih utuh. Kami percaya bahwa setiap manusia memiliki ritme
-          pertumbuhan yang berbeda.
-        </p>
+        <Reveal>
+          <div className="flex items-center justify-center size-14 rounded-2xl bg-fill-soft text-accent mx-auto">
+            <Heartbeat weight="duotone" className="size-7" />
+          </div>
+        </Reveal>
+        <Reveal delay={0.08} y={32} blur>
+          <h1 className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
+            Tidak semua hal dalam hidup perlu segera diperbaiki.
+          </h1>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-6 text-lg sm:text-xl font-serif italic text-muted text-pretty">
+            Sebagian perlu untuk dipahami bersama.
+          </p>
+        </Reveal>
+        <Reveal delay={0.24}>
+          <p className="mt-6 text-lg text-muted text-pretty">
+            Jiwamu menyediakan ruang pendampingan untuk kamu yang ingin memahami
+            diri, pola hubungan, pengalaman emosional, dan kehidupan batin secara
+            lebih utuh. Kami percaya bahwa setiap manusia memiliki ritme
+            pertumbuhan yang berbeda.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

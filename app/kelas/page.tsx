@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CTA } from "@/components/cta";
+import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
 
 import {
   ArrowRight,
@@ -20,62 +21,69 @@ export default function KelasPage() {
     <>
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
-            Sertifikasi & Pelatihan
-          </p>
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
-            Mulai dan kembangkan kariermu untuk memahami diri dan membantu
-            sesama.
-          </h1>
-          <p className="mt-6 text-lg text-muted text-pretty">
-            Jiwamu menghadirkan program sertifikasi attachment yang dirancang
-            untuk masyarakat umum, helper, profesional, maupun siapa saja yang
-            ingin bertumbuh bersama.
-          </p>
+          <Reveal>
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+              Sertifikasi &amp; Pelatihan
+            </p>
+          </Reveal>
+          <Reveal delay={0.08} y={32} blur>
+            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
+              Mulai dan kembangkan kariermu untuk memahami diri dan membantu
+              sesama.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-6 text-lg text-muted text-pretty">
+              Jiwamu menghadirkan program sertifikasi attachment yang dirancang
+              untuk masyarakat umum, helper, profesional, maupun siapa saja yang
+              ingin bertumbuh bersama.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       <section className="py-20 lg:py-28 bg-white">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.1}>
             {CERTIFICATIONS.map((cert, i) => (
-              <Link
-                key={cert.href}
-                href={cert.href}
-                className="group relative flex flex-col rounded-2xl border border-hairline bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-sm font-semibold text-accent">
-                    {i + 1}
-                  </span>
-                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
-                    Level {i + 1}
-                  </span>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-ink">
-                  {cert.title}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-accent">
-                  {cert.code}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted text-pretty flex-1">
-                  {cert.desc}
-                </p>
-                <div className="mt-6 flex items-center justify-between border-t border-hairline-neutral pt-4">
-                  <span className="text-sm font-medium text-ink">
-                    {cert.price}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                    Detail
-                    <ArrowRight
-                      weight="bold"
-                      className="size-3.5 transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
-                </div>
-              </Link>
+              <RevealItem key={cert.href}>
+                <Link
+                  href={cert.href}
+                  className="group relative flex flex-col rounded-2xl border border-hairline bg-white p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg h-full"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-sm font-semibold text-accent">
+                      {i + 1}
+                    </span>
+                    <span className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+                      Level {i + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-6 text-xl font-semibold tracking-tight text-ink">
+                    {cert.title}
+                  </h3>
+                  <p className="mt-1 text-sm font-medium text-accent">
+                    {cert.code}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-muted text-pretty flex-1">
+                    {cert.desc}
+                  </p>
+                  <div className="mt-6 flex items-center justify-between border-t border-hairline-neutral pt-4">
+                    <span className="text-sm font-medium text-ink">
+                      {cert.price}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                      Detail
+                      <ArrowRight
+                        weight="bold"
+                        className="size-3.5 transition-transform group-hover:translate-x-1"
+                      />
+                    </span>
+                  </div>
+                </Link>
+              </RevealItem>
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 
