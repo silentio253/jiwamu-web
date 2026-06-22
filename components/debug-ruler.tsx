@@ -3,6 +3,79 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+async function sampleBackgroundColor(x: number, y: number): Promise<string> {
+  try {
+    const canvas = document.createElement("canvas");
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = 1;
+    canvas.height = 1;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return "#ffffff";
+    ctx.scale(dpr, dpr);
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+
+    return new Promise<string>((resolve) => {
+      img.onload = () => {
+        try {
+          ctx.drawImage(img, x, y, 1, 1, 0, 0, 1, 1);
+          const pixel = ctx.getImageData(0, 0, 1, 1).data;
+          resolve(`rgb(${pixel[0]},${pixel[1]},${pixel[2]})`);
+        } catch {
+          resolve("#ffffff");
+        }
+      };
+      img.onerror = () => resolve("#ffffff");
+      setTimeout(() => resolve("#ffffff"), 1000);
+
+      const bgImage = document.querySelector(
+        'section img[alt*="Cahaya"]',
+      ) as HTMLImageElement | null;
+      if (bgImage && bgImage.complete && bgImage.naturalWidth > 0) {
+        img.src = bgImage.src;
+      } else {
+        resolve("#fafbfd");
+      }
+    });
+  } catch {
+    return "#ffffff";
+  }
+}
+
+function hexToRgb(hex: string): [number, number, number] {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return [r, g, b];
+}
+
+function parseColor(color: string): [number, number, number] {
+  if (color.startsWith("#")) {
+    return hexToRgb(color);
+  }
+  const match = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  if (match) {
+    return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+  }
+  return [255, 255, 255];
+}
+
+function relativeLuminance([r, g, b]: [number, number, number]): number {
+  const toLinear = (c: number) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
+}
+
+function calculateContrast(color1: string, color2: string): number {
+  const l1 = relativeLuminance(parseColor(color1));
+  const l2 = relativeLuminance(parseColor(color2));
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 type Measurement = {
   id: string;
   label: string;
@@ -18,6 +91,21 @@ type SectionMeasurement = {
   height: number;
   contentBottom: number;
   gapBelowContent: number;
+  contentLeft: number;
+  contentWidth: number;
+  imageRightEdge: number;
+};
+
+type ContrastSample = {
+  label: string;
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+  bgColor: string;
+  textColor: string;
+  contrastRatio: number;
+  passes: boolean;
 };
 
 export function DebugRuler() {
@@ -25,13 +113,14 @@ export function DebugRuler() {
   const enabled = searchParams.get("debug") === "1";
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
   const [sectionMeasure, setSectionMeasure] = useState<SectionMeasurement | null>(null);
+  const [contrastSamples, setContrastSamples] = useState<ContrastSample[]>([]);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
     if (!enabled) return;
 
-    const measure = () => {
+    const measure = async () => {
       const header = document.querySelector("header");
       const heroSection = document.querySelector("section");
       const eyebrow = document.querySelector(
@@ -97,14 +186,44 @@ export function DebugRuler() {
         height: sectionRect.height,
         contentBottom: buttonsRect.bottom,
         gapBelowContent: sectionRect.bottom - buttonsRect.bottom,
+        contentLeft: eyebrowRect.left,
+        contentWidth: eyebrowRect.width,
+        imageRightEdge: sectionRect.right,
       });
+
+      const samples: ContrastSample[] = [];
+      const targets: Array<{ el: Element; label: string; color: string }> = [
+        { el: eyebrow, label: "Eyebrow", color: "#4B6BFF" },
+        { el: h1, label: "H1", color: "#101828" },
+        { el: bodyP, label: "Body", color: "#475467" },
+      ];
+
+      for (const { el, label, color } of targets) {
+        const rect = el.getBoundingClientRect();
+        const sampleX = Math.max(rect.left + 8, 8);
+        const sampleY = rect.top + rect.height / 2;
+        const bgColor = await sampleBackgroundColor(sampleX, sampleY);
+        const ratio = calculateContrast(color, bgColor);
+        samples.push({
+          label,
+          top: rect.top + rect.height / 2,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+          bgColor,
+          textColor: color,
+          contrastRatio: ratio,
+          passes: ratio >= 4.5,
+        });
+      }
+      setContrastSamples(samples);
     };
 
     measure();
     window.addEventListener("resize", measure);
     window.addEventListener("scroll", measure);
 
-    const timeout = setTimeout(measure, 500);
+    const timeout = setTimeout(measure, 800);
 
     return () => {
       window.removeEventListener("resize", measure);
@@ -182,6 +301,30 @@ export function DebugRuler() {
         </>
       )}
 
+      {contrastSamples.map((s, i) => (
+        <div key={i}>
+          <div
+            className="absolute border-2 border-dashed"
+            style={{
+              borderColor: s.passes ? "#22c55e" : "#ef4444",
+              top: `${s.top - s.height / 2}px`,
+              left: `${s.left}px`,
+              width: `${Math.min(s.width, 80)}px`,
+              height: `${s.height}px`,
+            }}
+          >
+            <div
+              className={`inline-flex items-center gap-1.5 ${
+                s.passes ? "bg-green-500" : "bg-red-500"
+              } text-white text-[9px] font-mono px-1.5 py-0.5 -mt-5`}
+            >
+              {s.label}: {s.contrastRatio.toFixed(1)}:1
+              {!s.passes && " ⚠"}
+            </div>
+          </div>
+        </div>
+      ))}
+
       <div className="fixed top-20 right-4 z-[101] pointer-events-auto">
         <div className="rounded-lg bg-ink/90 text-white text-xs font-mono p-3 space-y-1 backdrop-blur-md min-w-[260px]">
           <p className="text-[10px] uppercase tracking-wider text-white/60 mb-2">
@@ -222,6 +365,26 @@ export function DebugRuler() {
               <p className="text-white/60">
                 Viewport: {viewport.h}px | Section/Viewport:{" "}
                 {Math.round((sectionMeasure.height / viewport.h) * 100)}%
+              </p>
+            </>
+          )}
+          {contrastSamples.length > 0 && (
+            <>
+              <p className="text-[10px] uppercase tracking-wider text-white/60 pt-2 mt-2 border-t border-white/10">
+                Contrast (WCAG AA ≥ 4.5:1)
+              </p>
+              {contrastSamples.map((s, i) => (
+                <p
+                  key={i}
+                  className={s.passes ? "" : "text-red-400"}
+                >
+                  {s.label}: {s.contrastRatio.toFixed(1)}:1{" "}
+                  {!s.passes && "⚠ FAIL"}
+                </p>
+              ))}
+              <p className="text-[10px] text-white/40 pt-1">
+                Text {contrastSamples[0]?.textColor} on bg{" "}
+                {contrastSamples[0]?.bgColor}
               </p>
             </>
           )}
