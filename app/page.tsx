@@ -49,7 +49,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
         <div className="max-w-2xl">
-          <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent">
+          <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
             Ekosistem Kelekatan
           </p>
           <h1 className="mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink">
