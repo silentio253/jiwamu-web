@@ -132,7 +132,7 @@ export function DebugRuler() {
 
       const isMobile = window.innerWidth < 640;
       const textColors: Array<{ label: string; hex: string }> = [
-        { label: "Eyebrow", hex: "#4B6BFF" },
+        { label: "Eyebrow", hex: "#315CF0" },
         { label: "H1", hex: "#101828" },
         { label: "Body", hex: "#475467" },
       ];
