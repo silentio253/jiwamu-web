@@ -3,61 +3,11 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-async function sampleBackgroundColor(x: number, y: number): Promise<string> {
-  try {
-    const canvas = document.createElement("canvas");
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = 1;
-    canvas.height = 1;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return "#ffffff";
-    ctx.scale(dpr, dpr);
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-
-    return new Promise<string>((resolve) => {
-      img.onload = () => {
-        try {
-          ctx.drawImage(img, x, y, 1, 1, 0, 0, 1, 1);
-          const pixel = ctx.getImageData(0, 0, 1, 1).data;
-          resolve(`rgb(${pixel[0]},${pixel[1]},${pixel[2]})`);
-        } catch {
-          resolve("#ffffff");
-        }
-      };
-      img.onerror = () => resolve("#ffffff");
-      setTimeout(() => resolve("#ffffff"), 1000);
-
-      const bgImage = document.querySelector(
-        'section img[alt*="Cahaya"]',
-      ) as HTMLImageElement | null;
-      if (bgImage && bgImage.complete && bgImage.naturalWidth > 0) {
-        img.src = bgImage.src;
-      } else {
-        resolve("#fafbfd");
-      }
-    });
-  } catch {
-    return "#ffffff";
-  }
-}
-
 function hexToRgb(hex: string): [number, number, number] {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return [r, g, b];
-}
-
-function parseColor(color: string): [number, number, number] {
-  if (color.startsWith("#")) {
-    return hexToRgb(color);
-  }
-  const match = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-  if (match) {
-    return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
-  }
-  return [255, 255, 255];
 }
 
 function relativeLuminance([r, g, b]: [number, number, number]): number {
@@ -68,12 +18,10 @@ function relativeLuminance([r, g, b]: [number, number, number]): number {
   return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
 }
 
-function calculateContrast(color1: string, color2: string): number {
-  const l1 = relativeLuminance(parseColor(color1));
-  const l2 = relativeLuminance(parseColor(color2));
-  const lighter = Math.max(l1, l2);
-  const darker = Math.min(l1, l2);
-  return (lighter + 0.05) / (darker + 0.05);
+function calculateContrast(c1: [number, number, number], c2: [number, number, number]): number {
+  const l1 = relativeLuminance(c1);
+  const l2 = relativeLuminance(c2);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 }
 
 type Measurement = {
@@ -91,20 +39,14 @@ type SectionMeasurement = {
   height: number;
   contentBottom: number;
   gapBelowContent: number;
-  contentLeft: number;
-  contentWidth: number;
-  imageRightEdge: number;
 };
 
-type ContrastSample = {
+type ContrastInfo = {
   label: string;
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-  bgColor: string;
-  textColor: string;
-  contrastRatio: number;
+  textColor: [number, number, number];
+  overlayOpacity: number;
+  estimatedBg: [number, number, number];
+  ratio: number;
   passes: boolean;
 };
 
@@ -113,14 +55,14 @@ export function DebugRuler() {
   const enabled = searchParams.get("debug") === "1";
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
   const [sectionMeasure, setSectionMeasure] = useState<SectionMeasurement | null>(null);
-  const [contrastSamples, setContrastSamples] = useState<ContrastSample[]>([]);
+  const [contrastInfos, setContrastInfos] = useState<ContrastInfo[]>([]);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
     if (!enabled) return;
 
-    const measure = async () => {
+    const measure = () => {
       const header = document.querySelector("header");
       const heroSection = document.querySelector("section");
       const eyebrow = document.querySelector(
@@ -186,45 +128,53 @@ export function DebugRuler() {
         height: sectionRect.height,
         contentBottom: buttonsRect.bottom,
         gapBelowContent: sectionRect.bottom - buttonsRect.bottom,
-        contentLeft: eyebrowRect.left,
-        contentWidth: eyebrowRect.width,
-        imageRightEdge: sectionRect.right,
       });
 
-      const samples: ContrastSample[] = [];
-      const targets: Array<{ el: Element; label: string; color: string }> = [
-        { el: eyebrow, label: "Eyebrow", color: "#4B6BFF" },
-        { el: h1, label: "H1", color: "#101828" },
-        { el: bodyP, label: "Body", color: "#475467" },
+      const isMobile = window.innerWidth < 640;
+      const textColors: Array<{ label: string; hex: string }> = [
+        { label: "Eyebrow", hex: "#4B6BFF" },
+        { label: "H1", hex: "#101828" },
+        { label: "Body", hex: "#475467" },
       ];
 
-      for (const { el, label, color } of targets) {
-        const rect = el.getBoundingClientRect();
-        const sampleX = Math.max(rect.left + 8, 8);
-        const sampleY = rect.top + rect.height / 2;
-        const bgColor = await sampleBackgroundColor(sampleX, sampleY);
-        const ratio = calculateContrast(color, bgColor);
-        samples.push({
+      const photoDark: [number, number, number] = [80, 60, 40];
+      const photoBright: [number, number, number] = [255, 180, 100];
+      const photoAvg: [number, number, number] = [
+        (photoDark[0] + photoBright[0]) / 2,
+        (photoDark[1] + photoBright[1]) / 2,
+        (photoDark[2] + photoBright[2]) / 2,
+      ];
+
+      const overlayOpacity = isMobile
+        ? 0.97
+        : 1.0;
+
+      const white: [number, number, number] = [255, 255, 255];
+
+      const infos: ContrastInfo[] = textColors.map(({ label, hex }) => {
+        const textColor = hexToRgb(hex);
+        const composited: [number, number, number] = [
+          Math.round(white[0] * overlayOpacity + photoAvg[0] * (1 - overlayOpacity)),
+          Math.round(white[1] * overlayOpacity + photoAvg[1] * (1 - overlayOpacity)),
+          Math.round(white[2] * overlayOpacity + photoAvg[2] * (1 - overlayOpacity)),
+        ];
+        const ratio = calculateContrast(textColor, composited);
+        return {
           label,
-          top: rect.top + rect.height / 2,
-          left: rect.left,
-          width: rect.width,
-          height: rect.height,
-          bgColor,
-          textColor: color,
-          contrastRatio: ratio,
+          textColor,
+          overlayOpacity,
+          estimatedBg: composited,
+          ratio,
           passes: ratio >= 4.5,
-        });
-      }
-      setContrastSamples(samples);
+        };
+      });
+      setContrastInfos(infos);
     };
 
     measure();
     window.addEventListener("resize", measure);
     window.addEventListener("scroll", measure);
-
     const timeout = setTimeout(measure, 800);
-
     return () => {
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", measure);
@@ -238,9 +188,7 @@ export function DebugRuler() {
     <div className="fixed inset-0 z-[100] pointer-events-none">
       {measurements.map((m, i) => {
         const gapToPrev =
-          i === 0
-            ? m.distanceFromHeader
-            : m.top - measurements[i - 1].bottom;
+          i === 0 ? m.distanceFromHeader : m.top - measurements[i - 1].bottom;
         return (
           <div key={m.id}>
             <div
@@ -258,7 +206,7 @@ export function DebugRuler() {
               <div className="inline-flex items-center gap-2 bg-red-400 text-white text-[10px] font-mono px-2 py-0.5 ml-4">
                 {m.label} bottom: {Math.round(m.bottom)}px | h:{" "}
                 {Math.round(m.height)}px
-                {i > 0 && ` | gap from prev: ${Math.round(gapToPrev)}px`}
+                {i > 0 && ` | gap: ${Math.round(gapToPrev)}px`}
                 {i === 0 && ` | gap from header: ${Math.round(gapToPrev)}px`}
               </div>
             </div>
@@ -301,30 +249,6 @@ export function DebugRuler() {
         </>
       )}
 
-      {contrastSamples.map((s, i) => (
-        <div key={i}>
-          <div
-            className="absolute border-2 border-dashed"
-            style={{
-              borderColor: s.passes ? "#22c55e" : "#ef4444",
-              top: `${s.top - s.height / 2}px`,
-              left: `${s.left}px`,
-              width: `${Math.min(s.width, 80)}px`,
-              height: `${s.height}px`,
-            }}
-          >
-            <div
-              className={`inline-flex items-center gap-1.5 ${
-                s.passes ? "bg-green-500" : "bg-red-500"
-              } text-white text-[9px] font-mono px-1.5 py-0.5 -mt-5`}
-            >
-              {s.label}: {s.contrastRatio.toFixed(1)}:1
-              {!s.passes && " ⚠"}
-            </div>
-          </div>
-        </div>
-      ))}
-
       <div className="fixed top-20 right-4 z-[101] pointer-events-auto">
         <div className="rounded-lg bg-ink/90 text-white text-xs font-mono p-3 space-y-1 backdrop-blur-md min-w-[260px]">
           <p className="text-[10px] uppercase tracking-wider text-white/60 mb-2">
@@ -333,9 +257,7 @@ export function DebugRuler() {
           <p>Header height: {Math.round(headerHeight)}px</p>
           {measurements.map((m, i) => {
             const gap =
-              i === 0
-                ? m.distanceFromHeader
-                : m.top - measurements[i - 1].bottom;
+              i === 0 ? m.distanceFromHeader : m.top - measurements[i - 1].bottom;
             return (
               <p key={m.id} className={gap < 20 ? "text-yellow-400" : ""}>
                 {m.label}: gap {Math.round(gap)}px
@@ -358,33 +280,38 @@ export function DebugRuler() {
                       : ""
                 }
               >
-                Gap below content: {Math.round(sectionMeasure.gapBelowContent)}px
-                {sectionMeasure.gapBelowContent > 200 && " ⚠ too much empty space"}
-                {sectionMeasure.gapBelowContent < 40 && " ⚠ too tight"}
+                Gap below: {Math.round(sectionMeasure.gapBelowContent)}px
+                {sectionMeasure.gapBelowContent > 200 && " ⚠ too much"}
+                {sectionMeasure.gapBelowContent < 40 && " ⚠ tight"}
               </p>
               <p className="text-white/60">
-                Viewport: {viewport.h}px | Section/Viewport:{" "}
+                Viewport: {viewport.h}px | S/V:{" "}
                 {Math.round((sectionMeasure.height / viewport.h) * 100)}%
               </p>
             </>
           )}
-          {contrastSamples.length > 0 && (
+          {contrastInfos.length > 0 && (
             <>
               <p className="text-[10px] uppercase tracking-wider text-white/60 pt-2 mt-2 border-t border-white/10">
                 Contrast (WCAG AA ≥ 4.5:1)
               </p>
-              {contrastSamples.map((s, i) => (
+              <p className="text-[10px] text-white/40">
+                Overlay: {Math.round(contrastInfos[0].overlayOpacity * 100)}% white
+              </p>
+              {contrastInfos.map((c, i) => (
                 <p
                   key={i}
-                  className={s.passes ? "" : "text-red-400"}
+                  className={c.passes ? "text-green-400" : "text-red-400"}
                 >
-                  {s.label}: {s.contrastRatio.toFixed(1)}:1{" "}
-                  {!s.passes && "⚠ FAIL"}
+                  {c.label}: {c.ratio.toFixed(1)}:1{" "}
+                  {c.passes ? "✓ pass" : "⚠ FAIL"}
                 </p>
               ))}
               <p className="text-[10px] text-white/40 pt-1">
-                Text {contrastSamples[0]?.textColor} on bg{" "}
-                {contrastSamples[0]?.bgColor}
+                est. bg: rgb({contrastInfos[0]?.estimatedBg.join(",")})
+              </p>
+              <p className="text-[10px] text-white/30">
+                Note: estimated, not pixel-sampled
               </p>
             </>
           )}
@@ -396,4 +323,3 @@ export function DebugRuler() {
     </div>
   );
 }
-
