@@ -40,11 +40,11 @@ function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/30 to-white/80 sm:bg-gradient-to-r sm:from-white sm:via-white/85 sm:to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/85 to-white/70 sm:bg-gradient-to-r sm:from-white sm:via-white/95 sm:to-white/30"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/10 sm:bg-gradient-to-b sm:from-white/20 sm:via-transparent sm:to-white/30"
+        className="absolute inset-0 bg-gradient-to-t from-white/50 via-white/20 to-white/30 sm:bg-gradient-to-b sm:from-white/30 sm:via-transparent sm:to-white/20"
       />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
