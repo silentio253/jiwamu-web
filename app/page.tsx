@@ -40,11 +40,11 @@ function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white/80 sm:bg-gradient-to-r sm:from-white sm:via-white sm:to-white/20"
+        className="absolute inset-0 bg-gradient-to-b from-surface via-surface/95 to-surface/80 sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-surface/20"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-white/50 via-white/20 to-white/30 sm:bg-gradient-to-b sm:from-white/30 sm:via-transparent sm:to-white/20"
+        className="absolute inset-0 bg-gradient-to-t from-surface/50 via-surface/20 to-surface/30 sm:bg-gradient-to-b sm:from-surface/30 sm:via-transparent sm:to-surface/20"
       />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
@@ -71,7 +71,7 @@ function Hero() {
               className="group inline-flex items-center gap-2 sm:gap-2.5 rounded-lg bg-accent px-4 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-medium text-white shadow-accent transition-all duration-300 hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
             >
               Mulai Perjalananmu
-              <span className="flex items-center justify-center size-5 sm:size-6 rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <span className="flex items-center justify-center size-5 sm:size-6 rounded-full bg-surface/15 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 <ArrowRight weight="bold" className="size-3 sm:size-3.5" />
               </span>
             </Link>
@@ -81,7 +81,7 @@ function Hero() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg border border-hairline-neutral bg-white px-4 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-medium text-ink transition-all hover:border-accent hover:bg-fill-soft whitespace-nowrap"
+              className="inline-flex items-center rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-medium text-ink transition-all hover:border-accent hover:bg-fill-soft whitespace-nowrap"
             >
               Tanya Kami
             </Link>
@@ -94,7 +94,7 @@ function Hero() {
 
 function Manifesto() {
   return (
-    <section className="bg-white">
+    <section className="bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-40">
         <div className="max-w-[750px]">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
@@ -173,7 +173,7 @@ function WhatYouNeed() {
           </p>
         </div>
 
-        <div className="mt-12 sm:mt-16 rounded-xl border border-hairline-neutral overflow-hidden bg-white/50">
+        <div className="mt-12 sm:mt-16 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt/80">
           {items.map((item, i) => {
             const isOpen = expanded === i;
             return (
@@ -183,7 +183,7 @@ function WhatYouNeed() {
               >
                 <button
                   onClick={() => setExpanded(isOpen ? null : i)}
-                  className="group grid grid-cols-12 gap-4 sm:gap-8 items-center px-4 sm:px-10 py-6 sm:py-8 w-full text-left transition-colors duration-300 hover:bg-white"
+                  className="group grid grid-cols-12 gap-4 sm:gap-8 items-center px-4 sm:px-10 py-6 sm:py-8 w-full text-left transition-colors duration-300 hover:bg-surface-alt"
                 >
                   <div className="col-span-2 sm:col-span-1">
                     <span className="text-2xl sm:text-3xl lg:text-4xl font-serif italic text-accent">
@@ -240,7 +240,7 @@ function WhatYouNeed() {
 
 function ThisMonth() {
   return (
-    <section className="bg-white">
+    <section className="bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-5">
@@ -260,7 +260,7 @@ function ThisMonth() {
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-accent px-5 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base font-medium text-white shadow-accent transition-all hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
               >
                 Daftar Sekarang
-                <span className="flex items-center justify-center size-6 rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <span className="flex items-center justify-center size-6 rounded-full bg-surface/15 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                   <ArrowRight weight="bold" className="size-3.5" />
                 </span>
               </Link>
@@ -373,7 +373,7 @@ function Connect() {
           Kami menanti di ruang-ruang yang nyaman bagimu.
         </p>
 
-        <div className="mt-10 sm:mt-14 rounded-xl border border-hairline-neutral overflow-hidden bg-white/50">
+        <div className="mt-10 sm:mt-14 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt/80">
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {contacts.map((c, i) => (
               <a
@@ -383,7 +383,7 @@ function Connect() {
                 rel={
                   c.href.startsWith("http") ? "noopener noreferrer" : undefined
                 }
-                className={`flex items-center gap-4 p-5 sm:p-6 lg:p-8 transition-colors duration-300 hover:bg-white ${
+                className={`flex items-center gap-4 p-5 sm:p-6 lg:p-8 transition-colors duration-300 hover:bg-surface-alt ${
                   i % 2 === 1 && i < contacts.length
                     ? "sm:border-l border-hairline-neutral"
                     : ""
@@ -420,7 +420,7 @@ function Connect() {
 
 function Subscribe() {
   return (
-    <section className="bg-white">
+    <section className="bg-surface-alt">
       <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 text-center">
         <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
           Berlangganan
@@ -437,14 +437,14 @@ function Subscribe() {
             name="name"
             placeholder="Nama"
             aria-label="Nama"
-            className="flex-1 rounded-lg border border-hairline-neutral bg-white px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+            className="flex-1 rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
           />
           <input
             type="tel"
             name="phone"
             placeholder="No. WhatsApp"
             aria-label="No. WhatsApp"
-            className="flex-1 rounded-lg border border-hairline-neutral bg-white px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+            className="flex-1 rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
           />
           <button
             type="submit"

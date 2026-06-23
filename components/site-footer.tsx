@@ -5,7 +5,7 @@ import { YoutubeLogo, InstagramLogo, TiktokLogo, Phone } from "@/components/icon
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-hairline-neutral bg-white">
+    <footer className="border-t border-hairline bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -132,7 +132,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-hairline-neutral pt-8 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-hairline pt-8 sm:flex-row sm:items-center">
           <p className="text-xs text-soft">
             © {new Date().getFullYear()} PT Jiwa Media Utama. Bertumbuh Bersama.
           </p>
