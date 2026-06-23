@@ -40,14 +40,14 @@ function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/20 to-transparent sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-surface via-surface/70 to-transparent sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-transparent"
       />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
         <div className="relative max-w-2xl">
           <div
             aria-hidden
-            className="absolute -inset-4 sm:-inset-8 -z-10 rounded-2xl bg-surface/60 backdrop-blur-md"
+            className="absolute -inset-6 sm:-inset-8 -z-10 rounded-2xl bg-surface/90 sm:bg-surface/60 backdrop-blur-xl sm:backdrop-blur-md"
           />
           <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
             Ekosistem Kelekatan
