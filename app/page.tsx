@@ -31,8 +31,8 @@ function Hero() {
   return (
     <section className="relative min-h-auto sm:min-h-[100dvh] flex items-start sm:items-center overflow-hidden">
       <Image
-        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2400&q=80"
-        alt="Cahaya matahari pagi menerangi lanskap terbuka"
+        src="/ruang-aman.png"
+        alt="Ruang aman — lanskap kontemplatif untuk bertumbuh bersama"
         fill
         priority
         className="object-cover"
