@@ -23,20 +23,17 @@ export function SiteHeader() {
           <div className="relative flex h-16 items-center justify-between">
             <Link
               href="/"
-              className="flex items-center gap-2.5 shrink-0"
+              className="flex items-center shrink-0"
               aria-label="Jiwamu — Beranda"
             >
               <Image
                 src="/logo-icon.png"
                 alt="Jiwamu"
-                width={26}
-                height={26}
-                className="shrink-0"
+                width={120}
+                height={32}
+                className="shrink-0 h-8 w-auto"
                 priority
               />
-              <span className="text-base font-semibold tracking-tight text-ink">
-                Jiwamu
-              </span>
             </Link>
 
             <nav className="hidden xl:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2">
