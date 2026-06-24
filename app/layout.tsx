@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { DebugRuler } from "@/components/debug-ruler";
 
 const manrope = Manrope({
   variable: "--font-sans",
@@ -65,9 +63,6 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
-        <Suspense fallback={null}>
-          <DebugRuler />
-        </Suspense>
       </body>
     </html>
   );
