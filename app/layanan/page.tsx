@@ -62,7 +62,7 @@ function Expectations() {
     "Kesempatan untuk memahami diri, emosi, dan hubungan secara lebih utuh",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang bisa kamu harapkan dari kami?
@@ -105,7 +105,7 @@ function WhatWeDo() {
         </p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-2xl border border-hairline bg-white p-8">
+          <div className="rounded-2xl border border-hairline bg-surface-alt p-8">
             <h3 className="text-xl font-semibold text-ink">Coaching</h3>
             <p className="mt-3 text-sm text-muted text-pretty">Cocok bagi kamu yang:</p>
             <ul className="mt-4 space-y-2">
@@ -123,7 +123,7 @@ function WhatWeDo() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-hairline bg-white p-8">
+          <div className="rounded-2xl border border-hairline bg-surface-alt p-8">
             <h3 className="text-xl font-semibold text-ink">Psikoanalisis</h3>
             <p className="mt-3 text-sm text-muted text-pretty">
               Cocok bagi kamu yang ingin menjadikan proses memahami diri sebagai
@@ -156,7 +156,7 @@ function HealingPathway() {
     { title: "Final Termination", desc: "Tahap penutupan dan tindak lanjut untuk membantu proses transisi secara lebih sehat dan sadar." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
@@ -174,7 +174,7 @@ function HealingPathway() {
           <div className="space-y-8">
             {phases.map((phase, i) => (
               <div key={i} className="relative pl-14">
-                <div className="absolute left-0 flex items-center justify-center size-8 rounded-full bg-accent text-white text-sm font-semibold">
+                <div className="absolute left-0 flex items-center justify-center size-8 rounded-lg bg-accent text-white text-sm font-semibold">
                   {i + 1}
                 </div>
                 <h3 className="text-lg font-semibold text-ink">{phase.title}</h3>
@@ -212,9 +212,9 @@ function Practitioners() {
         </h2>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {practitioners.map((p) => (
-            <div key={p.name} className="rounded-2xl border border-hairline bg-white p-6">
+            <div key={p.name} className="rounded-2xl border border-hairline bg-surface-alt p-6">
               <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center size-12 rounded-full bg-fill-soft text-accent shrink-0">
+                <div className="flex items-center justify-center size-12 rounded-lg bg-fill-soft text-accent shrink-0">
                   <span className="text-lg font-serif">{p.name.charAt(0)}</span>
                 </div>
                 <div>
@@ -243,7 +243,7 @@ function FAQ() {
     { q: "Apakah semua cerita saya akan dirahasiakan?", a: "Ya. Privasi dan kerahasiaan merupakan bagian penting dalam proses pendampingan di Jiwamu." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">

@@ -112,7 +112,7 @@ function CompetencySection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Standar Kompetensi" icon={CheckCircle} />
         <p className="mt-4 text-muted">Dengan mengikuti pelatihan ini, kamu mampu untuk:</p>
@@ -170,7 +170,7 @@ function CurriculumSection() {
           {modules.map((m, i) => (
             <span
               key={i}
-              className="inline-flex items-center rounded-full border border-hairline bg-white px-4 py-2 text-sm text-body"
+              className="inline-flex items-center rounded-lg border border-hairline bg-surface-alt px-4 py-2 text-sm text-body"
             >
               {m}
             </span>
@@ -183,7 +183,7 @@ function CurriculumSection() {
 
 function DurationSection() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -205,7 +205,7 @@ function InvestmentSection() {
     <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Investasi" icon={CurrencyDollar} />
-        <div className="mt-8 rounded-2xl border border-hairline bg-white p-8 sm:p-10">
+        <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
           <p className="text-4xl font-semibold tracking-tight text-ink">
             Rp 2.500.000
           </p>
@@ -246,7 +246,7 @@ function FacilitiesSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Fasilitas" icon={CheckCircle} />
         <p className="mt-4 text-muted">Anda juga akan mendapatkan:</p>
@@ -284,9 +284,9 @@ function TrainerSection() {
           {trainers.map((t) => (
             <div
               key={t.name}
-              className="rounded-2xl border border-hairline bg-white p-5 text-center"
+              className="rounded-2xl border border-hairline bg-surface-alt p-5 text-center"
             >
-              <div className="mx-auto flex items-center justify-center size-20 rounded-full bg-fill-soft text-accent">
+              <div className="mx-auto flex items-center justify-center size-20 rounded-lg bg-fill-soft text-accent">
                 <span className="text-2xl font-serif">
                   {t.name.charAt(0)}
                 </span>
@@ -311,14 +311,14 @@ function ScheduleSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {cities.map((c) => (
             <div
               key={c.city}
-              className="flex items-center justify-between rounded-2xl border border-hairline bg-white p-5"
+              className="flex items-center justify-between rounded-2xl border border-hairline bg-surface-alt p-5"
             >
               <div className="flex items-center gap-3">
                 <MapPin weight="duotone" className="size-5 text-accent" />
@@ -386,7 +386,7 @@ function FAQSection() {
 
 function FAQItem({ q, a }: { q: string; a: string }) {
   return (
-    <details className="group rounded-2xl border border-hairline bg-white p-5">
+    <details className="group rounded-2xl border border-hairline bg-surface-alt p-5">
       <summary className="flex cursor-pointer items-center justify-between gap-4 list-none">
         <span className="text-base font-medium text-ink text-pretty">{q}</span>
         <CaretDown
@@ -401,7 +401,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">

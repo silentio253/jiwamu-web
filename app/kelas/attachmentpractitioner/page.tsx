@@ -76,7 +76,7 @@ function Competency() {
     "Berkontribusi dalam ekosistem Jiwamu sebagai praktisi, penulis, peneliti, trainer, atau mitra pengembangan profesional",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Standar Kompetensi" icon={CheckCircle} />
         <p className="mt-4 text-muted">Dengan mengikuti pelatihan ini, kamu mampu untuk:</p>
@@ -108,7 +108,7 @@ function Curriculum() {
         <p className="mt-4 text-muted">CABP terdiri dari 10 modul utama:</p>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">
           {modules.map((m, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-xl border border-hairline bg-white p-4">
+            <div key={i} className="flex items-center gap-3 rounded-xl border border-hairline bg-surface-alt p-4">
               <span className="flex items-center justify-center size-8 rounded-lg bg-fill-soft text-xs font-semibold text-accent shrink-0">{i + 1}</span>
               <span className="text-sm text-body text-pretty">{m}</span>
             </div>
@@ -121,7 +121,7 @@ function Curriculum() {
 
 function Duration() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -144,7 +144,7 @@ function Investment() {
     <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Investasi" icon={CurrencyDollar} />
-        <div className="mt-8 rounded-2xl border border-hairline bg-white p-8 sm:p-10">
+        <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
           <p className="text-4xl font-semibold tracking-tight text-ink">Rp 13.000.000</p>
           <div className="mt-6 rounded-xl bg-surface-alt p-5">
             <p className="text-sm font-medium text-ink">Pembayaran melalui:</p>
@@ -171,7 +171,7 @@ function Facilities() {
     "Undangan keterlibatan dalam proyek penelitian dan publikasi", "Diskon 50% untuk setiap buku PUSAKA PANJI",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Fasilitas" icon={CheckCircle} />
         <p className="mt-4 text-muted">Anda juga akan mendapatkan:</p>
@@ -201,8 +201,8 @@ function Trainers() {
         <SectionHead title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {trainers.map((t) => (
-            <div key={t.name} className="rounded-2xl border border-hairline bg-white p-5 text-center">
-              <div className="mx-auto flex items-center justify-center size-20 rounded-full bg-fill-soft text-accent">
+            <div key={t.name} className="rounded-2xl border border-hairline bg-surface-alt p-5 text-center">
+              <div className="mx-auto flex items-center justify-center size-20 rounded-lg bg-fill-soft text-accent">
                 <span className="text-2xl font-serif">{t.name.charAt(0)}</span>
               </div>
               <p className="mt-4 text-sm font-semibold text-ink">{t.name}</p>
@@ -218,7 +218,7 @@ function Trainers() {
 
 function Schedule() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 gap-4">
@@ -231,7 +231,7 @@ function Schedule() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between rounded-2xl border border-hairline bg-white p-6">
+          <div className="flex items-center justify-between rounded-2xl border border-hairline bg-surface-alt p-6">
             <div className="flex items-center gap-3">
               <MapPin weight="duotone" className="size-5 text-accent" />
               <div>
@@ -263,7 +263,7 @@ function FAQ() {
         <SectionHead title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
           {faqs.map((faq, i) => (
-            <details key={i} className="group rounded-2xl border border-hairline bg-white p-5">
+            <details key={i} className="group rounded-2xl border border-hairline bg-surface-alt p-5">
               <summary className="flex cursor-pointer items-center justify-between gap-4 list-none">
                 <span className="text-base font-medium text-ink text-pretty">{faq.q}</span>
                 <CaretDown weight="bold" className="size-4 text-soft shrink-0 transition-transform group-open:rotate-180" />
@@ -279,7 +279,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap untuk naik kelas?</h2>
