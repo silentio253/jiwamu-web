@@ -143,9 +143,9 @@ export function DebugRuler() {
 
           let overlayOpacity: number;
           if (positionPercent <= 0.5) {
-            overlayOpacity = 1 - 0.4 * (positionPercent / 0.5);
+            overlayOpacity = 1 - 0.2 * (positionPercent / 0.5);
           } else {
-            overlayOpacity = 0.6 * (1 - (positionPercent - 0.5) / 0.5);
+            overlayOpacity = 0.8 - 0.6 * ((positionPercent - 0.5) / 0.5);
           }
           overlayOpacity = Math.max(0, Math.min(1, overlayOpacity));
 
@@ -260,7 +260,7 @@ export function DebugRuler() {
           ))}
           {samples.length > 0 && (
             <p className="text-[10px] text-white/30 pt-2 border-t border-white/10 mt-2">
-              composited = surface(#fafbfd) × overlay% + photo × (1 - overlay%)
+              gradient: surface(100%) → 80%@50% → 20%@100%
             </p>
           )}
           <p className="text-[10px] text-white/50 pt-2 border-t border-white/10 mt-2">
