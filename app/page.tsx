@@ -402,11 +402,6 @@ function Connect() {
                 </div>
               </a>
             ))}
-            <div className="hidden sm:flex items-center justify-center p-6 lg:p-8 border-l border-hairline-neutral">
-              <p className="text-xs text-soft font-serif italic">
-                Bertumbuh Bersama
-              </p>
-            </div>
           </div>
         </div>
       </div>
