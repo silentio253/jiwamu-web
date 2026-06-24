@@ -40,23 +40,23 @@ function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-surface/70 via-surface/20 to-transparent sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-surface via-surface/60 to-transparent sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-transparent"
       />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
         <div className="max-w-2xl">
-          <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep hero-text-shadow-strong">
+          <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
             Ekosistem Kelekatan
           </p>
-          <h1 className="mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink hero-text-shadow-strong">
+          <h1 className="mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink">
             Ruang aman untuk{" "}
-            <span className="font-serif italic font-normal text-accent hero-text-shadow-strong">
+            <span className="font-serif italic font-normal text-accent">
               bertumbuh
             </span>
             <br />
             bersama.
           </h1>
-          <p className="mt-6 sm:mt-8 max-w-lg text-base sm:text-lg lg:text-xl leading-relaxed text-muted text-pretty hero-text-shadow">
+          <p className="mt-6 sm:mt-8 max-w-lg text-base sm:text-lg lg:text-xl leading-relaxed text-muted text-pretty">
             Jiwamu adalah ekosistem pengembangan diri dan media digital
             berbasis teori kelekatan — ruang belajar, pendampingan,
             penerbitan, media, dan gerakan sosial.

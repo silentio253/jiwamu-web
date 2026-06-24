@@ -57,7 +57,7 @@ export function DebugRuler() {
 
     const measure = () => {
       const img = document.querySelector(
-        'section img[alt*="ruang aman"]',
+        'section img[alt*="Ruang"]',
       ) as HTMLImageElement | null;
       const eyebrow = document.querySelector(
         'section p[class*="tracking"]',
