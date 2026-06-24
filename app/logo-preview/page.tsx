@@ -27,8 +27,8 @@ export default function LogoPreviewPage() {
                 sizes="400px"
               />
             </div>
-            <p className="text-sm font-medium text-ink">logo baru menu header</p>
-            <p className="text-xs text-soft mt-1">184 KB · PNG</p>
+            <p className="text-sm font-medium text-ink">Transparan Jiwamu Logo - 1</p>
+            <p className="text-xs text-soft mt-1">886 KB · PNG</p>
           </div>
 
           <div className="rounded-xl border border-hairline-neutral bg-surface-alt p-8 text-center">
@@ -38,14 +38,14 @@ export default function LogoPreviewPage() {
             <div className="relative h-24 w-full mb-6">
               <Image
                 src="/logo-kandidat-b.png"
-                alt="Kandidat B — Transparan Jiwamu Logo"
+                alt="Kandidat B — logo baru menu header"
                 fill
                 className="object-contain"
                 sizes="400px"
               />
             </div>
-            <p className="text-sm font-medium text-ink">Transparan Jiwamu Logo - 1</p>
-            <p className="text-xs text-soft mt-1">886 KB · PNG</p>
+            <p className="text-sm font-medium text-ink">logo baru menu header</p>
+            <p className="text-xs text-soft mt-1">184 KB · PNG</p>
           </div>
         </div>
 
