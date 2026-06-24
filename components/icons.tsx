@@ -3,6 +3,7 @@
 export {
   ArrowUpRight,
   ArrowRight,
+  ArrowLeft,
   List,
   X,
   CaretDown,
@@ -27,4 +28,5 @@ export {
   CurrencyDollar,
   Sparkle,
   Envelope,
+  MagnifyingGlass,
 } from "@phosphor-icons/react";
