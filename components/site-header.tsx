@@ -29,9 +29,9 @@ export function SiteHeader() {
               <Image
                 src="/logo-icon.png"
                 alt="Jiwamu"
-                width={120}
-                height={32}
-                className="shrink-0 h-8 w-auto"
+                width={180}
+                height={48}
+                className="shrink-0 h-10 sm:h-12 w-auto"
                 priority
               />
             </Link>
