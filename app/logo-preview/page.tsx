@@ -44,8 +44,8 @@ export default function LogoPreviewPage() {
                 sizes="400px"
               />
             </div>
-            <p className="text-sm font-medium text-ink">logo baru menu header</p>
-            <p className="text-xs text-soft mt-1">184 KB · PNG</p>
+            <p className="text-sm font-medium text-ink">transparan logo baru menu header</p>
+            <p className="text-xs text-soft mt-1">133 KB · PNG</p>
           </div>
         </div>
 
