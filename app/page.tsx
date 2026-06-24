@@ -40,7 +40,7 @@ function Hero() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-surface via-surface/60 to-transparent sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-surface via-surface/80 to-surface/20 sm:bg-gradient-to-r sm:from-surface sm:via-surface sm:to-transparent"
       />
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
