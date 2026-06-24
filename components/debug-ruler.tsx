@@ -31,14 +31,27 @@ function rgbToHex(r: number, g: number, b: number): string {
   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
+function compositeColor(
+  overlay: [number, number, number],
+  overlayOpacity: number,
+  photo: [number, number, number],
+): [number, number, number] {
+  return [
+    Math.round(overlay[0] * overlayOpacity + photo[0] * (1 - overlayOpacity)),
+    Math.round(overlay[1] * overlayOpacity + photo[1] * (1 - overlayOpacity)),
+    Math.round(overlay[2] * overlayOpacity + photo[2] * (1 - overlayOpacity)),
+  ];
+}
+
 type ContrastSample = {
   label: string;
   top: number;
   left: number;
   width: number;
   height: number;
-  bgHex: string;
-  textHex: string;
+  photoHex: string;
+  compositeHex: string;
+  overlayOpacity: number;
   ratio: number;
   passes: boolean;
 };
@@ -56,18 +69,17 @@ export function DebugRuler() {
     let intervalId: ReturnType<typeof setInterval>;
 
     const measure = () => {
+      const section = document.querySelector("section");
       const img = document.querySelector(
         'section img[alt*="Ruang"]',
       ) as HTMLImageElement | null;
-      const eyebrow = document.querySelector(
-        'section p[class*="tracking"]',
-      );
+      const eyebrow = document.querySelector("section p[class*='tracking']");
       const h1 = document.querySelector("section h1");
       const bodyP = document.querySelector("section h1 + p");
 
       setViewport({ w: window.innerWidth, h: window.innerHeight });
 
-      if (!img || !eyebrow || !h1 || !bodyP) return false;
+      if (!section || !img || !eyebrow || !h1 || !bodyP) return false;
       if (img.naturalWidth === 0) return false;
 
       const targets: Array<{
@@ -86,11 +98,15 @@ export function DebugRuler() {
         if (!ctx) return false;
 
         const imgRect = img.getBoundingClientRect();
+        const sectionRect = section.getBoundingClientRect();
         if (imgRect.width === 0 || imgRect.height === 0) return false;
 
         canvas.width = Math.round(imgRect.width);
         canvas.height = Math.round(imgRect.height);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        const surfaceColor: [number, number, number] = [250, 251, 253];
+        const sectionHeight = sectionRect.height;
 
         const results: ContrastSample[] = [];
 
@@ -98,7 +114,10 @@ export function DebugRuler() {
           const rect = el.getBoundingClientRect();
           const sampleX = Math.max(
             0,
-            Math.min(Math.round(rect.left + 10 - imgRect.left), canvas.width - 1),
+            Math.min(
+              Math.round(rect.left + 10 - imgRect.left),
+              canvas.width - 1,
+            ),
           );
           const sampleY = Math.max(
             0,
@@ -109,20 +128,48 @@ export function DebugRuler() {
           );
 
           const pixel = ctx.getImageData(sampleX, sampleY, 1, 1).data;
-          const bgHex = rgbToHex(pixel[0], pixel[1], pixel[2]);
-          const ratio = calculateContrast(hexToRgb(hex), [
+          const photoColor: [number, number, number] = [
             pixel[0],
             pixel[1],
             pixel[2],
-          ]);
+          ];
+          const photoHex = rgbToHex(pixel[0], pixel[1], pixel[2]);
+
+          const elementCenterY = rect.top + rect.height / 2 - sectionRect.top;
+          const positionPercent = Math.max(
+            0,
+            Math.min(1, elementCenterY / sectionHeight),
+          );
+
+          let overlayOpacity: number;
+          if (positionPercent <= 0.5) {
+            overlayOpacity = 1 - 0.4 * (positionPercent / 0.5);
+          } else {
+            overlayOpacity = 0.6 * (1 - (positionPercent - 0.5) / 0.5);
+          }
+          overlayOpacity = Math.max(0, Math.min(1, overlayOpacity));
+
+          const composited = compositeColor(
+            surfaceColor,
+            overlayOpacity,
+            photoColor,
+          );
+          const compositeHex = rgbToHex(
+            composited[0],
+            composited[1],
+            composited[2],
+          );
+          const ratio = calculateContrast(hexToRgb(hex), composited);
+
           results.push({
             label,
             top: rect.top + rect.height / 2,
             left: rect.left,
             width: rect.width,
             height: rect.height,
-            bgHex,
-            textHex: hex,
+            photoHex,
+            compositeHex,
+            overlayOpacity,
             ratio,
             passes: ratio >= 4.5,
           });
@@ -148,6 +195,7 @@ export function DebugRuler() {
 
     const onResize = () => {
       retries = 0;
+      clearInterval(intervalId);
       intervalId = setInterval(tryMeasure, 300);
       tryMeasure();
     };
@@ -177,36 +225,42 @@ export function DebugRuler() {
             }}
           >
             <div
-              className={`inline-flex items-center gap-1.5 ${
+              className={`inline-flex items-center gap-1 ${
                 s.passes ? "bg-green-500" : "bg-red-500"
               } text-white text-[9px] font-mono px-1.5 py-0.5 -mt-5`}
             >
-              {s.label}: {s.ratio.toFixed(1)}:1 {!s.passes && "⚠"}
+              {s.label}: {s.ratio.toFixed(1)}:1 {!s.passes && "FAIL"}
             </div>
           </div>
         </div>
       ))}
 
       <div className="fixed top-20 right-4 z-[101] pointer-events-auto">
-        <div className="rounded-lg bg-ink/90 text-white text-xs font-mono p-3 space-y-1 backdrop-blur-md min-w-[280px]">
+        <div className="rounded-lg bg-ink/90 text-white text-xs font-mono p-3 space-y-1 backdrop-blur-md min-w-[300px]">
           <p className="text-[10px] uppercase tracking-wider text-white/60 mb-2">
-            Contrast — REAL pixel sampling
+            Contrast — composited (photo + overlay)
           </p>
           {samples.length === 0 && (
             <p className="text-yellow-400">Loading image samples...</p>
           )}
           {samples.map((s, i) => (
-            <p
-              key={i}
-              className={s.passes ? "text-green-400" : "text-red-400"}
-            >
-              {s.label}: {s.ratio.toFixed(1)}:1{" "}
-              {s.passes ? "✓ pass" : "⚠ FAIL"} | bg: {s.bgHex}
-            </p>
+            <div key={i} className="space-y-0.5">
+              <p
+                className={s.passes ? "text-green-400" : "text-red-400"}
+              >
+                {s.label}: {s.ratio.toFixed(1)}:1{" "}
+                {s.passes ? "✓ PASS" : "✗ FAIL"}
+              </p>
+              <p className="text-[10px] text-white/40 pl-2">
+                photo: {s.photoHex} | overlay:{" "}
+                {Math.round(s.overlayOpacity * 100)}% | composited:{" "}
+                {s.compositeHex}
+              </p>
+            </div>
           ))}
           {samples.length > 0 && (
-            <p className="text-[10px] text-white/40 pt-2 border-t border-white/10 mt-2">
-              Actual pixel color at text position (local image, no CORS)
+            <p className="text-[10px] text-white/30 pt-2 border-t border-white/10 mt-2">
+              composited = surface(#fafbfd) × overlay% + photo × (1 - overlay%)
             </p>
           )}
           <p className="text-[10px] text-white/50 pt-2 border-t border-white/10 mt-2">
