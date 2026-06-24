@@ -52,19 +52,23 @@ export function DebugRuler() {
   useEffect(() => {
     if (!enabled) return;
 
+    let retries = 0;
+    let intervalId: ReturnType<typeof setInterval>;
+
     const measure = () => {
       const img = document.querySelector(
         'section img[alt*="ruang aman"]',
       ) as HTMLImageElement | null;
       const eyebrow = document.querySelector(
-        'section p[class*="tracking"][class*="text-accent"]',
+        'section p[class*="tracking"]',
       );
       const h1 = document.querySelector("section h1");
       const bodyP = document.querySelector("section h1 + p");
 
-      if (!img || !eyebrow || !h1 || !bodyP) return;
-
       setViewport({ w: window.innerWidth, h: window.innerHeight });
+
+      if (!img || !eyebrow || !h1 || !bodyP) return false;
+      if (img.naturalWidth === 0) return false;
 
       const targets: Array<{
         el: Element;
@@ -76,32 +80,41 @@ export function DebugRuler() {
         { el: bodyP, label: "Body", hex: "#475467" },
       ];
 
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-      if (!ctx) return;
+      try {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        if (!ctx) return false;
 
-      const imgRect = img.getBoundingClientRect();
-      canvas.width = imgRect.width;
-      canvas.height = imgRect.height;
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const imgRect = img.getBoundingClientRect();
+        if (imgRect.width === 0 || imgRect.height === 0) return false;
 
-      const results: ContrastSample[] = [];
+        canvas.width = Math.round(imgRect.width);
+        canvas.height = Math.round(imgRect.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      for (const { el, label, hex } of targets) {
-        const rect = el.getBoundingClientRect();
-        const sampleX = Math.max(
-          0,
-          Math.min(rect.left + 10 - imgRect.left, canvas.width - 1),
-        );
-        const sampleY = Math.max(
-          0,
-          Math.min(rect.top + rect.height / 2 - imgRect.top, canvas.height - 1),
-        );
+        const results: ContrastSample[] = [];
 
-        try {
+        for (const { el, label, hex } of targets) {
+          const rect = el.getBoundingClientRect();
+          const sampleX = Math.max(
+            0,
+            Math.min(Math.round(rect.left + 10 - imgRect.left), canvas.width - 1),
+          );
+          const sampleY = Math.max(
+            0,
+            Math.min(
+              Math.round(rect.top + rect.height / 2 - imgRect.top),
+              canvas.height - 1,
+            ),
+          );
+
           const pixel = ctx.getImageData(sampleX, sampleY, 1, 1).data;
           const bgHex = rgbToHex(pixel[0], pixel[1], pixel[2]);
-          const ratio = calculateContrast(hexToRgb(hex), [pixel[0], pixel[1], pixel[2]]);
+          const ratio = calculateContrast(hexToRgb(hex), [
+            pixel[0],
+            pixel[1],
+            pixel[2],
+          ]);
           results.push({
             label,
             top: rect.top + rect.height / 2,
@@ -113,42 +126,37 @@ export function DebugRuler() {
             ratio,
             passes: ratio >= 4.5,
           });
-        } catch {
-          results.push({
-            label,
-            top: rect.top + rect.height / 2,
-            left: rect.left,
-            width: rect.width,
-            height: rect.height,
-            bgHex: "#000000",
-            textHex: hex,
-            ratio: 0,
-            passes: false,
-          });
         }
-      }
 
-      setSamples(results);
+        setSamples(results);
+        return true;
+      } catch {
+        return false;
+      }
     };
 
-    const img = document.querySelector(
-      'section img[alt*="ruang aman"]',
-    ) as HTMLImageElement | null;
-
-    if (img) {
-      if (img.complete && img.naturalWidth > 0) {
-        setTimeout(measure, 100);
-      } else {
-        img.addEventListener("load", () => setTimeout(measure, 100));
+    const tryMeasure = () => {
+      const success = measure();
+      retries++;
+      if (success || retries > 20) {
+        clearInterval(intervalId);
       }
-    }
+    };
 
-    window.addEventListener("resize", () => setTimeout(measure, 200));
-    window.addEventListener("scroll", () => setTimeout(measure, 200));
+    intervalId = setInterval(tryMeasure, 300);
+    tryMeasure();
+
+    const onResize = () => {
+      retries = 0;
+      intervalId = setInterval(tryMeasure, 300);
+      tryMeasure();
+    };
+
+    window.addEventListener("resize", onResize);
 
     return () => {
-      window.removeEventListener("resize", () => setTimeout(measure, 200));
-      window.removeEventListener("scroll", () => setTimeout(measure, 200));
+      clearInterval(intervalId);
+      window.removeEventListener("resize", onResize);
     };
   }, [enabled]);
 
