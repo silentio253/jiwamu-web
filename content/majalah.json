@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "slug": "edisi-juni-2025",
+    "title": "Mengelola Kecemasan di Era Digital",
+    "edition": "Vol. 1, No. 1",
+    "date": "Juni 2025",
+    "coverUrl": "",
+    "description": "Edisi perdana Majalah Jiwamu membahas bagaimana teknologi membentuk pola kecemasan kita dan strategi berbasis kelekatan untuk mengelolanya.",
+    "downloadUrl": "",
+    "isLatest": true
+  },
+  {
+    "id": 2,
+    "slug": "edisi-juli-2025",
+    "title": "Pengasuhan Berbasis Kelekatan",
+    "edition": "Vol. 1, No. 2",
+    "date": "Juli 2025",
+    "coverUrl": "",
+    "description": "Bagaimana teori kelekatan dapat diterapkan dalam pengasuhan sehari-hari untuk membangun hubungan orang tua-anak yang lebih aman.",
+    "downloadUrl": "",
+    "isLatest": false
+  },
+  {
+    "id": 3,
+    "slug": "edisi-agustus-2025",
+    "title": "Luka Kolektif dan Penyembuhan Komunal",
+    "edition": "Vol. 1, No. 3",
+    "date": "Agustus 2025",
+    "coverUrl": "",
+    "description": "Membahas bagaimana trauma kolektif memengaruhi kesehatan mental masyarakat Indonesia dan pendekatan penyembuhan berbasis budaya lokal.",
+    "downloadUrl": "",
+    "isLatest": false
+  }
+]
