@@ -83,7 +83,7 @@ export function SiteHeader() {
             <div className="flex items-center gap-2">
               <Link
                 href="/tes-kelekatan"
-                className="inline-flex group items-center gap-1.5 rounded-lg bg-accent px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
+                className="inline-flex group items-center gap-1.5 rounded-lg bg-accent px-3 sm:px-4 py-2 text-sm font-medium text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-accent-deep active:scale-[0.98] whitespace-nowrap"
               >
                 <span className="hidden sm:inline">Tes Kelekatan</span>
                 <span className="sm:hidden">Tes</span>
@@ -95,7 +95,7 @@ export function SiteHeader() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(true)}
-                className="xl:hidden flex items-center justify-center size-9 rounded-lg border border-hairline-neutral bg-surface text-ink transition-colors hover:bg-fill-soft"
+                className="xl:hidden flex items-center justify-center size-10 rounded-lg border border-hairline-neutral bg-surface text-ink transition-colors hover:bg-fill-soft"
                 aria-label="Buka menu"
               >
                 <List weight="bold" className="size-5" />

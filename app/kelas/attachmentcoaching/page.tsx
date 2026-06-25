@@ -105,7 +105,7 @@ function Competency() {
     "Menerapkan berbagai teknik healing untuk meningkatkan kesadaran dan kepekaan",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Standar Kompetensi" icon={CheckCircle} />
         <p className="mt-4 text-muted">Dengan mengikuti pelatihan ini, kamu mampu untuk:</p>
@@ -134,7 +134,7 @@ function Curriculum() {
     "Separation Dialogue", "Instigation Technique",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">Beberapa materi yang akan kamu pelajari:</p>
@@ -150,7 +150,7 @@ function Curriculum() {
 
 function Duration() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -168,7 +168,7 @@ function Duration() {
 
 function Investment() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Investasi" icon={CurrencyDollar} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
@@ -199,7 +199,7 @@ function Facilities() {
     "Diskon 30% untuk setiap buku PUSAKA PANJI",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Fasilitas" icon={CheckCircle} />
         <p className="mt-4 text-muted">Anda juga akan mendapatkan:</p>
@@ -224,7 +224,7 @@ function Trainers() {
     { name: "Juan Lee (Yen)", cred: "CABP", exp: "10+ tahun" },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -252,7 +252,7 @@ function Schedule() {
     { city: "Bandung", date: "Minggu, 12 Juli 2026" },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -283,7 +283,7 @@ function FAQ() {
     { q: "Apakah CAC berarti saya sudah bisa membuka praktik?", a: "CAC memberikan keterampilan attachment tingkat lanjutan, tetapi belum untuk akses praktik. Untuk mendapatkannya, peserta dianjurkan untuk melanjutkan hingga Level 3 (CABP)." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
@@ -304,7 +304,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap melanjutkan perjalanan?</h2>

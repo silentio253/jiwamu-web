@@ -62,7 +62,7 @@ function Expectations() {
     "Kesempatan untuk memahami diri, emosi, dan hubungan secara lebih utuh",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang bisa kamu harapkan dari kami?
@@ -92,7 +92,7 @@ function Expectations() {
 
 function WhatWeDo() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang kami lakukan?
@@ -156,7 +156,7 @@ function HealingPathway() {
     { title: "Final Termination", desc: "Tahap penutupan dan tindak lanjut untuk membantu proses transisi secara lebih sehat dan sadar." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
@@ -205,7 +205,7 @@ function Practitioners() {
     { name: "Ahmad Fauzan", exp: "10+ tahun", expertise: "Keresahan spiritual, masalah hubungan, dan keuangan" },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Pendengar setiamu
@@ -243,7 +243,7 @@ function FAQ() {
     { q: "Apakah semua cerita saya akan dirahasiakan?", a: "Ya. Privasi dan kerahasiaan merupakan bagian penting dalam proses pendampingan di Jiwamu." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
@@ -269,7 +269,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">

@@ -88,7 +88,7 @@ export default function BukuPage() {
 
 function HeroSection() {
   return (
-    <section className="pt-32 pb-12 sm:pt-40 sm:pb-16 bg-surface">
+    <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>

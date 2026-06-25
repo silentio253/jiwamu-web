@@ -48,7 +48,7 @@ export default function AlumniPage() {
 
   return (
     <>
-      <section className="pt-32 pb-12 sm:pt-40 sm:pb-16 bg-surface">
+      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
@@ -143,7 +143,7 @@ export default function AlumniPage() {
                             {alumni.certifications.map((cert) => (
                               <span
                                 key={cert}
-                                className="inline-flex items-center rounded-full bg-fill-soft px-2 py-0.5 text-[10px] font-medium text-accent"
+                                className="inline-flex items-center rounded-full bg-fill-soft px-2 py-0.5 text-xs font-medium text-accent"
                               >
                                 {cert}
                               </span>

@@ -112,7 +112,7 @@ function CompetencySection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Standar Kompetensi" icon={CheckCircle} />
         <p className="mt-4 text-muted">Dengan mengikuti pelatihan ini, kamu mampu untuk:</p>
@@ -162,7 +162,7 @@ function CurriculumSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">Beberapa materi yang akan kamu pelajari:</p>
@@ -183,7 +183,7 @@ function CurriculumSection() {
 
 function DurationSection() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -202,7 +202,7 @@ function DurationSection() {
 
 function InvestmentSection() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Investasi" icon={CurrencyDollar} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
@@ -246,7 +246,7 @@ function FacilitiesSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Fasilitas" icon={CheckCircle} />
         <p className="mt-4 text-muted">Anda juga akan mendapatkan:</p>
@@ -277,7 +277,7 @@ function TrainerSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -311,7 +311,7 @@ function ScheduleSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -371,7 +371,7 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
@@ -401,7 +401,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">

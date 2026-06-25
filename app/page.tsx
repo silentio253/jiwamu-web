@@ -45,7 +45,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1400px] w-full px-5 sm:px-6 lg:px-8 pt-24 pb-12 sm:pb-20">
         <div className="max-w-2xl">
-          <p className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+          <p className="text-xs sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
             Ekosistem Kelekatan
           </p>
           <h1 className="mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink">
@@ -197,7 +197,7 @@ function WhatYouNeed() {
                       {item.desc}
                     </p>
                   </div>
-                  <div className="col-span-3 sm:col-span-2 text-right">
+                  <div className="col-span-2 text-right">
                     <span
                       className={`inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform duration-300 ${
                         isOpen ? "rotate-90" : ""
@@ -270,7 +270,7 @@ function ThisMonth() {
                   <p className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     11
                   </p>
-                  <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-soft">
+                  <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
                     Juli 2026
                   </p>
                 </div>
@@ -278,7 +278,7 @@ function ThisMonth() {
                   <p className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     4
                   </p>
-                  <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-soft">
+                  <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
                     Kota
                   </p>
                 </div>
@@ -286,7 +286,7 @@ function ThisMonth() {
                   <p className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     9
                   </p>
-                  <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-soft">
+                  <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
                     Jam
                   </p>
                 </div>
@@ -393,7 +393,7 @@ function Connect() {
                   <c.icon weight="regular" className="size-4 sm:size-5" />
                 </div>
                 <div className="text-left min-w-0">
-                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] text-soft">
+                  <p className="text-xs sm:text-xs font-medium uppercase tracking-[0.18em] text-soft">
                     {c.label}
                   </p>
                   <p className="mt-0.5 sm:mt-1 text-sm sm:text-base font-medium text-ink truncate">

@@ -216,7 +216,7 @@ function ContactSection() {
                     <item.icon weight="regular" className="size-4" />
                   </div>
                   <div className="text-left min-w-0">
-                    <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] text-soft">
+                    <p className="text-xs sm:text-xs font-medium uppercase tracking-[0.18em] text-soft">
                       {item.label}
                     </p>
                     <p className="mt-0.5 text-sm font-medium text-ink truncate">

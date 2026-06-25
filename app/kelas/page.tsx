@@ -22,7 +22,7 @@ export default function KelasPage() {
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
-            <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
               Sertifikasi &amp; Pelatihan
             </p>
           </Reveal>
@@ -42,7 +42,7 @@ export default function KelasPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28 bg-surface-alt">
+      <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.1}>
             {CERTIFICATIONS.map((cert, i) => (
@@ -87,7 +87,7 @@ export default function KelasPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28 bg-surface-alt">
+      <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-surface p-8 sm:p-10">
@@ -134,7 +134,7 @@ export default function KelasPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28 bg-surface-alt">
+      <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="rounded-[32px] border border-hairline bg-surface-alt p-8 sm:p-12 text-center">
             <div className="flex items-center justify-center size-14 rounded-2xl bg-fill-soft text-accent mx-auto">

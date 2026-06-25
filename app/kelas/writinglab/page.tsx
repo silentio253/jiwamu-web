@@ -66,7 +66,7 @@ export default function WritingLabPage() {
               { title: "Sesi 4 — Inkubasi Naskah", desc: "Peserta mulai menyiapkan arah naskah masing-masing dan menyusun rencana penulisan untuk proses inkubasi lanjutan." },
             ].map((sesi, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div className="rounded-xl border border-hairline-neutral bg-surface p-6">
+                <div className="rounded-2xl border border-hairline-neutral bg-surface p-6">
                   <h3 className="text-base font-semibold text-ink">{sesi.title}</h3>
                   <p className="mt-2 text-sm text-muted leading-relaxed">{sesi.desc}</p>
                 </div>
@@ -84,7 +84,7 @@ export default function WritingLabPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="mt-8 rounded-xl border border-hairline-neutral bg-surface-alt p-6 sm:p-8">
+            <div className="mt-8 rounded-2xl border border-hairline-neutral bg-surface-alt p-6 sm:p-8">
               <p className="text-3xl font-semibold text-ink">Rp 500.000</p>
               <p className="mt-2 text-sm text-muted">
                 Biaya belum termasuk ongkos produksi buku

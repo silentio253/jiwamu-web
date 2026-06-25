@@ -113,7 +113,7 @@ export default function ProfessionalBridgingPage() {
               "Modul 10 — Start Your Practice!",
             ].map((m, i) => (
               <Reveal key={i} delay={i * 0.04}>
-                <div className="flex items-center gap-3 rounded-lg border border-hairline-neutral bg-surface-alt p-4">
+                <div className="flex items-center gap-3 rounded-2xl border border-hairline-neutral bg-surface-alt p-4">
                   <span className="flex items-center justify-center size-8 rounded-lg bg-fill-soft text-xs font-semibold text-accent shrink-0">
                     {i + 1}
                   </span>
@@ -133,7 +133,7 @@ export default function ProfessionalBridgingPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="mt-8 rounded-xl border border-hairline-neutral bg-surface p-6 sm:p-8">
+            <div className="mt-8 rounded-2xl border border-hairline-neutral bg-surface p-6 sm:p-8">
               <p className="text-3xl font-semibold text-ink">Rp 15.000.000</p>
               <div className="mt-4 pt-4 border-t border-hairline-neutral">
                 <p className="text-sm text-muted">Durasi: 3 Bulan (100 Jam Pembelajaran) + 6 jam Matrikulasi</p>
