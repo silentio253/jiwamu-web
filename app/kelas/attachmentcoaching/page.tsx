@@ -43,7 +43,7 @@ function Hero() {
             <span className="flex items-center justify-center size-10 rounded-xl bg-accent text-white text-sm font-semibold">
               2
             </span>
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+            <span className="text-xs font-medium uppercase tracking-[0.22em] text-soft">
               Level 2 · CAC
             </span>
           </div>
@@ -134,7 +134,7 @@ function Curriculum() {
     "Separation Dialogue", "Instigation Technique",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">Beberapa materi yang akan kamu pelajari:</p>
@@ -150,7 +150,7 @@ function Curriculum() {
 
 function Duration() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -168,12 +168,12 @@ function Duration() {
 
 function Investment() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Investasi" icon={CurrencyDollar} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
           <p className="text-4xl font-semibold tracking-tight text-ink">Rp 3.000.000</p>
-          <div className="mt-6 rounded-xl bg-surface-alt p-5">
+          <div className="mt-6 rounded-xl bg-surface p-5">
             <p className="text-sm font-medium text-ink">Pembayaran melalui:</p>
             <p className="mt-2 text-sm text-body">
               {SITE.bank.name}<br />
@@ -224,7 +224,7 @@ function Trainers() {
     { name: "Juan Lee (Yen)", cred: "CABP", exp: "10+ tahun" },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -252,7 +252,7 @@ function Schedule() {
     { city: "Bandung", date: "Minggu, 12 Juli 2026" },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -283,7 +283,7 @@ function FAQ() {
     { q: "Apakah CAC berarti saya sudah bisa membuka praktik?", a: "CAC memberikan keterampilan attachment tingkat lanjutan, tetapi belum untuk akses praktik. Untuk mendapatkannya, peserta dianjurkan untuk melanjutkan hingga Level 3 (CABP)." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
@@ -304,9 +304,9 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
+        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap melanjutkan perjalanan?</h2>
           <p className="mt-3 text-muted text-pretty">Daftar sekarang dan jadilah Certified Attachment Coach (CAC).</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">

@@ -93,7 +93,7 @@ function Manifesto() {
     <section className="bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-40">
         <div className="max-w-[750px]">
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
+          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
             Manifesto
           </p>
           <p className="mt-8 sm:mt-10 text-xl sm:text-2xl lg:text-[2.25rem] font-serif font-normal text-ink leading-[1.4] text-pretty">
@@ -169,7 +169,7 @@ function WhatYouNeed() {
           </p>
         </div>
 
-        <div className="mt-12 sm:mt-16 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt/80">
+        <div className="mt-12 sm:mt-16 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt">
           {items.map((item, i) => {
             const isOpen = expanded === i;
             return (
@@ -240,7 +240,7 @@ function ThisMonth() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-5">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
               Bulan ini
             </p>
             <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
@@ -369,7 +369,7 @@ function Connect() {
           Kami menanti di ruang-ruang yang nyaman bagimu.
         </p>
 
-        <div className="mt-10 sm:mt-14 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt/80">
+        <div className="mt-10 sm:mt-14 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt">
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {contacts.map((c, i) => (
               <a
@@ -413,7 +413,7 @@ function Subscribe() {
   return (
     <section className="bg-surface-alt">
       <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
+        <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
           Berlangganan
         </p>
         <h2 className="mt-4 sm:mt-5 text-xl sm:text-2xl lg:text-3xl font-serif font-normal tracking-tight text-ink text-balance">

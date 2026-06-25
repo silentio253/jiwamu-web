@@ -12,10 +12,10 @@ export default function TesKelekatanPage() {
   return (
     <section className="min-h-[100dvh] flex items-center justify-center bg-surface pt-16">
       <div className="mx-auto max-w-lg px-4 sm:px-6 text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent">
+        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-deep">
           Segera Hadir
         </p>
-        <h1 className="mt-6 text-4xl sm:text-5xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
+        <h1 className="mt-6 text-4xl sm:text-5xl font-serif font-normal leading-[1.05] tracking-tight text-ink text-balance">
           Tes Kelekatan
         </h1>
         <p className="mt-6 text-lg text-muted text-pretty leading-relaxed">

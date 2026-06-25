@@ -27,7 +27,7 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="flex items-center gap-3">
             <span className="flex items-center justify-center size-10 rounded-xl bg-accent text-white text-sm font-semibold">3</span>
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-soft">Level 3 · CABP</span>
+            <span className="text-xs font-medium uppercase tracking-[0.22em] text-soft">Level 3 · CABP</span>
           </div>
           <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
             Certification in Attachment-Based Practitioner
@@ -102,7 +102,7 @@ function Curriculum() {
     "Modul 9 — Attachment and Social Justice", "Modul 10 — Start Your Practice!",
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">CABP terdiri dari 10 modul utama:</p>
@@ -121,7 +121,7 @@ function Curriculum() {
 
 function Duration() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -141,12 +141,12 @@ function Duration() {
 
 function Investment() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Investasi" icon={CurrencyDollar} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
           <p className="text-4xl font-semibold tracking-tight text-ink">Rp 13.000.000</p>
-          <div className="mt-6 rounded-xl bg-surface-alt p-5">
+          <div className="mt-6 rounded-xl bg-surface p-5">
             <p className="text-sm font-medium text-ink">Pembayaran melalui:</p>
             <p className="mt-2 text-sm text-body">
               {SITE.bank.name}<br />
@@ -196,7 +196,7 @@ function Trainers() {
     { name: "Juan Lee (Yen)", cred: "CABP", exp: "10+ tahun" },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -218,11 +218,11 @@ function Trainers() {
 
 function Schedule() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 gap-4">
-          <div className="flex items-center justify-between rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-white p-6">
+          <div className="flex items-center justify-between rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-surface p-6">
             <div className="flex items-center gap-3">
               <MapPin weight="duotone" className="size-5 text-accent" />
               <div>
@@ -258,7 +258,7 @@ function FAQ() {
     { q: "Mengapa CABP berlangsung 3 bulan?", a: "Karena CABP dirancang sebagai proses pembentukan praktisi, sehingga peserta membutuhkan waktu untuk membaca, berdiskusi, berlatih, mengerjakan tugas, dan mengembangkan arah praktik masing-masing." },
   ];
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
@@ -279,9 +279,9 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
+        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap untuk naik kelas?</h2>
           <p className="mt-3 text-muted text-pretty">Daftar sekarang dan jadilah Certified Attachment-Based Practitioner (CABP).</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">

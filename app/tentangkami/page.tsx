@@ -148,7 +148,7 @@ function InisiatifSection() {
 
 function LegalSection() {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-white">
+    <section className="py-20 sm:py-24 lg:py-32 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink">

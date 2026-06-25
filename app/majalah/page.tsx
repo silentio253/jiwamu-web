@@ -143,7 +143,7 @@ function ArchiveSection({ archives }: { archives: Majalah[] }) {
   if (archives.length === 0) return null;
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white">
+    <section className="py-16 sm:py-20 lg:py-24 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-8">
@@ -242,7 +242,7 @@ function SubscribeSection() {
 
 function KirimTulisanSection() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white">
+    <section className="py-16 sm:py-20 lg:py-24 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-7">

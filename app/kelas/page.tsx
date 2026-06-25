@@ -22,7 +22,7 @@ export default function KelasPage() {
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent-deep">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-deep">
               Sertifikasi &amp; Pelatihan
             </p>
           </Reveal>
@@ -55,14 +55,14 @@ export default function KelasPage() {
                     <span className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-sm font-semibold text-accent">
                       {i + 1}
                     </span>
-                    <span className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+                    <span className="text-xs font-medium uppercase tracking-[0.22em] text-soft">
                       Level {i + 1}
                     </span>
                   </div>
                   <h3 className="mt-6 text-xl font-semibold tracking-tight text-ink">
                     {cert.title}
                   </h3>
-                  <p className="mt-1 text-sm font-medium text-accent">
+                  <p className="mt-1 text-sm font-medium text-accent-deep">
                     {cert.code}
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-muted text-pretty flex-1">
@@ -72,7 +72,7 @@ export default function KelasPage() {
                     <span className="text-sm font-medium text-ink">
                       {cert.price}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-deep">
                       Detail
                       <ArrowRight
                         weight="bold"
@@ -90,7 +90,7 @@ export default function KelasPage() {
       <section className="py-20 lg:py-28 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="relative overflow-hidden rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-white p-8 sm:p-10">
+            <div className="relative overflow-hidden rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-surface p-8 sm:p-10">
               <div className="flex items-center justify-center size-12 rounded-xl bg-accent text-white">
                 <Certificate weight="duotone" className="size-6" />
               </div>

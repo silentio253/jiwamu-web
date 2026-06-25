@@ -271,7 +271,7 @@ function FinalCTA() {
   return (
     <section className="py-20 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
+        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
             Siap memulai perjalananmu?
           </h2>

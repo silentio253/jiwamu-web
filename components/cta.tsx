@@ -34,7 +34,7 @@ export function CTA({
     primary: "bg-accent text-white shadow-accent hover:bg-accent-deep hover:shadow-accent-lg",
     wa: "bg-wa text-white hover:brightness-95",
     ghost:
-      "border border-hairline-neutral bg-white text-ink hover:border-accent hover:bg-fill-soft",
+      "border border-hairline-neutral bg-surface text-ink hover:border-accent hover:bg-fill-soft",
   };
 
   const content = (

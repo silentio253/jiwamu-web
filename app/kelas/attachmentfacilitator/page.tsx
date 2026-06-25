@@ -43,7 +43,7 @@ function CAFHero() {
             <span className="flex items-center justify-center size-10 rounded-xl bg-accent text-white text-sm font-semibold">
               1
             </span>
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+            <span className="text-xs font-medium uppercase tracking-[0.22em] text-soft">
               Level 1 · CAF
             </span>
           </div>
@@ -162,7 +162,7 @@ function CurriculumSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">Beberapa materi yang akan kamu pelajari:</p>
@@ -183,7 +183,7 @@ function CurriculumSection() {
 
 function DurationSection() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Durasi Pelatihan" icon={Clock} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
@@ -202,14 +202,14 @@ function DurationSection() {
 
 function InvestmentSection() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Investasi" icon={CurrencyDollar} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
           <p className="text-4xl font-semibold tracking-tight text-ink">
             Rp 2.500.000
           </p>
-          <div className="mt-6 rounded-xl bg-surface-alt p-5">
+          <div className="mt-6 rounded-xl bg-surface p-5">
             <p className="text-sm font-medium text-ink">Pembayaran melalui:</p>
             <p className="mt-2 text-sm text-body">
               {SITE.bank.name}
@@ -277,7 +277,7 @@ function TrainerSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -311,7 +311,7 @@ function ScheduleSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -371,7 +371,7 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHeader title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
@@ -401,9 +401,9 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 function FinalCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-surface-alt">
+    <section className="py-20 lg:py-28 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-white p-8 sm:p-12 text-center shadow-soft">
+        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
             Siap memulai karier barumu?
           </h2>
