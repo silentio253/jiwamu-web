@@ -55,12 +55,14 @@ export const FOOTER_KELAS = [
   { label: "Attachment Facilitator (CAF)", href: "/kelas/attachmentfacilitator" },
   { label: "Attachment Coaching (CAC)", href: "/kelas/attachmentcoaching" },
   { label: "Attachment Practitioner (CABP)", href: "/kelas/attachmentpractitioner" },
+  { label: "Professional Bridging", href: "/kelas/professionalbridging" },
   { label: "Jiwamu Writing Lab", href: "/kelas/writinglab" },
 ];
 
 export const FOOTER_SUMBER_DAYA = [
   { label: "Buku", href: "/buku" },
   { label: "Majalah", href: "/majalah" },
+  { label: "Artikel", href: "/artikel" },
   { label: "Video", href: "/video" },
   { label: "Unduhan", href: "/unduhan" },
 ];
