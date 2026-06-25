@@ -54,7 +54,7 @@ export default function AlumniPage() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
               Komunitas Alumni
             </p>
-            <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
+            <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
               Temukan daftar alumni kami
             </h1>
             <p className="mt-6 text-base sm:text-lg text-muted leading-relaxed text-pretty">

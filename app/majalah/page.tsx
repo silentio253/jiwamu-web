@@ -51,7 +51,7 @@ function HeroSection() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
+            <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
               Terbitan resmi Perkumpulan Pamong Jiwa Indonesia (PANJI).
             </h1>
           </Reveal>
@@ -110,7 +110,7 @@ function LatestSection({ latest }: { latest: Majalah }) {
               <p className="text-sm text-soft">{latest.edition} · {latest.date}</p>
             </Reveal>
             <Reveal delay={0.12}>
-              <h2 className="mt-3 text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
+              <h2 className="mt-3 text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
                 {latest.title}
               </h2>
             </Reveal>
@@ -146,7 +146,7 @@ function ArchiveSection({ archives }: { archives: Majalah[] }) {
     <section className="py-16 sm:py-20 lg:py-24 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-8">
+          <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-8">
             Riwayat Terbitan
           </h2>
         </Reveal>
@@ -202,7 +202,7 @@ function SubscribeSection() {
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="mt-5 text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
+          <h2 className="mt-5 text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
             Berlangganan Gratis Sekarang
           </h2>
         </Reveal>
@@ -247,7 +247,7 @@ function KirimTulisanSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-7">
             <Reveal>
-              <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
+              <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
                 Punya gagasan yang ingin dibagikan?
               </h2>
             </Reveal>

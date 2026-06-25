@@ -22,7 +22,7 @@ export default function WritingLabPage() {
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
+              <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
                 Jiwamu Writing Lab
               </h1>
             </Reveal>
@@ -54,7 +54,7 @@ export default function WritingLabPage() {
       <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
+            <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
               Apa yang akan kamu pelajari?
             </h2>
           </Reveal>
@@ -79,7 +79,7 @@ export default function WritingLabPage() {
       <section className="py-16 sm:py-20 lg:py-24 bg-surface">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
+            <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
               Investasi
             </h2>
           </Reveal>
@@ -101,7 +101,7 @@ export default function WritingLabPage() {
       <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
+            <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
               Siap membawa ide dan pengaruhmu lebih luas?
             </h2>
           </Reveal>

@@ -18,7 +18,7 @@ export default function UnduhanPage() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
+            <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
               Unduhan
             </h1>
           </Reveal>

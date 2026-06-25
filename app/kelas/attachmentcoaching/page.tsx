@@ -47,7 +47,7 @@ function Hero() {
               Level 2 · CAC
             </span>
           </div>
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
+          <h1 className="mt-6 text-2xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
             Certification in Attachment Coaching
           </h1>
           <p className="mt-6 text-lg text-muted text-pretty">
@@ -89,7 +89,7 @@ function SectionHead({ title, icon: Icon }: { title: string; icon: React.Element
       <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
         <Icon weight="duotone" className="size-5" />
       </div>
-      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">{title}</h2>
+      <h2 className="text-xl sm:text-2xl sm:text-3xl font-semibold tracking-tight text-ink">{title}</h2>
     </div>
   );
 }
@@ -172,7 +172,7 @@ function Investment() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Investasi" icon={CurrencyDollar} />
         <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
-          <p className="text-4xl font-semibold tracking-tight text-ink">Rp 3.000.000</p>
+          <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink">Rp 3.000.000</p>
           <div className="mt-6 rounded-xl bg-surface p-5">
             <p className="text-sm font-medium text-ink">Pembayaran melalui:</p>
             <p className="mt-2 text-sm text-body">
@@ -307,7 +307,7 @@ function FinalCTA() {
     <section className="py-20 sm:py-24 lg:py-28 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap melanjutkan perjalanan?</h2>
+          <h2 className="text-xl sm:text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap melanjutkan perjalanan?</h2>
           <p className="mt-3 text-muted text-pretty">Daftar sekarang dan jadilah Certified Attachment Coach (CAC).</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <CTA href={waLink("Hai Kak Nuy, saya ingin gabung kelas CAC!")} size="lg" external withArrow>Daftar Sekarang</CTA>

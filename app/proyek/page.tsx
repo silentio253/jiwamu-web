@@ -56,7 +56,7 @@ function HeroSection() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
+            <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
               Laboratorium riset dekolonisasi kesehatan mental.
             </h1>
           </Reveal>
@@ -88,7 +88,7 @@ function ActiveSection({ projects }: { projects: Proyek[] }) {
     <section className="py-20 sm:py-24 lg:py-32 bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
+          <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
             Proyek Berjalan
           </h2>
         </Reveal>
@@ -156,7 +156,7 @@ function CompletedSection({ projects }: { projects: Proyek[] }) {
     <section className="py-20 sm:py-24 lg:py-32 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
+          <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
             Proyek Selesai
           </h2>
         </Reveal>
@@ -210,7 +210,7 @@ function DonateSection() {
     <section className="py-20 sm:py-24 lg:py-32 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
+          <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
             Dukung Perjalanan Kami
           </h2>
         </Reveal>

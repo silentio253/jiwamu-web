@@ -30,7 +30,7 @@ function Hero() {
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <h1 className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
+          <h1 className="mt-8 text-2xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
             Tidak semua hal dalam hidup perlu segera diperbaiki.
           </h1>
         </Reveal>
@@ -64,7 +64,7 @@ function Expectations() {
   return (
     <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
+        <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang bisa kamu harapkan dari kami?
         </h2>
         <p className="mt-4 text-muted text-pretty">
@@ -94,7 +94,7 @@ function WhatWeDo() {
   return (
     <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
+        <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang kami lakukan?
         </h2>
         <p className="mt-4 text-muted text-pretty">
@@ -162,7 +162,7 @@ function HealingPathway() {
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
             <Sparkle weight="duotone" className="size-5" />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Healing Pathway</h2>
+          <h2 className="text-xl sm:text-3xl font-semibold tracking-tight text-ink">Healing Pathway</h2>
         </div>
         <p className="mt-4 text-muted text-pretty">
           Setiap individu memiliki ritme dan kebutuhan yang berbeda. Karena itu,
@@ -207,7 +207,7 @@ function Practitioners() {
   return (
     <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
+        <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Pendengar setiamu
         </h2>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -249,7 +249,7 @@ function FAQ() {
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
             <Sparkle weight="duotone" className="size-5" />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">FAQ</h2>
+          <h2 className="text-xl sm:text-3xl font-semibold tracking-tight text-ink">FAQ</h2>
         </div>
         <div className="mt-8 space-y-3">
           {faqs.map((faq, i) => (
@@ -272,7 +272,7 @@ function FinalCTA() {
     <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
+          <h2 className="text-xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
             Siap memulai perjalananmu?
           </h2>
           <p className="mt-3 text-muted text-pretty">

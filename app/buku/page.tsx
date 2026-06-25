@@ -97,7 +97,7 @@ function HeroSection() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
+            <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
               Rumah penerbitan bagi pemengaruh, pemerhati, dan profesional kesehatan mental.
             </h1>
           </Reveal>
@@ -122,7 +122,7 @@ function KatalogSection() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
+            <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
               Katalog
             </h2>
           </Reveal>

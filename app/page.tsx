@@ -161,7 +161,7 @@ function WhatYouNeed() {
     <section className="bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
         <div className="max-w-2xl">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
+          <h2 className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
             Apa yang kamu butuhkan?
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted text-pretty">
@@ -182,7 +182,7 @@ function WhatYouNeed() {
                   className="group grid grid-cols-12 gap-4 sm:gap-8 items-center px-4 sm:px-10 py-6 sm:py-8 w-full text-left transition-colors duration-300 hover:bg-surface-alt"
                 >
                   <div className="col-span-2 sm:col-span-1">
-                    <span className="text-2xl sm:text-3xl lg:text-4xl font-serif italic text-accent">
+                    <span className="text-xl sm:text-3xl lg:text-4xl font-serif italic text-accent">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -243,7 +243,7 @@ function ThisMonth() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
               Bulan ini
             </p>
-            <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
+            <h2 className="mt-4 sm:mt-5 text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
               Fokus: kelas terdekat
             </h2>
             <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted leading-relaxed text-pretty max-w-md">
@@ -267,7 +267,7 @@ function ThisMonth() {
             <div className="rounded-xl border border-hairline-neutral bg-surface p-6 sm:p-8 lg:p-10">
               <div className="grid grid-cols-3 gap-4 sm:gap-6">
                 <div>
-                  <p className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink">
+                  <p className="text-2xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     11
                   </p>
                   <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
@@ -275,7 +275,7 @@ function ThisMonth() {
                   </p>
                 </div>
                 <div className="border-l border-hairline-neutral pl-4 sm:pl-6">
-                  <p className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink">
+                  <p className="text-2xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     4
                   </p>
                   <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
@@ -283,7 +283,7 @@ function ThisMonth() {
                   </p>
                 </div>
                 <div className="border-l border-hairline-neutral pl-4 sm:pl-6">
-                  <p className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink">
+                  <p className="text-2xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     9
                   </p>
                   <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
@@ -362,7 +362,7 @@ function Connect() {
   return (
     <section className="bg-surface">
       <div className="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 text-center">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
+        <h2 className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
           Mari terhubung!
         </h2>
         <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted">

@@ -27,7 +27,7 @@ export default function KelasPage() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
+            <h1 className="mt-6 text-2xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-ink text-balance">
               Mulai dan kembangkan kariermu untuk memahami diri dan membantu
               sesama.
             </h1>
