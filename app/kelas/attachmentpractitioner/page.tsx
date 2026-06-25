@@ -106,12 +106,11 @@ function Curriculum() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">CABP terdiri dari 10 modul utama:</p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="mt-8 flex flex-wrap gap-2">
           {modules.map((m, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-xl border border-hairline bg-surface-alt p-4">
-              <span className="flex items-center justify-center size-8 rounded-lg bg-fill-soft text-xs font-semibold text-accent shrink-0">{i + 1}</span>
-              <span className="text-sm text-body text-pretty">{m}</span>
-            </div>
+            <span key={i} className="inline-flex items-center rounded-full border border-hairline-neutral bg-surface-alt px-4 py-2 text-sm text-body">
+              {m}
+            </span>
           ))}
         </div>
       </div>
