@@ -25,6 +25,7 @@ export default function AdminPage() {
                 name: "github",
                 repo: "silentio253/jiwamu-web",
                 branch: "main",
+                auth_type: "token",
                 token: process.env.NEXT_PUBLIC_GITHUB_TOKEN || "",
               },
               locale: "id",
