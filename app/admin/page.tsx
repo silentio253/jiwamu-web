@@ -22,10 +22,13 @@ export default function AdminPage() {
           win.CMS.init({
             config: {
               backend: {
-                name: "test-repo",
+                name: "github",
+                repo: "silentio253/jiwamu-web",
+                branch: "main",
+                token: process.env.NEXT_PUBLIC_GITHUB_TOKEN || "",
               },
               locale: "id",
-              publish_mode: "simple",
+              publish_mode: "editorial_workflow",
               media_folder: "public/images/uploads",
               public_folder: "/images/uploads",
               collections: [
@@ -131,7 +134,7 @@ export default function AdminPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <p className="text-sm text-gray-500">Loading CMS...</p>
-          <p className="text-xs text-gray-400 mt-2">test-repo backend — no login required</p>
+          <p className="text-xs text-gray-400 mt-2">GitHub backend — login with token</p>
         </div>
       </div>
     </div>
