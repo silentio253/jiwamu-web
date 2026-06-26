@@ -10,12 +10,16 @@ export default function AdminPage() {
     // Prevent auto-init
     win.CMS_MANUAL_INIT = true;
 
+    // Get token from URL param or env var
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenFromUrl = urlParams.get("token");
+    const token = tokenFromUrl || process.env.NEXT_PUBLIC_GITHUB_TOKEN || "";
+
     // Load Decap CMS
     const script = document.createElement("script");
     script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
     script.async = true;
     script.onload = () => {
-      // Wait for CMS to be ready
       const check = setInterval(() => {
         if (win.CMS && win.CMS.init) {
           clearInterval(check);
@@ -26,7 +30,7 @@ export default function AdminPage() {
                 repo: "silentio253/jiwamu-web",
                 branch: "main",
                 auth_type: "token",
-                token: process.env.NEXT_PUBLIC_GITHUB_TOKEN || "",
+                token: token,
               },
               locale: "id",
               publish_mode: "editorial_workflow",
@@ -135,7 +139,9 @@ export default function AdminPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <p className="text-sm text-gray-500">Loading CMS...</p>
-          <p className="text-xs text-gray-400 mt-2">GitHub backend — login with token</p>
+          <p className="text-xs text-gray-400 mt-2">
+            GitHub backend — token auth
+          </p>
         </div>
       </div>
     </div>
