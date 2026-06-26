@@ -61,17 +61,41 @@ export async function GET(request: NextRequest) {
 <p>Authorizing, please wait...</p>
 <script>
 (function() {
+  var token = "${tokenData.access_token}";
+  var provider = "github";
+
+  // Method 1: Decap CMS expected format
   function sendToken() {
-    var msg = "authorization:github:success:" + JSON.stringify({
-      token: "${tokenData.access_token}",
-      provider: "github"
-    });
-    if (window.opener) {
-      window.opener.postMessage(msg, "*");
+    try {
+      // Try the string format first
+      var msg = "authorization:" + provider + ":success:" + JSON.stringify({token: token, provider: provider});
+      if (window.opener) {
+        window.opener.postMessage(msg, "*");
+      }
+    } catch(e) {
+      console.error("Method 1 failed:", e);
+    }
+
+    try {
+      // Also try object format
+      if (window.opener) {
+        window.opener.postMessage({
+          type: "authorization",
+          token: token,
+          provider: provider
+        }, "*");
+      }
+    } catch(e) {
+      console.error("Method 2 failed:", e);
     }
   }
+
   sendToken();
-  window.close();
+
+  // Delay close to ensure message is delivered
+  setTimeout(function() {
+    window.close();
+  }, 500);
 })();
 </script>
 </body>
