@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 
-  // Redirect to the main OAuth handler
+  // Redirect to main OAuth handler with code
   return NextResponse.redirect(
     new URL(`/api/oauth?code=${code}`, request.url),
   );

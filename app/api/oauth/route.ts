@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const GITHUB_CLIENT_ID = "Ov23liEokOTUaRWAV8jL";
-const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || "42068102b0494882fc3cc93b8bd1b143f9b7ce3e";
+const GITHUB_CLIENT_SECRET = "42068102b0494882fc3cc93b8bd1b143f9b7ce3e";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(githubAuthUrl.toString());
   }
 
-  // Step 2: Exchange code for token
+  // Step 2: Exchange code for token (when GitHub redirects back)
   try {
     const tokenResponse = await fetch(
       "https://github.com/login/oauth/access_token",
@@ -40,38 +40,57 @@ export async function GET(request: NextRequest) {
 
     if (tokenData.error) {
       return new NextResponse(
-        `<html><body><h1>Error</h1><p>${tokenData.error_description}</p></body></html>`,
+        `<!DOCTYPE html>
+<html>
+<head><title>Error</title></head>
+<body>
+<h1>OAuth Error</h1>
+<p>${tokenData.error}: ${tokenData.error_description}</p>
+<p><a href="/admin">Try again</a></p>
+</body>
+</html>`,
         { status: 400, headers: { "Content-Type": "text/html" } },
       );
     }
 
-    // Step 3: Return token to Decap CMS
-    const html = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Authorizing...</title>
-        </head>
-        <body>
-          <p>Authorizing, please wait...</p>
-          <script>
-            const message = {
-              type: "authorization",
-              token: "${tokenData.access_token}",
-            };
-            window.opener.postMessage(message, "*");
-            window.close();
-          </script>
-        </body>
-      </html>
-    `;
+    // Step 3: Return token to Decap CMS via postMessage
+    const html = `<!DOCTYPE html>
+<html>
+<head><title>Authorizing...</title></head>
+<body>
+<p>Authorizing, please wait...</p>
+<script>
+(function() {
+  function sendToken() {
+    var msg = "authorization:github:success:" + JSON.stringify({
+      token: "${tokenData.access_token}",
+      provider: "github"
+    });
+    if (window.opener) {
+      window.opener.postMessage(msg, "*");
+    }
+  }
+  sendToken();
+  window.close();
+})();
+</script>
+</body>
+</html>`;
 
     return new NextResponse(html, {
       headers: { "Content-Type": "text/html" },
     });
   } catch {
     return new NextResponse(
-      `<html><body><h1>Error</h1><p>Failed to exchange code for token</p></body></html>`,
+      `<!DOCTYPE html>
+<html>
+<head><title>Error</title></head>
+<body>
+<h1>OAuth Error</h1>
+<p>Failed to exchange code for token</p>
+<p><a href="/admin">Try again</a></p>
+</body>
+</html>`,
       { status: 500, headers: { "Content-Type": "text/html" } },
     );
   }
