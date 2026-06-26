@@ -10,7 +10,7 @@ export default function AdminPage() {
     // Local backend config — no GitHub auth needed
     const config = {
       backend: {
-        name: "local",
+        name: "test-repo",
       },
       locale: "id",
       publish_mode: "simple",
