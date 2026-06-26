@@ -4,17 +4,16 @@ import { useEffect } from "react";
 
 export default function AdminPage() {
   useEffect(() => {
-    // Define CMS config inline — no config.yml file needed
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const win = window as any;
+
+    // Local backend config — no GitHub auth needed
     const config = {
       backend: {
-        name: "github",
-        repo: "silentio253/jiwamu-web",
-        branch: "main",
-        base_url: "https://jiwamu-web.vercel.app",
-        auth_endpoint: "api/oauth",
+        name: "local",
       },
       locale: "id",
-      publish_mode: "editorial_workflow",
+      publish_mode: "simple",
       media_folder: "public/images/uploads",
       public_folder: "/images/uploads",
       collections: [
@@ -105,26 +104,13 @@ export default function AdminPage() {
       ],
     };
 
-    // Register config before loading CMS
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const win = window as any;
-    win.CMS_MANUAL_INIT = true;
+    // Set config BEFORE loading CMS
     win.CMS_CONFIG = config;
 
-    // Load Decap CMS
+    // Load Decap CMS (auto-initializes with CMS_CONFIG)
     const script = document.createElement("script");
     script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
     script.async = true;
-    script.onload = () => {
-      // Wait for CMS to be ready, then initialize
-      const checkInit = setInterval(() => {
-        if (win.initCMS) {
-          clearInterval(checkInit);
-          // Call initCMS with config directly (not wrapped in object)
-          win.initCMS(config);
-        }
-      }, 100);
-    };
     document.body.appendChild(script);
 
     return () => {
@@ -137,9 +123,7 @@ export default function AdminPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <p className="text-sm text-gray-500">Loading CMS...</p>
-          <p className="text-xs text-gray-400 mt-2">
-            Config loaded inline — no config.yml needed
-          </p>
+          <p className="text-xs text-gray-400 mt-2">Local backend — no login required</p>
         </div>
       </div>
     </div>
