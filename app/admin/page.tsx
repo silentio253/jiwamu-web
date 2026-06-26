@@ -116,10 +116,14 @@ export default function AdminPage() {
     script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
     script.async = true;
     script.onload = () => {
-      // Initialize CMS with config
-      if (win.initCMS) {
-        win.initCMS({ config });
-      }
+      // Wait for CMS to be ready, then initialize
+      const checkInit = setInterval(() => {
+        if (win.initCMS) {
+          clearInterval(checkInit);
+          // Call initCMS with config directly (not wrapped in object)
+          win.initCMS(config);
+        }
+      }, 100);
     };
     document.body.appendChild(script);
 
