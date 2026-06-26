@@ -1,5 +1,9 @@
 backend:
-  name: test-repo
+  name: github
+  repo: silentio253/jiwamu-web
+  branch: main
+  base_url: https://jiwamu-web.vercel.app
+  auth_endpoint: api/oauth
 
 locale: id
 
@@ -22,12 +26,6 @@ collections:
       - { label: "Ringkasan", name: "description", widget: "text" }
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
       - { label: "Konten", name: "body", widget: "markdown" }
-      - label: "Meta"
-        name: "meta"
-        widget: "object"
-        fields:
-          - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
-          - { label: "SEO Description", name: "seo_description", widget: "text", required: false }
 
   - name: "video"
     label: "Video"
@@ -41,7 +39,6 @@ collections:
       - { label: "Deskripsi", name: "description", widget: "text" }
       - { label: "URL YouTube", name: "youtube_url", widget: "string" }
       - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
-      - { label: "Konten Tambahan", name: "body", widget: "markdown", required: false }
 
   - name: "buku"
     label: "Buku"
