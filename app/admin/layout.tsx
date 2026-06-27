@@ -17,7 +17,7 @@ export default function AdminLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/logo-icon.png" />
       </head>
-      <body className="bg-white text-gray-900">
+      <body>
         {children}
       </body>
     </html>
