@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import Link from "next/link";
-import QuillEditor from "@/components/quill-editor";
+
+// Lazy load Quill editor
+const QuillEditor = lazy(() => import("@/components/quill-editor"));
 
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || "";
 const REPO = "silentio253/jiwamu-web";
@@ -323,13 +325,26 @@ export default function AdminPage() {
                     </select>
                   ) : field.widget === "markdown" || field.widget === "text" ? (
                     <div>
-                      <QuillEditor
-                        value={editing[field.name] || ""}
-                        onChange={(val) =>
-                          setEditing({ ...editing, [field.name]: val })
+                      <Suspense
+                        fallback={
+                          <textarea
+                            value={editing[field.name] || ""}
+                            onChange={(e) =>
+                              setEditing({ ...editing, [field.name]: e.target.value })
+                            }
+                            rows={6}
+                            className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent resize-y"
+                          />
                         }
-                        placeholder={`Tulis ${field.label.toLowerCase()} di sini...`}
-                      />
+                      >
+                        <QuillEditor
+                          value={editing[field.name] || ""}
+                          onChange={(val) =>
+                            setEditing({ ...editing, [field.name]: val })
+                          }
+                          placeholder={`Tulis ${field.label.toLowerCase()} di sini...`}
+                        />
+                      </Suspense>
                     </div>
                   ) : field.widget === "boolean" ? (
                     <label className="flex items-center gap-2">

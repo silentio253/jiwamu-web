@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type QuillEditorProps = {
   value: string;
@@ -17,9 +17,14 @@ export default function QuillEditor({
   const quillRef = useRef<any>(null);
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || !containerRef.current) return;
 
     // Dynamic import Quill
     import("quill").then((QuillModule) => {
@@ -31,39 +36,75 @@ export default function QuillEditor({
         containerRef.current.innerHTML = "";
         containerRef.current.appendChild(editor);
 
-        quillRef.current = new Quill(editor, {
-          theme: "snow",
-          placeholder,
-          modules: {
-            toolbar: [
-              [{ header: [2, 3, false] }],
-              ["bold", "italic", "underline"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["blockquote", "link"],
-              ["clean"],
-            ],
-          },
-        });
+        try {
+          quillRef.current = new Quill(editor, {
+            theme: "snow",
+            placeholder,
+            modules: {
+              toolbar: [
+                [{ header: [2, 3, false] }],
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["blockquote", "link"],
+                ["clean"],
+              ],
+            },
+          });
 
-        // Set initial value
-        if (value) {
-          quillRef.current.root.innerHTML = value;
-        }
-
-        // Listen for changes
-        quillRef.current.on("text-change", () => {
-          if (quillRef.current) {
-            const html = quillRef.current.root.innerHTML;
-            onChangeRef.current(html);
+          // Set initial value
+          if (value) {
+            quillRef.current.root.innerHTML = value;
           }
+
+          // Listen for changes
+          quillRef.current.on("text-change", () => {
+            if (quillRef.current) {
+              const html = quillRef.current.root.innerHTML;
+              onChangeRef.current(html);
+            }
+          });
+        } catch (e) {
+          console.error("Quill init error:", e);
+          // Fallback: show textarea
+          const textarea = document.createElement("textarea");
+          textarea.value = value;
+          textarea.style.width = "100%";
+          textarea.style.minHeight = "200px";
+          textarea.style.padding = "12px";
+          textarea.style.border = "1px solid #e5e7eb";
+          textarea.style.borderRadius = "8px";
+          textarea.style.fontSize = "14px";
+          textarea.addEventListener("input", (e) => {
+            onChangeRef.current((e.target as HTMLTextAreaElement).value);
+          });
+          containerRef.current.innerHTML = "";
+          containerRef.current.appendChild(textarea);
+        }
+      }
+    }).catch((e) => {
+      console.error("Quill load error:", e);
+      // Fallback: show textarea
+      if (containerRef.current) {
+        const textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.style.width = "100%";
+        textarea.style.minHeight = "200px";
+        textarea.style.padding = "12px";
+        textarea.style.border = "1px solid #e5e7eb";
+        textarea.style.borderRadius = "8px";
+        textarea.style.fontSize = "14px";
+        textarea.addEventListener("input", (e) => {
+          onChangeRef.current((e.target as HTMLTextAreaElement).value);
         });
+        containerRef.current.innerHTML = "";
+        containerRef.current.appendChild(textarea);
       }
     });
 
     return () => {
       quillRef.current = null;
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [mounted, placeholder]);
 
   // Update value from outside
   useEffect(() => {
@@ -71,6 +112,18 @@ export default function QuillEditor({
       quillRef.current.root.innerHTML = value;
     }
   }, [value]);
+
+  if (!mounted) {
+    return (
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={6}
+        placeholder={placeholder}
+        className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent resize-y"
+      />
+    );
+  }
 
   return (
     <div
