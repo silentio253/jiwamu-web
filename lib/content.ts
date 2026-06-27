@@ -59,7 +59,13 @@ function readJsonFiles<T>(folder: string): T[] {
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
   return files.map((f) => {
     const content = fs.readFileSync(path.join(dir, f), "utf-8");
-    return JSON.parse(content) as T;
+    // Clean up encoding issues
+    const cleaned = content
+      .replace(/ÃÂ¢ÃÂÃÂ/g, "—")
+      .replace(/ÃÂ¢ÃÂÃÂ/g, "–")
+      .replace(/ÃÂ©/g, "é")
+      .replace(/ÃÂ¨/g, "è");
+    return JSON.parse(cleaned) as T;
   });
 }
 

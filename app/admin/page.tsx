@@ -136,6 +136,7 @@ export default function AdminPage() {
     const slug = editing.slug || editing.title?.toLowerCase().replace(/\s+/g, "-") || "item";
     const filename = `${slug}.json`;
     const content = JSON.stringify(editing, null, 2);
+    // Proper UTF-8 encoding for GitHub API
     const encoded = btoa(unescape(encodeURIComponent(content)));
 
     try {
