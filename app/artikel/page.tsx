@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
-import { getArtikels } from "@/lib/content";
+import { getArtikels, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Artikel — Sumber Daya Jiwamu",
@@ -84,11 +84,7 @@ export default function ArtikelPage() {
                     </div>
                     <div className="p-5 flex-1 flex flex-col">
                       <p className="text-xs text-soft">
-                        {new Date(artikel.date).toLocaleDateString("id-ID", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {formatDate(artikel.date)}
                       </p>
                       <h3 className="mt-2 text-base font-medium text-ink leading-snug line-clamp-2 group-hover:text-accent transition-colors">
                         {artikel.title}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
-import { getVideos, getYouTubeEmbedUrl } from "@/lib/content";
+import { getVideos, getYouTubeEmbedUrl, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Video — Sumber Daya Jiwamu",
@@ -80,11 +80,7 @@ export default function VideoPage() {
                     </div>
                     <div className="p-5">
                       <p className="text-xs text-soft">
-                        {new Date(video.date).toLocaleDateString("id-ID", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {formatDate(video.date)}
                       </p>
                       <h3 className="mt-2 text-base font-medium text-ink leading-snug line-clamp-2">
                         {video.title}

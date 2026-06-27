@@ -39,6 +39,7 @@ const COLLECTIONS: Collection[] = [
       { name: "date", label: "Tanggal", widget: "datetime" },
       { name: "category", label: "Kategori", widget: "select", options: ["Kesehatan Mental", "Relasi", "Pengasuhan", "Pengembangan Diri", "Opini"] },
       { name: "description", label: "Ringkasan", widget: "text" },
+      { name: "thumbnail", label: "URL Thumbnail", widget: "string" },
       { name: "body", label: "Konten", widget: "markdown" },
     ],
   },

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft } from "@/components/icons";
-import { getArtikels, getArtikelBySlug } from "@/lib/content";
+import { getArtikels, getArtikelBySlug, formatDate } from "@/lib/content";
 
 export const revalidate = 60;
 
@@ -71,11 +71,7 @@ export default async function ArtikelDetailPage({ params }: PageProps) {
         </h1>
 
         <p className="mt-3 text-sm text-soft">
-          {new Date(artikel.date).toLocaleDateString("id-ID", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
+          {formatDate(artikel.date)}
         </p>
 
         {artikel.description && (

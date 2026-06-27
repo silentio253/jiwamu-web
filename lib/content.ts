@@ -104,6 +104,40 @@ export function getProyeks(): Proyek[] {
   return readJsonFiles<Proyek>("proyek");
 }
 
+export function formatDate(dateStr: string): string {
+  if (!dateStr) return "";
+
+  // Try parsing various formats
+  let date: Date;
+
+  // ISO format: 2026-01-01
+  if (/^\d{4}-\d{2}-\d{2}/.test(dateStr)) {
+    date = new Date(dateStr);
+  }
+  // DD-MM-YYYY: 27-06-2026
+  else if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) {
+    const [day, month, year] = dateStr.split("-");
+    date = new Date(`${year}-${month}-${day}`);
+  }
+  // DD/MM/YYYY: 27/06/2026
+  else if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) {
+    const [day, month, year] = dateStr.split("/");
+    date = new Date(`${year}-${month}-${day}`);
+  }
+  // Fallback
+  else {
+    date = new Date(dateStr);
+  }
+
+  if (isNaN(date.getTime())) return dateStr;
+
+  return date.toLocaleDateString("id-ID", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 export function extractYouTubeId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
