@@ -16,6 +16,10 @@ export default function AdminLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/logo-icon.png" />
+        <link
+          href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+          rel="stylesheet"
+        />
       </head>
       <body>
         {children}
