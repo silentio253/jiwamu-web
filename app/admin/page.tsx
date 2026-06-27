@@ -1,10 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback, lazy, Suspense } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-
-// Lazy load Quill editor
-const QuillEditor = lazy(() => import("@/components/quill-editor"));
 
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || "";
 const REPO = "silentio253/jiwamu-web";
@@ -56,6 +53,7 @@ const COLLECTIONS: Collection[] = [
       { name: "date", label: "Tanggal", widget: "datetime" },
       { name: "description", label: "Deskripsi", widget: "text" },
       { name: "youtube_url", label: "URL YouTube", widget: "string" },
+      { name: "thumbnail", label: "URL Thumbnail", widget: "string" },
     ],
   },
   {
@@ -69,6 +67,7 @@ const COLLECTIONS: Collection[] = [
       { name: "price", label: "Harga", widget: "string" },
       { name: "year", label: "Tahun", widget: "string" },
       { name: "description", label: "Deskripsi", widget: "markdown" },
+      { name: "coverUrl", label: "URL Cover", widget: "string" },
     ],
   },
   {
@@ -81,6 +80,7 @@ const COLLECTIONS: Collection[] = [
       { name: "edition", label: "Edisi", widget: "string" },
       { name: "date", label: "Tanggal", widget: "string" },
       { name: "description", label: "Deskripsi", widget: "text" },
+      { name: "coverUrl", label: "URL Cover", widget: "string" },
       { name: "isLatest", label: "Edisi Terbaru", widget: "boolean", default: false },
     ],
   },
@@ -139,11 +139,9 @@ export default function AdminPage() {
     const slug = editing.slug || editing.title?.toLowerCase().replace(/\s+/g, "-") || "item";
     const filename = `${slug}.json`;
     const content = JSON.stringify(editing, null, 2);
-    // Proper UTF-8 encoding for GitHub API
     const encoded = btoa(unescape(encodeURIComponent(content)));
 
     try {
-      // Check if file exists
       const checkRes = await fetch(
         `https://api.github.com/repos/${REPO}/contents/${collection.folder}/${filename}?ref=${BRANCH}`,
         { headers: { Authorization: `token ${GITHUB_TOKEN}` } },
@@ -155,7 +153,6 @@ export default function AdminPage() {
         sha = data.sha;
       }
 
-      // Create or update file
       const res = await fetch(
         `https://api.github.com/repos/${REPO}/contents/${collection.folder}/${filename}`,
         {
@@ -237,9 +234,6 @@ export default function AdminPage() {
           <code className="mt-2 block text-xs bg-fill-soft p-3 rounded-lg text-accent">
             NEXT_PUBLIC_GITHUB_TOKEN=ghp_xxx
           </code>
-          <p className="mt-4 text-xs text-soft">
-            Di Vercel: Settings → Environment Variables → Add
-          </p>
         </div>
       </div>
     );
@@ -251,10 +245,7 @@ export default function AdminPage() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <h1 className="text-sm font-semibold text-ink">Jiwamu CMS</h1>
-            <Link
-              href="/"
-              className="text-xs text-accent hover:text-accent-deep"
-            >
+            <Link href="/" className="text-xs text-accent hover:text-accent-deep">
               ← Kembali ke situs
             </Link>
           </div>
@@ -267,15 +258,9 @@ export default function AdminPage() {
           {COLLECTIONS.map((c) => (
             <button
               key={c.name}
-              onClick={() => {
-                setActiveTab(c.name);
-                setEditing(null);
-                setMessage("");
-              }}
+              onClick={() => { setActiveTab(c.name); setEditing(null); setMessage(""); }}
               className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                activeTab === c.name
-                  ? "bg-accent text-white"
-                  : "text-body hover:bg-fill-soft"
+                activeTab === c.name ? "bg-accent text-white" : "text-body hover:bg-fill-soft"
               }`}
             >
               {c.label}
@@ -285,13 +270,7 @@ export default function AdminPage() {
 
         {/* Message */}
         {message && (
-          <div
-            className={`mb-4 p-3 rounded-lg text-sm ${
-              message.startsWith("✓")
-                ? "bg-green-50 text-green-700 border border-green-200"
-                : "bg-red-50 text-red-700 border border-red-200"
-            }`}
-          >
+          <div className={`mb-4 p-3 rounded-lg text-sm ${message.startsWith("✓") ? "bg-green-50 text-green-700 border border-green-200" : "bg-red-50 text-red-700 border border-red-200"}`}>
             {message}
           </div>
         )}
@@ -305,58 +284,29 @@ export default function AdminPage() {
             <div className="space-y-4">
               {collection.fields.map((field) => (
                 <div key={field.name}>
-                  <label className="block text-xs font-medium text-soft mb-1">
-                    {field.label}
-                  </label>
+                  <label className="block text-xs font-medium text-soft mb-1">{field.label}</label>
                   {field.widget === "select" ? (
                     <select
                       value={editing[field.name] || ""}
-                      onChange={(e) =>
-                        setEditing({ ...editing, [field.name]: e.target.value })
-                      }
+                      onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
                       className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent"
                     >
                       <option value="">Pilih...</option>
-                      {field.options?.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
+                      {field.options?.map((opt) => (<option key={opt} value={opt}>{opt}</option>))}
                     </select>
                   ) : field.widget === "markdown" || field.widget === "text" ? (
-                    <div>
-                      <Suspense
-                        fallback={
-                          <textarea
-                            value={editing[field.name] || ""}
-                            onChange={(e) =>
-                              setEditing({ ...editing, [field.name]: e.target.value })
-                            }
-                            rows={6}
-                            className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent resize-y"
-                          />
-                        }
-                      >
-                        <QuillEditor
-                          value={editing[field.name] || ""}
-                          onChange={(val) =>
-                            setEditing({ ...editing, [field.name]: val })
-                          }
-                          placeholder={`Tulis ${field.label.toLowerCase()} di sini...`}
-                        />
-                      </Suspense>
-                    </div>
+                    <textarea
+                      value={editing[field.name] || ""}
+                      onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
+                      rows={field.widget === "markdown" ? 8 : 4}
+                      className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink font-mono focus:outline-none focus:border-accent resize-y"
+                    />
                   ) : field.widget === "boolean" ? (
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
                         checked={editing[field.name] === "true"}
-                        onChange={(e) =>
-                          setEditing({
-                            ...editing,
-                            [field.name]: e.target.checked.toString(),
-                          })
-                        }
+                        onChange={(e) => setEditing({ ...editing, [field.name]: e.target.checked.toString() })}
                         className="rounded border-hairline-neutral"
                       />
                       <span className="text-sm text-body">Ya</span>
@@ -365,9 +315,7 @@ export default function AdminPage() {
                     <input
                       type={field.widget === "number" ? "number" : "text"}
                       value={editing[field.name] || ""}
-                      onChange={(e) =>
-                        setEditing({ ...editing, [field.name]: e.target.value })
-                      }
+                      onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
                       className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent"
                     />
                   )}
@@ -375,17 +323,10 @@ export default function AdminPage() {
               ))}
             </div>
             <div className="mt-6 flex gap-3">
-              <button
-                onClick={handleSave}
-                disabled={loading}
-                className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:bg-accent-deep active:scale-[0.98] disabled:opacity-50"
-              >
+              <button onClick={handleSave} disabled={loading} className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:bg-accent-deep active:scale-[0.98] disabled:opacity-50">
                 {loading ? "Menyimpan..." : "Simpan"}
               </button>
-              <button
-                onClick={() => setEditing(null)}
-                className="rounded-lg border border-hairline-neutral px-5 py-2.5 text-sm font-medium text-body hover:bg-fill-soft"
-              >
+              <button onClick={() => setEditing(null)} className="rounded-lg border border-hairline-neutral px-5 py-2.5 text-sm font-medium text-body hover:bg-fill-soft">
                 Batal
               </button>
             </div>
@@ -396,15 +337,10 @@ export default function AdminPage() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-ink">
             {collection.label}
-            <span className="ml-2 text-sm text-soft font-normal">
-              ({items.length} item)
-            </span>
+            <span className="ml-2 text-sm text-soft font-normal">({items.length} item)</span>
           </h2>
           {!editing && (
-            <button
-              onClick={handleNew}
-              className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-deep"
-            >
+            <button onClick={handleNew} className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-deep">
               + Tambah Baru
             </button>
           )}
@@ -413,26 +349,16 @@ export default function AdminPage() {
         {loading && items.length === 0 ? (
           <p className="text-sm text-soft">Loading...</p>
         ) : items.length === 0 ? (
-          <p className="text-sm text-soft">
-            Belum ada {collection.label.toLowerCase()}. Klik &quot;Tambah Baru&quot; untuk mulai.
-          </p>
+          <p className="text-sm text-soft">Belum ada {collection.label.toLowerCase()}.</p>
         ) : (
           <div className="space-y-2">
             {items.map((item) => (
-              <div
-                key={item.path}
-                className="flex items-center justify-between p-4 rounded-lg border border-hairline-neutral bg-white hover:bg-fill-soft transition-colors"
-              >
-                <span className="text-sm text-ink font-medium">
-                  {item.name.replace(".json", "")}
-                </span>
+              <div key={item.path} className="flex items-center justify-between p-4 rounded-lg border border-hairline-neutral bg-white hover:bg-fill-soft transition-colors">
+                <span className="text-sm text-ink font-medium">{item.name.replace(".json", "")}</span>
                 <div className="flex gap-2">
                   <button
                     onClick={async () => {
-                      const res = await fetch(
-                        `https://api.github.com/repos/${REPO}/contents/${item.path}?ref=${BRANCH}`,
-                        { headers: { Authorization: `token ${GITHUB_TOKEN}` } },
-                      );
+                      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${item.path}?ref=${BRANCH}`, { headers: { Authorization: `token ${GITHUB_TOKEN}` } });
                       if (res.ok) {
                         const data = await res.json();
                         const content = atob(data.content);
@@ -443,10 +369,7 @@ export default function AdminPage() {
                   >
                     Edit
                   </button>
-                  <button
-                    onClick={() => handleDelete(item)}
-                    className="text-xs text-red-500 hover:text-red-700"
-                  >
+                  <button onClick={() => handleDelete(item)} className="text-xs text-red-500 hover:text-red-700">
                     Hapus
                   </button>
                 </div>
