@@ -3,63 +3,51 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || "";
-const REPO = "silentio253/jiwamu-web";
-const BRANCH = "main";
-
-const COLLECTIONS = [
-  { name: "artikel", label: "Artikel", folder: "content/artikel" },
-  { name: "video", label: "Video", folder: "content/video" },
-  { name: "buku", label: "Buku", folder: "content/buku" },
-  { name: "majalah", label: "Majalah", folder: "content/majalah" },
-  { name: "proyek", label: "Proyek", folder: "content/proyek" },
-];
-
 export default function AdminPage() {
-  const [activeTab, setActiveTab] = useState("artikel");
+  const [token, setToken] = useState("");
+  const [status, setStatus] = useState("idle");
   const [items, setItems] = useState<any[]>([]);
   const [editing, setEditing] = useState<Record<string, string> | null>(null);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [loaded, setLoaded] = useState(false);
+  const [activeTab, setActiveTab] = useState("artikel");
 
-  const collection = COLLECTIONS.find((c) => c.name === activeTab)!;
+  const collections: Record<string, { label: string; folder: string; fields: string[] }> = {
+    artikel: { label: "Artikel", folder: "content/artikel", fields: ["title", "slug", "date", "description", "body"] },
+    video: { label: "Video", folder: "content/video", fields: ["title", "slug", "date", "description", "youtube_url"] },
+    buku: { label: "Buku", folder: "content/buku", fields: ["title", "slug", "author", "price", "description"] },
+    majalah: { label: "Majalah", folder: "content/majalah", fields: ["title", "slug", "edition", "date", "description"] },
+    proyek: { label: "Proyek", folder: "content/proyek", fields: ["title", "code", "status", "description"] },
+  };
+
+  const col = collections[activeTab];
 
   const handleLoad = async () => {
-    if (!GITHUB_TOKEN) {
-      setMessage("✗ Token belum di-setup di Vercel environment variables.");
+    if (!token) {
+      setMessage("Masukkan GitHub token dulu");
       return;
     }
-    setLoading(true);
-    setMessage("");
+    setStatus("loading");
     try {
       const res = await fetch(
-        `https://api.github.com/repos/${REPO}/contents/${collection.folder}?ref=${BRANCH}`,
-        { headers: { Authorization: `token ${GITHUB_TOKEN}` } },
+        `https://api.github.com/repos/silentio253/jiwamu-web/contents/${col.folder}?ref=main`,
+        { headers: { Authorization: `token ${token}` } },
       );
       if (res.ok) {
         const data = await res.json();
         setItems(data.filter((f: any) => f.name.endsWith(".json")));
-        setLoaded(true);
-        setMessage(`✓ ${data.length} item ditemukan`);
-      } else if (res.status === 404) {
-        setItems([]);
-        setLoaded(true);
-        setMessage(`✓ Folder belum ada — klik "Tambah Baru" untuk mulai`);
+        setStatus("loaded");
       } else {
-        setMessage(`✗ Error: ${res.status} ${res.statusText}`);
+        setStatus("error");
+        setMessage(`Error: ${res.status}`);
       }
-    } catch (e: any) {
-      setMessage(`✗ Error: ${e.message || e}`);
+    } catch (e) {
+      setStatus("error");
+      setMessage(`Error: ${e}`);
     }
-    setLoading(false);
   };
 
   const handleSave = async () => {
-    if (!editing || !GITHUB_TOKEN) return;
-    setLoading(true);
-    setMessage("");
-
+    if (!editing || !token) return;
     const slug = editing.slug || editing.title?.toLowerCase().replace(/\s+/g, "-") || "item";
     const filename = `${slug}.json`;
     const content = JSON.stringify(editing, null, 2);
@@ -67,10 +55,9 @@ export default function AdminPage() {
 
     try {
       const checkRes = await fetch(
-        `https://api.github.com/repos/${REPO}/contents/${collection.folder}/${filename}?ref=${BRANCH}`,
-        { headers: { Authorization: `token ${GITHUB_TOKEN}` } },
+        `https://api.github.com/repos/silentio253/jiwamu-web/contents/${col.folder}/${filename}?ref=main`,
+        { headers: { Authorization: `token ${token}` } },
       );
-
       let sha = "";
       if (checkRes.ok) {
         const data = await checkRes.json();
@@ -78,46 +65,44 @@ export default function AdminPage() {
       }
 
       const res = await fetch(
-        `https://api.github.com/repos/${REPO}/contents/${collection.folder}/${filename}`,
+        `https://api.github.com/repos/silentio253/jiwamu-web/contents/${col.folder}/${filename}`,
         {
           method: "PUT",
-          headers: { Authorization: `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+          headers: { Authorization: `token ${token}`, "Content-Type": "application/json" },
           body: JSON.stringify({
-            message: `${sha ? "Update" : "Add"} ${collection.label}: ${editing.title || filename}`,
+            message: `${sha ? "Update" : "Add"} ${col.label}: ${editing.title || filename}`,
             content: encoded,
             sha: sha || undefined,
-            branch: BRANCH,
+            branch: "main",
           }),
         },
       );
 
       if (res.ok) {
-        setMessage(`✓ ${sha ? "Diupdate" : "Ditambahkan"}: ${editing.title || filename}`);
+        setMessage(`✓ Disimpan: ${editing.title || filename}`);
         setEditing(null);
-        handleLoad(); // Refresh list
+        handleLoad();
       } else {
         const err = await res.json();
         setMessage(`✗ Error: ${err.message}`);
       }
-    } catch (e: any) {
-      setMessage(`✗ Error: ${e.message || e}`);
+    } catch (e) {
+      setMessage(`✗ Error: ${e}`);
     }
-    setLoading(false);
   };
 
   const handleDelete = async (item: any) => {
-    if (!GITHUB_TOKEN || !confirm(`Hapus ${item.name}?`)) return;
-    setLoading(true);
+    if (!confirm(`Hapus ${item.name}?`)) return;
     try {
       const res = await fetch(
-        `https://api.github.com/repos/${REPO}/contents/${item.path}`,
+        `https://api.github.com/repos/silentio253/jiwamu-web/contents/${item.path}`,
         {
           method: "DELETE",
-          headers: { Authorization: `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+          headers: { Authorization: `token ${token}`, "Content-Type": "application/json" },
           body: JSON.stringify({
-            message: `Delete ${collection.label}: ${item.name}`,
+            message: `Delete ${col.label}: ${item.name}`,
             sha: item.sha,
-            branch: BRANCH,
+            branch: "main",
           }),
         },
       );
@@ -125,146 +110,116 @@ export default function AdminPage() {
         setMessage(`✓ Dihapus: ${item.name}`);
         handleLoad();
       }
-    } catch (e: any) {
-      setMessage(`✗ Error: ${e.message || e}`);
+    } catch (e) {
+      setMessage(`✗ Error: ${e}`);
     }
-    setLoading(false);
-  };
-
-  const handleNew = () => {
-    setEditing({ title: "", slug: "", body: "", description: "" });
   };
 
   return (
-    <div className="min-h-screen bg-surface">
-      <header className="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-hairline-neutral">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14">
-            <h1 className="text-sm font-semibold text-ink">Jiwamu CMS</h1>
-            <Link href="/" className="text-xs text-accent hover:text-accent-deep">
-              ← Kembali ke situs
-            </Link>
-          </div>
+    <div style={{ minHeight: "100vh", background: "#fafbfd" }}>
+      <header style={{ borderBottom: "1px solid #e5e7eb", padding: "12px 24px", background: "white" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <strong style={{ fontSize: 14 }}>Jiwamu CMS</strong>
+          <Link href="/" style={{ fontSize: 12, color: "#4b6bff" }}>← Kembali</Link>
         </div>
       </header>
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Status */}
-        <div className="mb-4 p-3 rounded-lg bg-fill-soft text-sm text-body">
-          {GITHUB_TOKEN
-            ? `✓ Token ter-setup (${GITHUB_TOKEN.slice(0, 4)}...${GITHUB_TOKEN.slice(-4)})`
-            : "✗ Token belum di-setup. Tambahkan NEXT_PUBLIC_GITHUB_TOKEN di Vercel."}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px" }}>
+        {/* Token input */}
+        <div style={{ marginBottom: 16, padding: 16, background: "white", borderRadius: 12, border: "1px solid #e5e7eb" }}>
+          <label style={{ fontSize: 12, fontWeight: 500, marginBottom: 8, display: "block" }}>
+            GitHub Token (ghp_xxx)
+          </label>
+          <input
+            type="password"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+            placeholder="ghp_xxx..."
+            style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14 }}
+          />
+          <p style={{ fontSize: 11, color: "#667085", marginTop: 8 }}>
+            Token disimpan di Vercel: Settings → Environment Variables → NEXT_PUBLIC_GITHUB_TOKEN
+          </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 overflow-x-auto pb-4 border-b border-hairline-neutral mb-6">
-          {COLLECTIONS.map((c) => (
+        <div style={{ display: "flex", gap: 4, marginBottom: 24, overflowX: "auto", paddingBottom: 16, borderBottom: "1px solid #e5e7eb" }}>
+          {Object.entries(collections).map(([key, c]) => (
             <button
-              key={c.name}
-              onClick={() => {
-                setActiveTab(c.name);
-                setEditing(null);
-                setMessage("");
-                setLoaded(false);
-                setItems([]);
+              key={key}
+              onClick={() => { setActiveTab(key); setStatus("idle"); setItems([]); setEditing(null); setMessage(""); }}
+              style={{
+                padding: "8px 16px",
+                borderRadius: 8,
+                fontSize: 14,
+                fontWeight: 500,
+                background: activeTab === key ? "#4b6bff" : "transparent",
+                color: activeTab === key ? "white" : "#344054",
+                border: "none",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
               }}
-              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                activeTab === c.name
-                  ? "bg-accent text-white"
-                  : "text-body hover:bg-fill-soft"
-              }`}
             >
               {c.label}
             </button>
           ))}
         </div>
 
-        {/* Message */}
+        {/* Status */}
         {message && (
-          <div
-            className={`mb-4 p-3 rounded-lg text-sm ${
-              message.startsWith("✓")
-                ? "bg-green-50 text-green-700 border border-green-200"
-                : "bg-red-50 text-red-700 border border-red-200"
-            }`}
-          >
+          <div style={{ marginBottom: 16, padding: 12, borderRadius: 8, fontSize: 13, background: message.startsWith("✓") ? "#f0fdf4" : "#fef2f2", color: message.startsWith("✓") ? "#15803d" : "#b91c1c", border: `1px solid ${message.startsWith("✓") ? "#bbf7d0" : "#fecaca"}` }}>
             {message}
           </div>
         )}
 
         {/* Load button */}
-        {!loaded && (
-          <div className="text-center py-12">
-            <p className="text-sm text-muted mb-4">
-              Klik tombol di bawah untuk memuat konten {collection.label.toLowerCase()}
+        {status === "idle" && (
+          <div style={{ textAlign: "center", padding: "48px 0" }}>
+            <p style={{ fontSize: 14, color: "#475467", marginBottom: 16 }}>
+              Klik tombol untuk muat {col.label.toLowerCase()}
             </p>
             <button
               onClick={handleLoad}
-              disabled={loading}
-              className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white hover:bg-accent-deep disabled:opacity-50"
+              style={{ padding: "12px 24px", borderRadius: 8, background: "#4b6bff", color: "white", border: "none", fontWeight: 500, cursor: "pointer" }}
             >
-              {loading ? "Memuat..." : `Muat ${collection.label}`}
+              Muat {col.label}
             </button>
           </div>
         )}
 
-        {/* Edit Form */}
+        {/* Edit form */}
         {editing && (
-          <div className="mb-8 p-6 rounded-xl border border-hairline-neutral bg-white">
-            <h2 className="text-lg font-semibold text-ink mb-4">
-              {editing.title ? `Edit: ${editing.title}` : `Tambah ${collection.label}`}
+          <div style={{ marginBottom: 32, padding: 24, background: "white", borderRadius: 12, border: "1px solid #e5e7eb" }}>
+            <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16 }}>
+              {editing.title ? `Edit: ${editing.title}` : `Tambah ${col.label}`}
             </h2>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-medium text-soft mb-1">Judul</label>
-                <input
-                  type="text"
-                  value={editing.title || ""}
-                  onChange={(e) => setEditing({ ...editing, title: e.target.value })}
-                  className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent"
-                />
+            {col.fields.map((field) => (
+              <div key={field} style={{ marginBottom: 12 }}>
+                <label style={{ fontSize: 12, fontWeight: 500, marginBottom: 4, display: "block" }}>
+                  {field}
+                </label>
+                {field === "body" || field === "description" ? (
+                  <textarea
+                    value={editing[field] || ""}
+                    onChange={(e) => setEditing({ ...editing, [field]: e.target.value })}
+                    rows={field === "body" ? 8 : 4}
+                    style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14, fontFamily: "monospace", resize: "vertical" }}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    value={editing[field] || ""}
+                    onChange={(e) => setEditing({ ...editing, [field]: e.target.value })}
+                    style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14 }}
+                  />
+                )}
               </div>
-              <div>
-                <label className="block text-xs font-medium text-soft mb-1">Slug</label>
-                <input
-                  type="text"
-                  value={editing.slug || ""}
-                  onChange={(e) => setEditing({ ...editing, slug: e.target.value })}
-                  placeholder="otomatis dari judul"
-                  className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-soft mb-1">Deskripsi</label>
-                <textarea
-                  value={editing.description || ""}
-                  onChange={(e) => setEditing({ ...editing, description: e.target.value })}
-                  rows={3}
-                  className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink focus:outline-none focus:border-accent resize-y"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-soft mb-1">Konten</label>
-                <textarea
-                  value={editing.body || ""}
-                  onChange={(e) => setEditing({ ...editing, body: e.target.value })}
-                  rows={8}
-                  className="w-full rounded-lg border border-hairline-neutral bg-surface px-4 py-2.5 text-sm text-ink font-mono focus:outline-none focus:border-accent resize-y"
-                />
-              </div>
-            </div>
-            <div className="mt-6 flex gap-3">
-              <button
-                onClick={handleSave}
-                disabled={loading}
-                className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:bg-accent-deep active:scale-[0.98] disabled:opacity-50"
-              >
-                {loading ? "Menyimpan..." : "Simpan"}
+            ))}
+            <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
+              <button onClick={handleSave} style={{ padding: "10px 20px", borderRadius: 8, background: "#4b6bff", color: "white", border: "none", fontWeight: 500, cursor: "pointer" }}>
+                Simpan
               </button>
-              <button
-                onClick={() => setEditing(null)}
-                className="rounded-lg border border-hairline-neutral px-5 py-2.5 text-sm font-medium text-body hover:bg-fill-soft"
-              >
+              <button onClick={() => setEditing(null)} style={{ padding: "10px 20px", borderRadius: 8, background: "transparent", color: "#344054", border: "1px solid #e5e7eb", fontWeight: 500, cursor: "pointer" }}>
                 Batal
               </button>
             </div>
@@ -272,60 +227,40 @@ export default function AdminPage() {
         )}
 
         {/* List */}
-        {loaded && (
+        {status === "loaded" && (
           <>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-ink">
-                {collection.label}
-                <span className="ml-2 text-sm text-soft font-normal">({items.length} item)</span>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 600 }}>
+                {col.label} <span style={{ fontSize: 14, fontWeight: 400, color: "#475467" }}>({items.length} item)</span>
               </h2>
               {!editing && (
-                <button
-                  onClick={handleNew}
-                  className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-deep"
-                >
+                <button onClick={() => setEditing({ title: "", slug: "", body: "" })} style={{ padding: "8px 16px", borderRadius: 8, background: "#4b6bff", color: "white", border: "none", fontWeight: 500, cursor: "pointer" }}>
                   + Tambah Baru
                 </button>
               )}
             </div>
 
             {items.length === 0 ? (
-              <p className="text-sm text-soft">
-                Belum ada {collection.label.toLowerCase()}. Klik &quot;Tambah Baru&quot; untuk mulai.
-              </p>
+              <p style={{ fontSize: 14, color: "#475467" }}>Belum ada {col.label.toLowerCase()}</p>
             ) : (
-              <div className="space-y-2">
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {items.map((item: any) => (
-                  <div
-                    key={item.path}
-                    className="flex items-center justify-between p-4 rounded-lg border border-hairline-neutral bg-white hover:bg-fill-soft transition-colors"
-                  >
-                    <span className="text-sm text-ink font-medium">
-                      {item.name.replace(".json", "")}
-                    </span>
-                    <div className="flex gap-2">
+                  <div key={item.path} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: 16, background: "white", border: "1px solid #e5e7eb", borderRadius: 8 }}>
+                    <span style={{ fontSize: 14, fontWeight: 500 }}>{item.name.replace(".json", "")}</span>
+                    <div style={{ display: "flex", gap: 8 }}>
                       <button
                         onClick={async () => {
-                          setLoading(true);
-                          const res = await fetch(
-                            `https://api.github.com/repos/${REPO}/contents/${item.path}?ref=${BRANCH}`,
-                            { headers: { Authorization: `token ${GITHUB_TOKEN}` } },
-                          );
+                          const res = await fetch(`https://api.github.com/repos/silentio253/jiwamu-web/contents/${item.path}?ref=main`, { headers: { Authorization: `token ${token}` } });
                           if (res.ok) {
                             const data = await res.json();
-                            const content = atob(data.content);
-                            setEditing(JSON.parse(content));
+                            setEditing(JSON.parse(atob(data.content)));
                           }
-                          setLoading(false);
                         }}
-                        className="text-xs text-accent hover:text-accent-deep"
+                        style={{ fontSize: 12, color: "#4b6bff", background: "none", border: "none", cursor: "pointer" }}
                       >
                         Edit
                       </button>
-                      <button
-                        onClick={() => handleDelete(item)}
-                        className="text-xs text-red-500 hover:text-red-700"
-                      >
+                      <button onClick={() => handleDelete(item)} style={{ fontSize: 12, color: "#b91c1c", background: "none", border: "none", cursor: "pointer" }}>
                         Hapus
                       </button>
                     </div>
