@@ -23,6 +23,19 @@ export default function AdminPage() {
     }
   };
 
+  const insertMarkdown = (fieldName: string, before: string, after: string, placeholder: string) => {
+    const textarea = document.querySelector(`textarea[data-field="${fieldName}"]`) as HTMLTextAreaElement;
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    const selected = text.substring(start, end);
+    const beforeText = text.substring(0, start);
+    const afterText = text.substring(end);
+    const newText = beforeText + before + (selected || placeholder) + after + afterText;
+    setEditing({ ...editing!, [fieldName]: newText });
+  };
+
   const collections: Record<string, { label: string; folder: string; fields: { name: string; label: string; type: string }[] }> = {
     artikel: {
       label: "Artikel",
@@ -280,12 +293,31 @@ export default function AdminPage() {
                     <option value="Opini">Opini</option>
                   </select>
                 ) : field.type === "textarea" ? (
-                  <textarea
-                    value={editing[field.name] || ""}
-                    onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
-                    rows={field.name === "body" ? 8 : 4}
-                    style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14, fontFamily: field.name === "body" ? "monospace" : "inherit", resize: "vertical" }}
-                  />
+                  <div>
+                    {field.name === "body" && (
+                      <div style={{ display: "flex", gap: 4, marginBottom: 8, flexWrap: "wrap" }}>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "**", "**", "teks tebal")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>B</button>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "*", "*", "teks miring")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12, fontStyle: "italic" }}>I</button>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "\n## ", "", "Heading")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12 }}>H2</button>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "\n### ", "", "Subheading")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12 }}>H3</button>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "\n- ", "", "item")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12 }}>• List</button>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "\n> ", "", "kutipan")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12 }}>❝ Quote</button>
+                        <button type="button" onClick={() => insertMarkdown(field.name, "[", "](https://)", "teks tautan")} style={{ padding: "4px 8px", borderRadius: 4, border: "1px solid #e5e7eb", background: "white", cursor: "pointer", fontSize: 12 }}>🔗 Link</button>
+                      </div>
+                    )}
+                    <textarea
+                      data-field={field.name}
+                      value={editing[field.name] || ""}
+                      onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
+                      rows={field.name === "body" ? 8 : 4}
+                      style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14, fontFamily: field.name === "body" ? "monospace" : "inherit", resize: "vertical" }}
+                    />
+                    {field.name === "body" && (
+                      <p style={{ fontSize: 11, color: "#667085", marginTop: 4 }}>
+                        Format: **tebal**, *miring*, ## Heading, - List, &gt; Quote, [teks](url)
+                      </p>
+                    )}
+                  </div>
                 ) : (
                   <input
                     type={field.type === "number" ? "number" : "text"}
