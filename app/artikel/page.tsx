@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Reveal, RevealStagger, RevealItem } from "@/components/reveal";
+import { Reveal } from "@/components/reveal";
 import { getArtikels, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -50,53 +50,49 @@ export default function ArtikelPage() {
               </p>
             </div>
           ) : (
-            <RevealStagger
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              stagger={0.08}
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {artikels.map((artikel, i) => (
-                <RevealItem key={artikel.slug} index={i}>
-                  <Link
-                    href={`/artikel/${artikel.slug}`}
-                    className="group flex flex-col rounded-xl border border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
-                  >
-                    <div className="relative aspect-[16/9] bg-fill-soft overflow-hidden">
-                      {artikel.thumbnail ? (
-                        <Image
-                          src={artikel.thumbnail}
-                          alt={artikel.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <span className="font-serif text-4xl italic text-accent/20">
-                            {artikel.title.charAt(0)}
-                          </span>
-                        </div>
-                      )}
-                      {artikel.category && (
-                        <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-medium text-white">
-                          {artikel.category}
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                      <p className="text-xs text-soft">
-                        {formatDate(artikel.date)}
-                      </p>
-                      <h3 className="mt-2 text-base font-medium text-ink leading-snug line-clamp-2 group-hover:text-accent transition-colors">
-                        {artikel.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-muted line-clamp-3">
-                        {artikel.description}
-                      </p>
-                    </div>
-                  </Link>
-                </RevealItem>
-              ))}
-            </RevealStagger>
+            <Link
+              key={artikel.slug}
+              href={`/artikel/${artikel.slug}`}
+              className="group flex flex-col rounded-xl border border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
+            >
+              <div className="relative aspect-[16/9] bg-fill-soft overflow-hidden">
+                {artikel.thumbnail ? (
+                  <Image
+                    src={artikel.thumbnail}
+                    alt={artikel.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full">
+                    <span className="font-serif text-4xl italic text-accent/20">
+                      {artikel.title.charAt(0)}
+                    </span>
+                  </div>
+                )}
+                {artikel.category && (
+                  <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-medium text-white">
+                    {artikel.category}
+                  </span>
+                )}
+              </div>
+              <div className="p-5 flex-1 flex flex-col">
+                <p className="text-xs text-soft">
+                  {formatDate(artikel.date)}
+                </p>
+                <h3 className="mt-2 text-base font-medium text-ink leading-snug line-clamp-2 group-hover:text-accent transition-colors">
+                  {artikel.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted line-clamp-3">
+                  {artikel.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+            </div>
           )}
         </div>
       </section>
