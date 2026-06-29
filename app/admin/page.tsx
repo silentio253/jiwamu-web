@@ -129,7 +129,11 @@ export default function AdminPage() {
 
   const handleSave = async () => {
     if (!editing || !token) return;
-    const slug = editing.slug || editing.title?.toLowerCase().replace(/\s+/g, "-") || "item";
+    const slug = editing.slug || editing.title?.toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .substring(0, 60) || "item";
     const filename = `${slug}.json`;
     const content = JSON.stringify(editing, null, 2);
     const encoded = btoa(unescape(encodeURIComponent(content)));
