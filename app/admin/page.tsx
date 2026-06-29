@@ -4,19 +4,87 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function AdminPage() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("jiwamu_cms_token") || "";
+    }
+    return "";
+  });
   const [status, setStatus] = useState("idle");
   const [items, setItems] = useState<any[]>([]);
   const [editing, setEditing] = useState<Record<string, string> | null>(null);
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("artikel");
 
-  const collections: Record<string, { label: string; folder: string; fields: string[] }> = {
-    artikel: { label: "Artikel", folder: "content/artikel", fields: ["title", "slug", "date", "description", "body"] },
-    video: { label: "Video", folder: "content/video", fields: ["title", "slug", "date", "description", "youtube_url"] },
-    buku: { label: "Buku", folder: "content/buku", fields: ["title", "slug", "author", "price", "description"] },
-    majalah: { label: "Majalah", folder: "content/majalah", fields: ["title", "slug", "edition", "date", "description"] },
-    proyek: { label: "Proyek", folder: "content/proyek", fields: ["title", "code", "status", "description"] },
+  const handleTokenChange = (newToken: string) => {
+    setToken(newToken);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jiwamu_cms_token", newToken);
+    }
+  };
+
+  const collections: Record<string, { label: string; folder: string; fields: { name: string; label: string; type: string }[] }> = {
+    artikel: {
+      label: "Artikel",
+      folder: "content/artikel",
+      fields: [
+        { name: "title", label: "Judul", type: "text" },
+        { name: "slug", label: "Slug", type: "text" },
+        { name: "date", label: "Tanggal (YYYY-MM-DD)", type: "text" },
+        { name: "category", label: "Kategori", type: "select" },
+        { name: "description", label: "Ringkasan", type: "textarea" },
+        { name: "thumbnail", label: "URL Thumbnail", type: "text" },
+        { name: "body", label: "Konten", type: "textarea" },
+      ],
+    },
+    video: {
+      label: "Video",
+      folder: "content/video",
+      fields: [
+        { name: "title", label: "Judul", type: "text" },
+        { name: "slug", label: "Slug", type: "text" },
+        { name: "date", label: "Tanggal (YYYY-MM-DD)", type: "text" },
+        { name: "description", label: "Deskripsi", type: "textarea" },
+        { name: "youtube_url", label: "URL YouTube", type: "text" },
+      ],
+    },
+    buku: {
+      label: "Buku",
+      folder: "content/buku",
+      fields: [
+        { name: "title", label: "Judul", type: "text" },
+        { name: "slug", label: "Slug", type: "text" },
+        { name: "author", label: "Pengarang", type: "text" },
+        { name: "price", label: "Harga", type: "text" },
+        { name: "year", label: "Tahun", type: "text" },
+        { name: "description", label: "Deskripsi", type: "textarea" },
+        { name: "coverUrl", label: "URL Cover", type: "text" },
+      ],
+    },
+    majalah: {
+      label: "Majalah",
+      folder: "content/majalah",
+      fields: [
+        { name: "title", label: "Judul", type: "text" },
+        { name: "slug", label: "Slug", type: "text" },
+        { name: "edition", label: "Edisi", type: "text" },
+        { name: "date", label: "Tanggal", type: "text" },
+        { name: "description", label: "Deskripsi", type: "textarea" },
+        { name: "coverUrl", label: "URL Cover", type: "text" },
+      ],
+    },
+    proyek: {
+      label: "Proyek",
+      folder: "content/proyek",
+      fields: [
+        { name: "title", label: "Judul", type: "text" },
+        { name: "code", label: "Kode", type: "text" },
+        { name: "status", label: "Status", type: "text" },
+        { name: "description", label: "Deskripsi", type: "textarea" },
+        { name: "raised", label: "Dana Terkumpul (Rp)", type: "number" },
+        { name: "target", label: "Target Dana (Rp)", type: "number" },
+      ],
+    },
   };
 
   const col = collections[activeTab];
@@ -133,12 +201,12 @@ export default function AdminPage() {
           <input
             type="password"
             value={token}
-            onChange={(e) => setToken(e.target.value)}
+            onChange={(e) => handleTokenChange(e.target.value)}
             placeholder="ghp_xxx..."
             style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14 }}
           />
           <p style={{ fontSize: 11, color: "#667085", marginTop: 8 }}>
-            Token disimpan di Vercel: Settings → Environment Variables → NEXT_PUBLIC_GITHUB_TOKEN
+            Token disimpan di browser. Juga set di Vercel: Settings → Environment Variables → NEXT_PUBLIC_GITHUB_TOKEN
           </p>
         </div>
 
@@ -194,22 +262,36 @@ export default function AdminPage() {
               {editing.title ? `Edit: ${editing.title}` : `Tambah ${col.label}`}
             </h2>
             {col.fields.map((field) => (
-              <div key={field} style={{ marginBottom: 12 }}>
+              <div key={field.name} style={{ marginBottom: 12 }}>
                 <label style={{ fontSize: 12, fontWeight: 500, marginBottom: 4, display: "block" }}>
-                  {field}
+                  {field.label}
                 </label>
-                {field === "body" || field === "description" ? (
+                {field.type === "select" && field.name === "category" ? (
+                  <select
+                    value={editing[field.name] || ""}
+                    onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
+                    style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14, background: "white" }}
+                  >
+                    <option value="">Pilih kategori...</option>
+                    <option value="Kesehatan Mental">Kesehatan Mental</option>
+                    <option value="Relasi">Relasi</option>
+                    <option value="Pengasuhan">Pengasuhan</option>
+                    <option value="Pengembangan Diri">Pengembangan Diri</option>
+                    <option value="Opini">Opini</option>
+                  </select>
+                ) : field.type === "textarea" ? (
                   <textarea
-                    value={editing[field] || ""}
-                    onChange={(e) => setEditing({ ...editing, [field]: e.target.value })}
-                    rows={field === "body" ? 8 : 4}
-                    style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14, fontFamily: "monospace", resize: "vertical" }}
+                    value={editing[field.name] || ""}
+                    onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
+                    rows={field.name === "body" ? 8 : 4}
+                    style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14, fontFamily: field.name === "body" ? "monospace" : "inherit", resize: "vertical" }}
                   />
                 ) : (
                   <input
-                    type="text"
-                    value={editing[field] || ""}
-                    onChange={(e) => setEditing({ ...editing, [field]: e.target.value })}
+                    type={field.type === "number" ? "number" : "text"}
+                    value={editing[field.name] || ""}
+                    onChange={(e) => setEditing({ ...editing, [field.name]: e.target.value })}
+                    placeholder={field.name === "slug" ? "otomatis dari judul" : ""}
                     style={{ width: "100%", padding: "10px 16px", border: "1px solid #e5e7eb", borderRadius: 8, fontSize: 14 }}
                   />
                 )}
@@ -234,7 +316,11 @@ export default function AdminPage() {
                 {col.label} <span style={{ fontSize: 14, fontWeight: 400, color: "#475467" }}>({items.length} item)</span>
               </h2>
               {!editing && (
-                <button onClick={() => setEditing({ title: "", slug: "", body: "" })} style={{ padding: "8px 16px", borderRadius: 8, background: "#4b6bff", color: "white", border: "none", fontWeight: 500, cursor: "pointer" }}>
+                <button onClick={() => {
+                  const defaults: Record<string, string> = {};
+                  col.fields.forEach((f) => { defaults[f.name] = ""; });
+                  setEditing(defaults);
+                }} style={{ padding: "8px 16px", borderRadius: 8, background: "#4b6bff", color: "white", border: "none", fontWeight: 500, cursor: "pointer" }}>
                   + Tambah Baru
                 </button>
               )}
