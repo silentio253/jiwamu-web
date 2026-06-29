@@ -26,6 +26,50 @@ export async function generateStaticParams() {
   return artikels.map((a) => ({ slug: a.slug }));
 }
 
+function formatBody(body: string): string {
+  if (!body) return "";
+
+  // Clean encoding issues
+  let text = body
+    .replace(/Ã¢Â?Â?/g, "—")
+    .replace(/Ã¢Â?Â"/g, "–")
+    .replace(/Ã©/g, "é")
+    .replace(/Ã¨/g, "è")
+    .replace(/\r\n/g, "\n");
+
+  // Convert markdown-like formatting to HTML
+  text = text
+    // Bold
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    // Italic
+    .replace(/\*(.*?)\*/g, "<em>$1</em>")
+    // Headings
+    .replace(/^### (.*$)/gm, "<h3>$1</h3>")
+    .replace(/^## (.*$)/gm, "<h2>$1</h2>")
+    .replace(/^# (.*$)/gm, "<h1>$1</h1>")
+    // Blockquotes
+    .replace(/^> (.*$)/gm, "<blockquote><p>$1</p></blockquote>")
+    // Unordered lists
+    .replace(/^- (.*$)/gm, "<li>$1</li>");
+
+  // Wrap consecutive li elements in ul
+  const liRegex = /(<li>[\s\S]*?<\/li>)+/g;
+  text = text.replace(liRegex, (match) => `<ul>${match}</ul>`);
+
+  text = text
+    // Paragraphs (double newline)
+    .replace(/\n\n/g, "</p><p>")
+    // Single newlines to <br>
+    .replace(/\n/g, "<br>");
+
+  // Wrap in paragraph if not starting with a tag
+  if (!text.startsWith("<")) {
+    text = `<p>${text}</p>`;
+  }
+
+  return text;
+}
+
 export default async function ArtikelDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const artikel = getArtikelBySlug(slug);
@@ -37,10 +81,7 @@ export default async function ArtikelDetailPage({ params }: PageProps) {
           <h1 className="text-2xl font-semibold text-ink">Artikel tidak ditemukan</h1>
           <p className="mt-3 text-muted">Artikel yang kamu cari belum tersedia.</p>
           <div className="mt-6">
-            <Link
-              href="/artikel"
-              className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-deep"
-            >
+            <Link href="/artikel" className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-deep">
               <ArrowLeft weight="bold" className="size-4" />
               Kembali ke Artikel
             </Link>
@@ -50,10 +91,11 @@ export default async function ArtikelDetailPage({ params }: PageProps) {
     );
   }
 
+  const formattedBody = formatBody(artikel.body);
+
   return (
     <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        {/* Back link */}
         <Link
           href="/artikel"
           className="inline-flex items-center gap-2 text-sm text-soft hover:text-accent transition-colors mb-6"
@@ -62,7 +104,6 @@ export default async function ArtikelDetailPage({ params }: PageProps) {
           Kembali ke Artikel
         </Link>
 
-        {/* Thumbnail */}
         {artikel.thumbnail && (
           <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-6">
             <Image
@@ -75,37 +116,30 @@ export default async function ArtikelDetailPage({ params }: PageProps) {
           </div>
         )}
 
-        {/* Category + Date */}
         <div className="flex items-center gap-3 mb-4">
           {artikel.category && (
             <span className="inline-flex items-center rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-medium text-white">
               {artikel.category}
             </span>
           )}
-          <span className="text-sm text-soft">
-            {formatDate(artikel.date)}
-          </span>
+          <span className="text-sm text-soft">{formatDate(artikel.date)}</span>
         </div>
 
-        {/* Title */}
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal leading-tight tracking-tight text-ink">
           {artikel.title}
         </h1>
 
-        {/* Description */}
         {artikel.description && (
           <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed text-pretty">
             {artikel.description}
           </p>
         )}
 
-        {/* Divider */}
         <div className="mt-8 mb-8 border-t border-hairline-neutral" />
 
-        {/* Body content */}
         <article
-          className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-ink prose-p:text-body prose-p:leading-relaxed prose-a:text-accent prose-strong:text-ink prose-blockquote:border-accent prose-blockquote:font-serif prose-blockquote:italic"
-          dangerouslySetInnerHTML={{ __html: artikel.body }}
+          className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-ink prose-p:text-body prose-p:leading-relaxed prose-a:text-accent prose-strong:text-ink prose-blockquote:border-l-accent prose-blockquote:font-serif prose-blockquote:italic"
+          dangerouslySetInnerHTML={{ __html: formattedBody }}
         />
       </div>
     </section>
