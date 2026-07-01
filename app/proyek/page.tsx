@@ -47,11 +47,11 @@ export default function ProyekPage() {
 
 function HeroSection() {
   return (
-    <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+    <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Jiwamu Project
             </p>
           </Reveal>
@@ -85,7 +85,7 @@ function HeroSection() {
 
 function ActiveSection({ projects }: { projects: Proyek[] }) {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
@@ -96,7 +96,7 @@ function ActiveSection({ projects }: { projects: Proyek[] }) {
         <RevealStagger className="space-y-6" stagger={0.1}>
           {projects.map((project, i) => (
             <RevealItem key={project.id} index={i}>
-              <div className="rounded-xl border border-hairline-neutral bg-surface p-6 sm:p-8">
+              <div className="rounded-xl border-2 border-hairline-neutral bg-surface p-6 sm:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-medium text-soft">
@@ -116,7 +116,7 @@ function ActiveSection({ projects }: { projects: Proyek[] }) {
                   {project.description}
                 </p>
 
-                <div className="mt-6 pt-4 border-t border-hairline-neutral">
+                <div className="mt-6 pt-4 border-t-2 border-hairline-neutral">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm text-muted">Dana terkumpul</span>
                     <span className="text-sm font-medium text-ink">
@@ -153,7 +153,7 @@ function ActiveSection({ projects }: { projects: Proyek[] }) {
 
 function CompletedSection({ projects }: { projects: Proyek[] }) {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
@@ -164,7 +164,7 @@ function CompletedSection({ projects }: { projects: Proyek[] }) {
         <RevealStagger className="space-y-6" stagger={0.1}>
           {projects.map((project, i) => (
             <RevealItem key={project.id} index={i}>
-              <div className="rounded-xl border border-hairline-neutral bg-surface-alt p-6 sm:p-8">
+              <div className="rounded-xl border-2 border-hairline-neutral bg-surface-alt p-6 sm:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-medium text-soft">
@@ -184,7 +184,7 @@ function CompletedSection({ projects }: { projects: Proyek[] }) {
                   {project.description}
                 </p>
 
-                <div className="mt-6 pt-4 border-t border-hairline-neutral">
+                <div className="mt-6 pt-4 border-t-2 border-hairline-neutral">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted">Dana terkumpul</span>
                     <span className="text-sm font-medium text-ink">
@@ -207,7 +207,7 @@ function CompletedSection({ projects }: { projects: Proyek[] }) {
 
 function DonateSection() {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
         <Reveal>
           <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
@@ -222,7 +222,7 @@ function DonateSection() {
           </p>
         </Reveal>
         <Reveal delay={0.16}>
-          <div className="mt-8 rounded-xl border border-hairline-neutral bg-surface p-6 sm:p-8">
+          <div className="mt-8 rounded-xl border-2 border-hairline-neutral bg-surface p-6 sm:p-8">
             <p className="text-sm text-muted">
               Salurkan donasi melalui:
             </p>

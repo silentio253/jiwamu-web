@@ -42,11 +42,11 @@ export default function MajalahPage() {
 
 function HeroSection() {
   return (
-    <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+    <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Majalah Jiwamu
             </p>
           </Reveal>
@@ -79,7 +79,7 @@ function LatestSection({ latest }: { latest: Majalah }) {
     <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep mb-8">
+          <p className="section-eyebrow mb-8">
             Edisi Terbaru
           </p>
         </Reveal>
@@ -87,7 +87,7 @@ function LatestSection({ latest }: { latest: Majalah }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-4">
             <Reveal>
-              <div className="relative aspect-[3/4] rounded-xl border border-hairline-neutral bg-fill-soft overflow-hidden max-w-xs">
+              <div className="relative aspect-[3/4] rounded-xl border-2 border-hairline-neutral bg-fill-soft overflow-hidden max-w-xs">
                 {latest.coverUrl ? (
                   <Image
                     src={latest.coverUrl}
@@ -159,7 +159,7 @@ function ArchiveSection({ archives }: { archives: Majalah[] }) {
             <RevealItem key={item.id} index={i}>
               <Link
                 href={`/majalah/${item.slug}`}
-                className="group flex gap-4 rounded-xl border border-hairline-neutral bg-surface p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
+                className="group flex gap-4 rounded-xl border-2 border-hairline-neutral bg-surface p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
               >
                 <div className="relative w-20 h-28 rounded-lg bg-fill-soft overflow-hidden shrink-0">
                   {item.coverUrl ? (
@@ -197,7 +197,7 @@ function SubscribeSection() {
     <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
       <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 text-center">
         <Reveal>
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+          <p className="section-eyebrow">
             Berlangganan
           </p>
         </Reveal>
@@ -218,14 +218,14 @@ function SubscribeSection() {
               name="name"
               placeholder="Nama"
               aria-label="Nama"
-              className="flex-1 rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+              className="flex-1 rounded-lg border-2 border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
             />
             <input
               type="tel"
               name="phone"
               placeholder="No. WhatsApp"
               aria-label="No. WhatsApp"
-              className="flex-1 rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+              className="flex-1 rounded-lg border-2 border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
             />
             <button
               type="submit"
@@ -268,7 +268,7 @@ function KirimTulisanSection() {
                   { title: "Artikel Opini", desc: "Pandangan personal, refleksi, kritik sosial, maupun gagasan tentang manusia." },
                   { title: "Tumbuh Asuh", desc: "Rubrik khusus pengasuhan, tumbuh kembang, dan relasi orang tua-anak." },
                 ].map((rubrik, i) => (
-                  <div key={i} className="rounded-xl border border-hairline-neutral bg-surface-alt p-5">
+                  <div key={i} className="rounded-xl border-2 border-hairline-neutral bg-surface-alt p-5">
                     <h3 className="text-sm font-semibold text-ink">{rubrik.title}</h3>
                     <p className="mt-2 text-xs text-muted leading-relaxed">{rubrik.desc}</p>
                   </div>
@@ -279,7 +279,7 @@ function KirimTulisanSection() {
 
           <div className="lg:col-span-5">
             <Reveal delay={0.12}>
-              <div className="rounded-xl border border-hairline-neutral bg-surface-alt p-6 sm:p-8">
+              <div className="rounded-xl border-2 border-hairline-neutral bg-surface-alt p-6 sm:p-8">
                 <h3 className="text-lg font-semibold text-ink">
                   Keuntungan Kontributor
                 </h3>

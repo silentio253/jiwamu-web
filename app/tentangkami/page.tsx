@@ -36,11 +36,11 @@ export default function TentangKamiPage() {
 
 function HeroSection() {
   return (
-    <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+    <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Tentang Kami
             </p>
           </Reveal>
@@ -111,7 +111,7 @@ function InisiatifSection() {
   ];
 
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink mb-12">
@@ -124,7 +124,7 @@ function InisiatifSection() {
             <RevealItem key={i} index={i}>
               <Link
                 href={item.href}
-                className="group flex items-start gap-6 rounded-xl border border-hairline-neutral bg-surface p-6 sm:p-8 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
+                className="group flex items-start gap-6 rounded-xl border-2 border-hairline-neutral bg-surface p-6 sm:p-8 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
               >
                 <div className="flex items-center justify-center size-12 rounded-xl bg-fill-soft text-accent shrink-0 transition-colors group-hover:bg-accent group-hover:text-white">
                   <item.icon weight="duotone" className="size-6" />
@@ -148,7 +148,7 @@ function InisiatifSection() {
 
 function LegalSection() {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -156,7 +156,7 @@ function LegalSection() {
           </h2>
         </Reveal>
         <Reveal delay={0.08}>
-          <div className="mt-8 rounded-xl border border-hairline-neutral bg-surface-alt p-6 sm:p-8">
+          <div className="mt-8 rounded-xl border-2 border-hairline-neutral bg-surface-alt p-6 sm:p-8">
             <p className="text-base text-muted leading-relaxed text-pretty">
               Jiwamu merupakan merek dagang di bawah{" "}
               <strong className="text-ink">PT Jiwa Media Utama</strong>.
@@ -187,7 +187,7 @@ function LegalSection() {
 
 function ContactSection() {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
         <Reveal>
           <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -201,7 +201,7 @@ function ContactSection() {
         </Reveal>
 
         <Reveal delay={0.16}>
-          <div className="mt-10 rounded-xl border border-hairline-neutral overflow-hidden bg-surface/50">
+          <div className="mt-10 rounded-xl border-2 border-hairline-neutral overflow-hidden bg-surface/50">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-hairline-neutral">
               {[
                 { icon: MapPin, label: "Alamat", value: `${SITE.address.line}, ${SITE.address.city}, ${SITE.address.province}` },

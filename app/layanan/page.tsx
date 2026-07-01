@@ -62,7 +62,7 @@ function Expectations() {
     "Kesempatan untuk memahami diri, emosi, dan hubungan secara lebih utuh",
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang bisa kamu harapkan dari kami?
@@ -92,7 +92,7 @@ function Expectations() {
 
 function WhatWeDo() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Apa yang kami lakukan?
@@ -105,7 +105,7 @@ function WhatWeDo() {
         </p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-2xl border border-hairline bg-surface-alt p-8">
+          <div className="rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-8">
             <h3 className="text-xl font-semibold text-ink">Coaching</h3>
             <p className="mt-3 text-sm text-muted text-pretty">Cocok bagi kamu yang:</p>
             <ul className="mt-4 space-y-2">
@@ -123,7 +123,7 @@ function WhatWeDo() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-hairline bg-surface-alt p-8">
+          <div className="rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-8">
             <h3 className="text-xl font-semibold text-ink">Psikoanalisis</h3>
             <p className="mt-3 text-sm text-muted text-pretty">
               Cocok bagi kamu yang ingin menjadikan proses memahami diri sebagai
@@ -156,7 +156,7 @@ function HealingPathway() {
     { title: "Final Termination", desc: "Tahap penutupan dan tindak lanjut untuk membantu proses transisi secara lebih sehat dan sadar." },
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
@@ -205,14 +205,14 @@ function Practitioners() {
     { name: "Ahmad Fauzan", exp: "10+ tahun", expertise: "Keresahan spiritual, masalah hubungan, dan keuangan" },
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink text-balance">
           Pendengar setiamu
         </h2>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {practitioners.map((p) => (
-            <div key={p.name} className="rounded-2xl border border-hairline bg-surface-alt p-6">
+            <div key={p.name} className="rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-6">
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center size-12 rounded-lg bg-fill-soft text-accent shrink-0">
                   <span className="text-lg font-serif">{p.name.charAt(0)}</span>
@@ -243,7 +243,7 @@ function FAQ() {
     { q: "Apakah semua cerita saya akan dirahasiakan?", a: "Ya. Privasi dan kerahasiaan merupakan bagian penting dalam proses pendampingan di Jiwamu." },
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-accent">
@@ -253,7 +253,7 @@ function FAQ() {
         </div>
         <div className="mt-8 space-y-3">
           {faqs.map((faq, i) => (
-            <details key={i} className="group rounded-2xl border border-hairline bg-surface-alt p-5">
+            <details key={i} className="group rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-5">
               <summary className="flex cursor-pointer items-center justify-between gap-4 list-none">
                 <span className="text-base font-medium text-ink text-pretty">{faq.q}</span>
                 <CaretDown weight="bold" className="size-4 text-soft shrink-0 transition-transform group-open:rotate-180" />
@@ -269,9 +269,9 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
+        <div className="relative overflow-hidden rounded-[32px] border-2 border-hairline-neutral bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">
             Siap memulai perjalananmu?
           </h2>

@@ -76,7 +76,7 @@ function Competency() {
     "Berkontribusi dalam ekosistem Jiwamu sebagai praktisi, penulis, peneliti, trainer, atau mitra pengembangan profesional",
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Standar Kompetensi" icon={CheckCircle} />
         <p className="mt-4 text-muted">Dengan mengikuti pelatihan ini, kamu mampu untuk:</p>
@@ -102,13 +102,13 @@ function Curriculum() {
     "Modul 9 — Attachment and Social Justice", "Modul 10 — Start Your Practice!",
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Materi Pelajaran" icon={Sparkle} />
         <p className="mt-4 text-muted">CABP terdiri dari 10 modul utama:</p>
         <div className="mt-8 flex flex-wrap gap-2">
           {modules.map((m, i) => (
-            <span key={i} className="inline-flex items-center rounded-lg border border-hairline-neutral bg-surface-alt px-4 py-2 text-sm text-body">
+            <span key={i} className="inline-flex items-center rounded-lg border-2 border-hairline-neutral bg-surface-alt px-4 py-2 text-sm text-body">
               {m}
             </span>
           ))}
@@ -120,10 +120,10 @@ function Curriculum() {
 
 function Duration() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Durasi Pelatihan" icon={Clock} />
-        <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8">
+        <div className="mt-8 rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-8">
           <p className="text-2xl font-semibold text-ink">3 Bulan (100 Jam Pembelajaran)</p>
           <p className="mt-4 text-lg leading-relaxed text-body text-pretty">
             Pelatihan disampaikan secara modular dengan sistem blended learning,
@@ -140,10 +140,10 @@ function Duration() {
 
 function Investment() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Investasi" icon={CurrencyDollar} />
-        <div className="mt-8 rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
+        <div className="mt-8 rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-8 sm:p-10">
           <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink">Rp 13.000.000</p>
           <div className="mt-6 rounded-xl bg-surface p-5">
             <p className="text-sm font-medium text-ink">Pembayaran melalui:</p>
@@ -170,7 +170,7 @@ function Facilities() {
     "Undangan keterlibatan dalam proyek penelitian dan publikasi", "Diskon 50% untuk setiap buku PUSAKA PANJI",
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Fasilitas" icon={CheckCircle} />
         <p className="mt-4 text-muted">Anda juga akan mendapatkan:</p>
@@ -195,12 +195,12 @@ function Trainers() {
     { name: "Juan Lee (Yen)", cred: "CABP", exp: "10+ tahun" },
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Staf Trainer" icon={Sparkle} />
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {trainers.map((t) => (
-            <div key={t.name} className="rounded-2xl border border-hairline bg-surface-alt p-5 text-center">
+            <div key={t.name} className="rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-5 text-center">
               <div className="mx-auto flex items-center justify-center size-20 rounded-lg bg-fill-soft text-accent">
                 <span className="text-2xl font-serif">{t.name.charAt(0)}</span>
               </div>
@@ -217,11 +217,11 @@ function Trainers() {
 
 function Schedule() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="Jadwal Terdekat" icon={MapPin} />
         <div className="mt-8 grid grid-cols-1 gap-4">
-          <div className="flex items-center justify-between rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-surface p-6">
+          <div className="flex items-center justify-between rounded-2xl border-2 border-hairline-neutral bg-gradient-to-br from-fill-soft to-surface p-6">
             <div className="flex items-center gap-3">
               <MapPin weight="duotone" className="size-5 text-accent" />
               <div>
@@ -230,7 +230,7 @@ function Schedule() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between rounded-2xl border border-hairline bg-surface-alt p-6">
+          <div className="flex items-center justify-between rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-6">
             <div className="flex items-center gap-3">
               <MapPin weight="duotone" className="size-5 text-accent" />
               <div>
@@ -257,12 +257,12 @@ function FAQ() {
     { q: "Mengapa CABP berlangsung 3 bulan?", a: "Karena CABP dirancang sebagai proses pembentukan praktisi, sehingga peserta membutuhkan waktu untuk membaca, berdiskusi, berlatih, mengerjakan tugas, dan mengembangkan arah praktik masing-masing." },
   ];
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHead title="FAQ" icon={Sparkle} />
         <div className="mt-8 space-y-3">
           {faqs.map((faq, i) => (
-            <details key={i} className="group rounded-2xl border border-hairline bg-surface-alt p-5">
+            <details key={i} className="group rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-5">
               <summary className="flex cursor-pointer items-center justify-between gap-4 list-none">
                 <span className="text-base font-medium text-ink text-pretty">{faq.q}</span>
                 <CaretDown weight="bold" className="size-4 text-soft shrink-0 transition-transform group-open:rotate-180" />
@@ -278,9 +278,9 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="py-20 sm:py-24 lg:py-28 bg-surface">
+    <section className="py-12 sm:py-16 lg:py-20 bg-surface">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[32px] border border-hairline bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
+        <div className="relative overflow-hidden rounded-[32px] border-2 border-hairline-neutral bg-gradient-to-br from-fill-soft via-surface to-surface p-8 sm:p-12 text-center shadow-soft">
           <h2 className="text-xl sm:text-2xl sm:text-3xl font-semibold tracking-tight text-ink text-balance">Siap untuk naik kelas?</h2>
           <p className="mt-3 text-muted text-pretty">Daftar sekarang dan jadilah Certified Attachment-Based Practitioner (CABP).</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">

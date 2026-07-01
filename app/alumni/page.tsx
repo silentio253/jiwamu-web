@@ -48,10 +48,10 @@ export default function AlumniPage() {
 
   return (
     <>
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+      <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Komunitas Alumni
             </p>
             <h1 className="mt-6 text-2xl sm:text-4xl lg:text-5xl font-serif font-normal leading-[1.1] tracking-tight text-ink text-balance">
@@ -87,12 +87,12 @@ export default function AlumniPage() {
                 aria-label="Cari alumni"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full rounded-lg border border-hairline-neutral bg-surface pl-10 pr-4 py-2.5 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                className="w-full rounded-lg border-2 border-hairline-neutral bg-surface pl-10 pr-4 py-2.5 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
               />
             </div>
           </div>
 
-          <div className="rounded-xl border border-hairline-neutral overflow-hidden bg-surface/50">
+          <div className="rounded-xl border-2 border-hairline-neutral overflow-hidden bg-surface/50">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>

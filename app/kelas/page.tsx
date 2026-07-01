@@ -22,7 +22,7 @@ export default function KelasPage() {
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Sertifikasi &amp; Pelatihan
             </p>
           </Reveal>
@@ -42,14 +42,14 @@ export default function KelasPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.1}>
             {CERTIFICATIONS.map((cert, i) => (
               <RevealItem key={cert.href} index={i}>
                 <Link
                   href={cert.href}
-                  className="group relative flex flex-col rounded-2xl border border-hairline bg-surface-alt p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg h-full"
+                  className="group relative flex flex-col rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-8 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-accent-lg h-full"
                 >
                   <div className="flex items-center gap-3">
                     <span className="flex items-center justify-center size-10 rounded-xl bg-fill-soft text-sm font-semibold text-accent">
@@ -68,7 +68,7 @@ export default function KelasPage() {
                   <p className="mt-4 text-sm leading-relaxed text-muted text-pretty flex-1">
                     {cert.desc}
                   </p>
-                  <div className="mt-6 flex items-center justify-between border-t border-hairline-neutral pt-4">
+                  <div className="mt-6 flex items-center justify-between border-t-2 border-hairline-neutral pt-4">
                     <span className="text-sm font-medium text-ink">
                       {cert.price}
                     </span>
@@ -87,10 +87,10 @@ export default function KelasPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="relative overflow-hidden rounded-2xl border border-hairline bg-gradient-to-br from-fill-soft to-surface p-8 sm:p-10">
+            <div className="relative overflow-hidden rounded-2xl border-2 border-hairline-neutral bg-gradient-to-br from-fill-soft to-surface p-8 sm:p-10">
               <div className="flex items-center justify-center size-12 rounded-xl bg-accent text-white">
                 <Certificate weight="duotone" className="size-6" />
               </div>
@@ -111,7 +111,7 @@ export default function KelasPage() {
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-hairline bg-surface-alt p-8 sm:p-10">
+            <div className="relative overflow-hidden rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-8 sm:p-10">
               <div className="flex items-center justify-center size-12 rounded-xl bg-fill-soft text-accent">
                 <PenNib weight="duotone" className="size-6" />
               </div>
@@ -134,9 +134,9 @@ export default function KelasPage() {
         </div>
       </section>
 
-      <section className="py-20 sm:py-24 lg:py-28 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="rounded-[32px] border border-hairline bg-surface-alt p-8 sm:p-12 text-center">
+          <div className="rounded-[32px] border-2 border-hairline-neutral bg-surface-alt p-8 sm:p-12 text-center">
             <div className="flex items-center justify-center size-14 rounded-2xl bg-fill-soft text-accent mx-auto">
               <UsersThree weight="duotone" className="size-7" />
             </div>

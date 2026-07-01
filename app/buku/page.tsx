@@ -88,11 +88,11 @@ export default function BukuPage() {
 
 function HeroSection() {
   return (
-    <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+    <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Penerbit Jiwamu
             </p>
           </Reveal>
@@ -136,7 +136,7 @@ function KatalogSection() {
                 type="text"
                 placeholder="Cari buku..."
                 aria-label="Cari buku"
-                className="w-full rounded-lg border border-hairline-neutral bg-surface pl-10 pr-4 py-2.5 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                className="w-full rounded-lg border-2 border-hairline-neutral bg-surface pl-10 pr-4 py-2.5 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
               />
             </div>
           </Reveal>
@@ -150,7 +150,7 @@ function KatalogSection() {
             <RevealItem key={book.id} index={i}>
               <Link
                 href={`/buku/${book.slug}`}
-                className="group flex flex-col rounded-xl border border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
+                className="group flex flex-col rounded-xl border-2 border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
               >
                 <div className="relative aspect-[3/4] bg-fill-soft overflow-hidden">
                   {book.coverUrl ? (
