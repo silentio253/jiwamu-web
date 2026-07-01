@@ -77,7 +77,7 @@ function Hero() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-medium text-ink transition-all hover:border-accent hover:bg-fill-soft whitespace-nowrap"
+              className="inline-flex items-center rounded-lg border-2 border-hairline-neutral bg-surface px-4 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-medium text-ink transition-all hover:border-accent hover:bg-fill-soft whitespace-nowrap"
             >
               Tanya Kami
             </Link>
@@ -370,7 +370,7 @@ function Connect() {
           Kami menanti di ruang-ruang yang nyaman bagimu.
         </p>
 
-        <div className="mt-10 sm:mt-14 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt">
+        <div className="mt-10 sm:mt-14 rounded-xl border-2 border-hairline-neutral overflow-hidden bg-surface-alt">
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {contacts.map((c, i) => (
               <a

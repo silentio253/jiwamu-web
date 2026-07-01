@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function WritingLabPage() {
   return (
     <>
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+      <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
@@ -51,7 +51,7 @@ export default function WritingLabPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -66,7 +66,7 @@ export default function WritingLabPage() {
               { title: "Sesi 4 — Inkubasi Naskah", desc: "Peserta mulai menyiapkan arah naskah masing-masing dan menyusun rencana penulisan untuk proses inkubasi lanjutan." },
             ].map((sesi, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div className="rounded-2xl border border-hairline-neutral bg-surface p-6">
+                <div className="rounded-2xl border-2 border-hairline-neutral bg-surface p-6">
                   <h3 className="text-base font-semibold text-ink">{sesi.title}</h3>
                   <p className="mt-2 text-sm text-muted leading-relaxed">{sesi.desc}</p>
                 </div>
@@ -76,7 +76,7 @@ export default function WritingLabPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -84,12 +84,12 @@ export default function WritingLabPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="mt-8 rounded-2xl border border-hairline-neutral bg-surface-alt p-6 sm:p-8">
+            <div className="mt-8 rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-6 sm:p-8">
               <p className="text-3xl font-semibold text-ink">Rp 500.000</p>
               <p className="mt-2 text-sm text-muted">
                 Biaya belum termasuk ongkos produksi buku
               </p>
-              <div className="mt-4 pt-4 border-t border-hairline-neutral">
+              <div className="mt-4 pt-4 border-t-2 border-hairline-neutral-neutral">
                 <p className="text-sm text-muted">Durasi: 2 Minggu (4 Pertemuan Daring)</p>
                 <p className="mt-1 text-sm text-muted">Setelah sesi materi, peserta tetap didampingi hingga naskah siap terbit.</p>
               </div>
@@ -98,7 +98,7 @@ export default function WritingLabPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">

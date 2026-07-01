@@ -36,7 +36,7 @@ export default function CAFPage() {
 
 function CAFHero() {
   return (
-    <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
+    <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-gradient-to-b from-fill-soft to-surface">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3">

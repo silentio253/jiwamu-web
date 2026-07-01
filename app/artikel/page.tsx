@@ -17,7 +17,7 @@ export default function ArtikelPage() {
 
   return (
     <>
-      <section className="pt-32 pb-12 sm:pt-40 sm:pb-16 bg-surface">
+      <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <Reveal>
@@ -55,7 +55,7 @@ export default function ArtikelPage() {
             <Link
               key={artikel.slug}
               href={`/artikel/${artikel.slug}`}
-              className="group flex flex-col rounded-xl border border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
+              className="group flex flex-col rounded-xl border-2 border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent"
             >
               <div className="relative aspect-[16/9] bg-fill-soft overflow-hidden">
                 {artikel.thumbnail ? (

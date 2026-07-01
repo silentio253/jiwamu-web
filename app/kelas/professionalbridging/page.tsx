@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function ProfessionalBridgingPage() {
   return (
     <>
-      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 bg-surface">
+      <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
@@ -52,7 +52,7 @@ export default function ProfessionalBridgingPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -84,7 +84,7 @@ export default function ProfessionalBridgingPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -113,7 +113,7 @@ export default function ProfessionalBridgingPage() {
               "Modul 10 — Start Your Practice!",
             ].map((m, i) => (
               <Reveal key={i} delay={i * 0.04}>
-                <div className="flex items-center gap-3 rounded-2xl border border-hairline-neutral bg-surface-alt p-4">
+                <div className="flex items-center gap-3 rounded-2xl border-2 border-hairline-neutral bg-surface-alt p-4">
                   <span className="flex items-center justify-center size-8 rounded-lg bg-fill-soft text-xs font-semibold text-accent shrink-0">
                     {i + 1}
                   </span>
@@ -125,7 +125,7 @@ export default function ProfessionalBridgingPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface-alt">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface-alt">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink">
@@ -133,9 +133,9 @@ export default function ProfessionalBridgingPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="mt-8 rounded-2xl border border-hairline-neutral bg-surface p-6 sm:p-8">
+            <div className="mt-8 rounded-2xl border-2 border-hairline-neutral bg-surface p-6 sm:p-8">
               <p className="text-3xl font-semibold text-ink">Rp 15.000.000</p>
-              <div className="mt-4 pt-4 border-t border-hairline-neutral">
+              <div className="mt-4 pt-4 border-t-2 border-hairline-neutral-neutral">
                 <p className="text-sm text-muted">Durasi: 3 Bulan (100 Jam Pembelajaran) + 6 jam Matrikulasi</p>
                 <p className="mt-1 text-sm text-muted">Blended learning: gabungan pembelajaran offline dan online.</p>
               </div>
@@ -144,7 +144,7 @@ export default function ProfessionalBridgingPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 lg:py-24 bg-surface">
+      <section className="py-12 sm:py-16 lg:py-20 bg-surface">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
             <h2 className="text-xl sm:text-3xl font-serif font-normal tracking-tight text-ink text-balance">

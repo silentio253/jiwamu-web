@@ -5,7 +5,7 @@ import { YoutubeLogo, InstagramLogo, TiktokLogo, Phone } from "@/components/icon
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-hairline-neutral bg-ink">
+    <footer className="border-t-2 border-hairline-neutral-neutral bg-ink">
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">

@@ -15,7 +15,7 @@ export default function VideoPage() {
 
   return (
     <>
-      <section className="pt-32 pb-12 sm:pt-40 sm:pb-16 bg-surface">
+      <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <Reveal>
@@ -54,7 +54,7 @@ export default function VideoPage() {
             >
               {videos.map((video, i) => (
                 <RevealItem key={video.slug} index={i}>
-                  <div className="group rounded-xl border border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent">
+                  <div className="group rounded-xl border-2 border-hairline-neutral bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-accent">
                     <div className="relative aspect-video bg-ink overflow-hidden">
                       {video.youtube_url ? (
                         <iframe

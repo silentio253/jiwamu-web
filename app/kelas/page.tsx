@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function KelasPage() {
   return (
     <>
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-fill-soft to-surface">
+      <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-gradient-to-b from-fill-soft to-surface">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
             <p className="section-eyebrow">
