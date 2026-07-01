@@ -2,6 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
+  /* Colors */
   --color-ink: #101828;
   --color-body: #344054;
   --color-muted: #475467;
@@ -16,15 +17,28 @@
   --color-accent-deep: #315cf0;
   --color-wa: #25d366;
 
+  /* Fonts */
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
 
+  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-2xl: 32px;
+
+  /* Golden Ratio Typography Scale (1.3x modifier) */
+  --text-xs: 0.75rem;      /* 12px — labels, eyebrows */
+  --text-sm: 0.875rem;     /* 14px — small body */
+  --text-base: 1rem;       /* 16px — body */
+  --text-lg: 1.25rem;      /* 20px — H3 mobile */
+  --text-xl: 1.5rem;       /* 24px — H3 desktop / H2 mobile */
+  --text-2xl: 1.625rem;    /* 26px — H2 mobile alt */
+  --text-3xl: 2rem;        /* 32px — H2 desktop */
+  --text-4xl: 2.625rem;    /* 42px — H1 mobile */
+  --text-5xl: 3.25rem;     /* 52px — H1 desktop */
 }
 
 :root {
@@ -59,6 +73,7 @@
     text-wrap: pretty;
   }
 
+  /* Shadows */
   .shadow-accent {
     box-shadow: 0 1px 2px rgba(75, 107, 255, 0.08), 0 4px 12px rgba(75, 107, 255, 0.06);
   }
@@ -70,8 +85,57 @@
   .shadow-soft {
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 12px rgba(16, 24, 40, 0.03);
   }
+
+  /* Highlight text — accent underline for key phrases */
+  .highlight-accent {
+    background-image: linear-gradient(to right, var(--color-accent), var(--color-accent));
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding-bottom: 2px;
+  }
+
+  /* Serif highlight — italic serif for editorial emphasis */
+  .serif-highlight {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  /* Section eyebrow — consistent label style */
+  .section-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-accent-deep);
+  }
+
+  /* Card border — thicker for visibility */
+  .card-border {
+    border: 2px solid var(--color-hairline-neutral);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Footer contrasting background */
+  .bg-footer {
+    background-color: var(--color-ink);
+  }
+
+  .text-footer {
+    color: var(--color-soft);
+  }
+
+  .text-footer-heading {
+    color: var(--color-white);
+  }
+
+  .border-footer {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
+/* Motion */
 @media (prefers-reduced-motion: no-preference) {
   .motion-safe-fade-up {
     animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;

@@ -5,7 +5,7 @@ import { YoutubeLogo, InstagramLogo, TiktokLogo, Phone } from "@/components/icon
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-hairline bg-surface-alt">
+    <footer className="border-t border-hairline-neutral bg-ink">
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -17,18 +17,18 @@ export function SiteFooter() {
                 height={40}
                 className="rounded-xl"
               />
-              <span className="text-xl font-semibold tracking-tight text-ink">
+              <span className="text-xl font-semibold tracking-tight text-white">
                 Jiwamu
               </span>
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-soft/70">
               PT Jiwa Media Utama
               <br />
               Pusat Usaha dan Kaderisasi
               <br />
               Perkumpulan Pamong Jiwa Indonesia (PUSAKA PANJI)
             </p>
-            <address className="mt-5 not-italic text-sm leading-relaxed text-soft">
+            <address className="mt-5 not-italic text-sm leading-relaxed text-soft/60">
               {SITE.address.line}
               <br />
               {SITE.address.city}, {SITE.address.province}
@@ -45,7 +45,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft/60">
               Kelas
             </h3>
             <ul className="mt-4 space-y-3">
@@ -53,7 +53,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-body transition-colors hover:text-accent"
+                    className="text-sm text-soft/80 transition-colors hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -63,7 +63,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft/60">
               Sumber Daya
             </h3>
             <ul className="mt-4 space-y-3">
@@ -71,7 +71,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-body transition-colors hover:text-accent"
+                    className="text-sm text-soft/80 transition-colors hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -81,7 +81,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft">
+            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft/60">
               Terhubung
             </h3>
             <ul className="mt-4 space-y-3">
@@ -90,7 +90,7 @@ export function SiteFooter() {
                   href={SITE.social.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-body transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-soft/80 transition-colors hover:text-accent"
                 >
                   <YoutubeLogo weight="regular" className="size-4" />
                   Jiwamu Talks
@@ -101,7 +101,7 @@ export function SiteFooter() {
                   href={SITE.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-body transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-soft/80 transition-colors hover:text-accent"
                 >
                   <InstagramLogo weight="regular" className="size-4" />
                   @jiwamu.daily
@@ -112,7 +112,7 @@ export function SiteFooter() {
                   href={SITE.social.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-body transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-soft/80 transition-colors hover:text-accent"
                 >
                   <TiktokLogo weight="regular" className="size-4" />
                   @jiwamu.daily
@@ -123,7 +123,7 @@ export function SiteFooter() {
                   href={SITE.social.shopee}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-body transition-colors hover:text-accent"
+                  className="text-sm text-soft/80 transition-colors hover:text-accent"
                 >
                   Shopee: jiwamu_store
                 </a>
@@ -132,8 +132,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex items-center justify-between border-t border-hairline pt-8">
-          <p className="text-xs text-soft">
+        <div className="mt-16 flex items-center justify-between border-t border-white/10 pt-8">
+          <p className="text-xs text-soft/50">
             © {new Date().getFullYear()} PT Jiwa Media Utama
           </p>
         </div>

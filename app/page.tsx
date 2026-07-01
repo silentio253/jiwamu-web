@@ -48,7 +48,7 @@ function Hero() {
           <p className="text-xs sm:text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
             Ekosistem Kelekatan
           </p>
-          <h1 className="mt-6 text-[2rem] sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.08] sm:leading-[1.05] tracking-tight text-ink">
+          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-[1.05] tracking-tight text-ink">
             Ruang aman untuk{" "}
             <span className="font-serif italic font-normal text-accent">
               bertumbuh
@@ -91,23 +91,24 @@ function Hero() {
 function Manifesto() {
   return (
     <section className="bg-surface-alt">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-44">
         <div className="max-w-[750px]">
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+          <p className="section-eyebrow">
             Manifesto
           </p>
-          <p className="mt-8 sm:mt-10 text-xl sm:text-2xl lg:text-[2.25rem] font-serif font-normal text-ink leading-[1.4] text-pretty">
+          <p className="mt-8 sm:mt-10 text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-ink leading-[1.35] text-pretty">
             Sebagian besar dari kita tumbuh dengan keyakinan bahwa masalah
             hidup bisa diselesaikan dengan cukup usaha, cukup kesabaran, atau
-            cukup doa. Kita diajarkan untuk kuat. Untuk tidak cengeng.
+            cukup doa. Kita diajarkan untuk{" "}
+            <span className="serif-highlight">kuat</span>. Untuk tidak cengeng.
           </p>
-          <div className="mt-8 sm:mt-10 space-y-5 sm:space-y-6">
-            <p className="text-base sm:text-lg text-muted leading-relaxed text-pretty">
+          <div className="mt-10 sm:mt-12 space-y-6 sm:space-y-8">
+            <p className="text-lg sm:text-xl text-muted leading-relaxed text-pretty">
               Di banyak keluarga, perasaan bukan sesuatu yang dibicarakan di
               meja makan. Perasaan adalah sesuatu yang ditelan bersama nasi
               dan lauk, lalu pura-pura kalau itu sudah berlalu.
             </p>
-            <p className="text-base sm:text-lg text-muted leading-relaxed text-pretty">
+            <p className="text-lg sm:text-xl text-muted leading-relaxed text-pretty">
               Kita menjadi kian mahir menggunakan topeng &lsquo;si baik-baik
               saja&rsquo;, namun tidak pernah benar-benar paham mengapa kita
               selalu berkubang di tempat yang sama. Sering kali, perasaan
@@ -115,8 +116,8 @@ function Manifesto() {
               diri.
             </p>
           </div>
-          <div className="mt-10 sm:mt-12 pl-6 sm:pl-8 border-l-2 border-accent">
-            <p className="text-lg sm:text-xl lg:text-2xl font-serif italic text-ink leading-relaxed text-pretty">
+          <div className="mt-12 sm:mt-16 pl-8 border-l-2 border-accent">
+            <p className="text-xl sm:text-2xl lg:text-3xl font-serif italic text-accent leading-relaxed text-pretty">
               Jiwamu adalah wadah di mana segala rasa berlabuh tanpa dihakimi
               dan ruang di mana setiap proses bertumbuh aman melegakan.
             </p>
@@ -159,35 +160,35 @@ function WhatYouNeed() {
 
   return (
     <section className="bg-surface">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-36">
         <div className="max-w-2xl">
-          <h2 className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight text-ink text-balance">
             Apa yang kamu butuhkan?
           </h2>
-          <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted text-pretty">
+          <p className="mt-4 sm:mt-5 text-lg text-muted text-pretty">
             Tiga pintu masuk untuk bertumbuh bersama Jiwamu.
           </p>
         </div>
 
-        <div className="mt-12 sm:mt-16 rounded-xl border border-hairline-neutral overflow-hidden bg-surface-alt">
+        <div className="mt-14 sm:mt-16 rounded-xl border-2 border-hairline-neutral overflow-hidden bg-surface-alt">
           {items.map((item, i) => {
             const isOpen = expanded === i;
             return (
               <div
                 key={item.href}
-                className={i > 0 ? "border-t border-hairline-neutral" : ""}
+                className={i > 0 ? "border-t-2 border-hairline-neutral" : ""}
               >
                 <button
                   onClick={() => setExpanded(isOpen ? null : i)}
-                  className="group grid grid-cols-12 gap-4 sm:gap-8 items-center px-4 sm:px-10 py-6 sm:py-8 w-full text-left transition-colors duration-300 hover:bg-surface-alt"
+                  className="group grid grid-cols-12 gap-4 sm:gap-8 items-center px-5 sm:px-10 py-7 sm:py-9 w-full text-left transition-colors duration-300 hover:bg-surface"
                 >
                   <div className="col-span-2 sm:col-span-1">
-                    <span className="text-xl sm:text-3xl lg:text-4xl font-serif italic text-accent">
+                    <span className="text-2xl sm:text-3xl lg:text-4xl font-serif italic text-accent">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <div className="hidden sm:flex col-span-1 justify-center">
-                    <div className="h-10 w-px bg-accent" />
+                    <div className="h-12 w-px bg-accent" />
                   </div>
                   <div className="col-span-7 sm:col-span-8">
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-serif font-normal tracking-tight text-ink">
@@ -240,10 +241,10 @@ function ThisMonth() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-5">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+            <p className="section-eyebrow">
               Bulan ini
             </p>
-            <h2 className="mt-4 sm:mt-5 text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
+            <h2 className="mt-4 sm:mt-5 text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight text-ink text-balance">
               Fokus: kelas terdekat
             </h2>
             <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted leading-relaxed text-pretty max-w-md">
@@ -264,40 +265,40 @@ function ThisMonth() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="rounded-xl border border-hairline-neutral bg-surface p-6 sm:p-8 lg:p-10">
+            <div className="rounded-xl border-2 border-hairline-neutral bg-surface p-6 sm:p-8 lg:p-10">
               <div className="grid grid-cols-3 gap-4 sm:gap-6">
                 <div>
-                  <p className="text-2xl sm:text-5xl lg:text-6xl font-serif text-ink">
+                  <p className="text-3xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     11
                   </p>
-                  <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
+                  <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-soft">
                     Juli 2026
                   </p>
                 </div>
                 <div className="border-l border-hairline-neutral pl-4 sm:pl-6">
-                  <p className="text-2xl sm:text-5xl lg:text-6xl font-serif text-ink">
+                  <p className="text-3xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     4
                   </p>
-                  <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
+                  <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-soft">
                     Kota
                   </p>
                 </div>
                 <div className="border-l border-hairline-neutral pl-4 sm:pl-6">
-                  <p className="text-2xl sm:text-5xl lg:text-6xl font-serif text-ink">
+                  <p className="text-3xl sm:text-5xl lg:text-6xl font-serif text-ink">
                     9
                   </p>
-                  <p className="mt-1 sm:mt-2 text-xs sm:text-xs uppercase tracking-[0.18em] text-soft">
+                  <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.18em] text-soft">
                     Jam
                   </p>
                 </div>
               </div>
-              <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-hairline-neutral">
+              <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t-2 border-hairline-neutral">
                 <p className="text-sm font-medium text-ink">Kota tersedia</p>
                 <p className="mt-1 sm:mt-2 text-sm text-muted">
                   Malang &middot; Jakarta &middot; Yogyakarta &middot; Bandung
                 </p>
               </div>
-              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-hairline-neutral">
+              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t-2 border-hairline-neutral">
                 <p className="text-sm font-medium text-ink">
                   Level 1 &middot; CAF
                 </p>
@@ -361,11 +362,11 @@ function Connect() {
 
   return (
     <section className="bg-surface">
-      <div className="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 text-center">
-        <h2 className="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-normal tracking-tight text-ink text-balance">
+      <div className="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-36 text-center">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight text-ink text-balance">
           Mari terhubung!
         </h2>
-        <p className="mt-4 sm:mt-5 text-base sm:text-lg text-muted">
+        <p className="mt-5 text-lg text-muted">
           Kami menanti di ruang-ruang yang nyaman bagimu.
         </p>
 
@@ -412,34 +413,34 @@ function Connect() {
 function Subscribe() {
   return (
     <section className="bg-surface-alt">
-      <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent-deep">
+      <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-36 text-center">
+        <p className="section-eyebrow">
           Berlangganan
         </p>
-        <h2 className="mt-4 sm:mt-5 text-xl sm:text-2xl lg:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
+        <h2 className="mt-5 text-xl sm:text-2xl lg:text-3xl font-serif font-normal tracking-tight text-ink text-balance">
           Dapatkan edisi terbaru Majalah Jiwamu setiap bulan.
         </h2>
-        <p className="mt-3 sm:mt-4 text-muted text-pretty">
+        <p className="mt-3 text-muted text-pretty">
           Gratis. Langsung ke WhatsApp kamu.
         </p>
-        <form className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
             type="text"
             name="name"
             placeholder="Nama"
             aria-label="Nama"
-            className="flex-1 rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+            className="flex-1 rounded-lg border-2 border-hairline-neutral bg-surface px-5 py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
           />
           <input
             type="tel"
             name="phone"
             placeholder="No. WhatsApp"
             aria-label="No. WhatsApp"
-            className="flex-1 rounded-lg border border-hairline-neutral bg-surface px-4 sm:px-5 py-2.5 sm:py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+            className="flex-1 rounded-lg border-2 border-hairline-neutral bg-surface px-5 py-3 text-sm text-ink placeholder:text-soft focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
           />
           <button
             type="submit"
-            className="rounded-lg bg-accent px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-white shadow-accent transition-all hover:bg-accent-deep hover:shadow-accent-lg active:scale-[0.98] whitespace-nowrap"
+            className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white shadow-accent transition-all hover:bg-accent-deep hover:shadow-accent-lg active:scale-[0.98] whitespace-nowrap"
           >
             Kirim
           </button>
