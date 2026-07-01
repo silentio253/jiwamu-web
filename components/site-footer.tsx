@@ -21,14 +21,14 @@ export function SiteFooter() {
                 Jiwamu
               </span>
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-soft/70">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-400">
               PT Jiwa Media Utama
               <br />
               Pusat Usaha dan Kaderisasi
               <br />
               Perkumpulan Pamong Jiwa Indonesia (PUSAKA PANJI)
             </p>
-            <address className="mt-5 not-italic text-sm leading-relaxed text-soft/60">
+            <address className="mt-5 not-italic text-sm leading-relaxed text-slate-400">
               {SITE.address.line}
               <br />
               {SITE.address.city}, {SITE.address.province}
@@ -45,7 +45,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft/60">
+            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
               Kelas
             </h3>
             <ul className="mt-4 space-y-3">
@@ -53,7 +53,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-soft/80 transition-colors hover:text-accent"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
                   >
                     {item.label}
                   </Link>
@@ -63,7 +63,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft/60">
+            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
               Sumber Daya
             </h3>
             <ul className="mt-4 space-y-3">
@@ -71,7 +71,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-soft/80 transition-colors hover:text-accent"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
                   >
                     {item.label}
                   </Link>
@@ -81,7 +81,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-soft/60">
+            <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
               Terhubung
             </h3>
             <ul className="mt-4 space-y-3">
@@ -90,7 +90,7 @@ export function SiteFooter() {
                   href={SITE.social.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-soft/80 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
                 >
                   <YoutubeLogo weight="regular" className="size-4" />
                   Jiwamu Talks
@@ -101,7 +101,7 @@ export function SiteFooter() {
                   href={SITE.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-soft/80 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
                 >
                   <InstagramLogo weight="regular" className="size-4" />
                   @jiwamu.daily
@@ -112,7 +112,7 @@ export function SiteFooter() {
                   href={SITE.social.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-soft/80 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
                 >
                   <TiktokLogo weight="regular" className="size-4" />
                   @jiwamu.daily
@@ -123,7 +123,7 @@ export function SiteFooter() {
                   href={SITE.social.shopee}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-soft/80 transition-colors hover:text-accent"
+                  className="text-sm text-slate-400 transition-colors hover:text-white"
                 >
                   Shopee: jiwamu_store
                 </a>
@@ -133,7 +133,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-16 flex items-center justify-between border-t border-white/10 pt-8">
-          <p className="text-xs text-soft/50">
+          <p className="text-xs text-slate-500">
             © {new Date().getFullYear()} PT Jiwa Media Utama
           </p>
         </div>

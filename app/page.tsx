@@ -91,7 +91,7 @@ function Hero() {
 function Manifesto() {
   return (
     <section className="bg-surface-alt">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-44">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
         <div className="max-w-[750px]">
           <p className="section-eyebrow">
             Manifesto
@@ -160,7 +160,7 @@ function WhatYouNeed() {
 
   return (
     <section className="bg-surface">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-36">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
         <div className="max-w-2xl">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight text-ink text-balance">
             Apa yang kamu butuhkan?
@@ -238,7 +238,7 @@ function WhatYouNeed() {
 function ThisMonth() {
   return (
     <section className="bg-surface-alt">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-5">
             <p className="section-eyebrow">
@@ -362,7 +362,7 @@ function Connect() {
 
   return (
     <section className="bg-surface">
-      <div className="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-36 text-center">
+      <div className="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28 text-center">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight text-ink text-balance">
           Mari terhubung!
         </h2>
@@ -413,7 +413,7 @@ function Connect() {
 function Subscribe() {
   return (
     <section className="bg-surface-alt">
-      <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-36 text-center">
+      <div className="mx-auto max-w-[700px] px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28 text-center">
         <p className="section-eyebrow">
           Berlangganan
         </p>
