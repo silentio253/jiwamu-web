@@ -10,7 +10,7 @@ export const SITE = {
   },
   social: {
     youtube: "https://youtube.com/@jiwamutalks",
-    instagram: "https://instagram.com/@jiwamu.daily",
+    instagram: "https://www.instagram.com/jiwamu.daily/",
     tiktok: "https://tiktok.com/@jiwamu.daily",
     threads: "https://threads.net/@jiwamu.daily",
     shopee: "https://shopee.co.id/jiwamu_store",
